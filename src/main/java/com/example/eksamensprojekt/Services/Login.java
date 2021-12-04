@@ -58,7 +58,7 @@ public class Login  {
     {
         try {
             File file = new File(nameFile);
-            FileWriter fileWriter = new FileWriter(new File(nameFile), true); //den overskriver ikke i txt filen hvis true
+            FileWriter fileWriter = new FileWriter(Login.class.getResource(nameFile), true); //den overskriver ikke i txt filen hvis true
             fileWriter.write(signUp(username, password)); //tilføjer username og password til txt-filen
             fileWriter.close();
         } catch (IOException e) {
