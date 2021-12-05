@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.eksamensprojekt.Controller">
+   <children>
+      <Button layoutX="827.0" layoutY="15.0" mnemonicParsing="false" onAction="#goToMain" text="Log out" />
+      <Label layoutX="32.0" layoutY="17.0" prefHeight="71.0" prefWidth="283.0" text="Stream film and series">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Button layoutX="330.0" layoutY="21.0" mnemonicParsing="false" onAction="#goToFilmList" prefHeight="59.0" prefWidth="175.0" text="Film List">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Button>
+      <Button layoutX="525.0" layoutY="22.0" mnemonicParsing="false" onAction="#goToFilmList" prefHeight="60.0" prefWidth="175.0" text="Series List">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Button>
+      <Accordion />
+      <Line endX="810.0000610351562" layoutX="105.0" layoutY="102.0" startX="-105.0" />
+      <ScrollPane layoutX="-3.0" layoutY="102.0" prefHeight="459.0" prefWidth="919.0">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

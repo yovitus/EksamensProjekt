@@ -2,10 +2,7 @@ package com.example.eksamensprojekt.Services;
 
 import com.example.eksamensprojekt.Models.User;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 
 
@@ -27,13 +24,13 @@ public class Login  {
         String tmpPswd = "";
         try {
             Scanner sc = new Scanner(new File(nameFile)); //Scanner der skal scanne txt-filen
-            sc.useDelimiter(",\n"); //Hvis ikke der rykkes ned på næste linje, splitter den ved komma
-            boolean accepted = false; //Hvis login stemmer overens med det nognes brugerID i txt-filen, ændres den til true
-            while (found && sc.hasNext()) {
+            sc.useDelimiter("[,\n]"); //Læser noget før komma, efter komma ved den det er noget nyt, så læser den på næste linje
+             //Hvis login stemmer overens med det nognes brugerID i txt-filen, ændres den til true
+            while (!found && sc.hasNext()) {
                 //tjekker efter ID i txt-filen
                 tmpUser = sc.next();
                 tmpPswd = sc.next();
-
+                //trim så hvis de skriver mellemrum, så fjerner den det
                 if (tmpUser.trim().equals(username.trim()) && tmpPswd.trim().equals(password.trim())) {
                     accepted = true;
                     break;
@@ -46,12 +43,6 @@ public class Login  {
             e.printStackTrace();
         }
         return null;
-    }
-
-    public String signUp(String username, String password)
-    {
-
-        return username + "," + password;
     }
 
     public void makeProfile (String username, String password)

@@ -1,4 +1,5 @@
 module com.example.eksamensprojekt {
+
     requires javafx.controls;
     requires javafx.fxml;
 
