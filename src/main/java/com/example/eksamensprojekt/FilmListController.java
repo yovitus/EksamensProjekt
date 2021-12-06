@@ -54,7 +54,6 @@ public class FilmListController {
 
     @FXML
     public void initialize() {
-        System.out.println("tjek tjek");
         LoadingFilm lf = new LoadingFilm();
         List<Film> film = lf.openFile();
         int index = 0;

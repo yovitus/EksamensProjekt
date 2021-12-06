@@ -10,8 +10,8 @@ public class LoginTest {
     @Test
     public void makeUser() {
         Login login = new Login();
-        String signUp = login.makeProfile("yovitus","greatestpassword");
-        assertEquals("yovitus,greatestpassword", signUp);
+        String makeProfile = login.makeProfile("yovitus","greatestpassword");
+        assertEquals("yovitus,greatestpassword", makeProfile);
     }
 
     @Test
@@ -22,7 +22,5 @@ public class LoginTest {
         User user = login.login("yovitus","greatestpassword");
         assertEquals("yovitus",user.username);
         assertEquals("greatestpassword",user.password);
-
-
     }
 }

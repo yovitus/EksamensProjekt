@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.gluonhq.charm.glisten.control.TextField?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -20,16 +21,22 @@
             <Font size="28.0" />
          </font>
       </Label>
-      <Label layoutX="25.0" layoutY="30.0" prefHeight="40.0" prefWidth="282.0" text="Stream film and series">
+      <Label layoutX="27.0" layoutY="8.0" prefHeight="40.0" prefWidth="282.0" text="Stream film and series">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <Line endX="810.0000610351562" layoutX="95.0" layoutY="92.0" startX="-95.0" />
-      <ScrollPane layoutX="-1.0" layoutY="92.0" prefHeight="459.0" prefWidth="907.0">
+      <Line endX="810.0000610351562" layoutX="100.0" layoutY="100.0" startX="-100.0" />
+      <ScrollPane layoutX="-2.0" layoutY="101.0" prefHeight="434.0" prefWidth="907.0">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
         </content>
       </ScrollPane>
+      <TextField layoutX="93.0" layoutY="63.0" prefHeight="26.0" prefWidth="211.0" />
+      <Button layoutX="21.0" layoutY="62.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="68.0" text="Search:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
