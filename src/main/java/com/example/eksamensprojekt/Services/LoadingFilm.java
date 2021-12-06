@@ -1,65 +1,69 @@
 package com.example.eksamensprojekt.Services;
 
+import com.example.eksamensprojekt.Models.Film;
+
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.*;
 
 public class LoadingFilm {
     private Scanner s;
-    List<String[]> film;
+    List<Film> film;
 
     public LoadingFilm() {
+
         film = new ArrayList<>();
     }
-
-    public List<String[]> openFile ()
-        {
-            try
-            {
-                InputStream istream = LoadingFilm.class.getResourceAsStream("/com/Media/film.txt");
-                System.out.println(istream);
-                s = new Scanner(istream);
-            }
-            catch (Exception e)
-            {
-                System.out.println("Could not find file");
-            }
-
-            while(s.hasNext()) {
-                String oneString = s.nextLine();
-                String[] strings = oneString.split(" *; *");
-                strings[3] = strings[3].replace(",", ".");
-                film.add(strings);
-            }
-
-            return film;
+    public float tryParseToFloat(String value)
+    {
+        NumberFormat format = NumberFormat.getInstance(Locale.FRANCE);
+        Number number = null;
+        try {
+            number = format.parse(value);
+        } catch (ParseException e) {
+            System.out.println("Fuark brah, didn't float well");
         }
+        return number.floatValue();
+    }
 
-        public List<String[]> getFilmList()
-        {
-            return film;
-        }
-
-        //public void readFile()
+    public List<Film> openFile () {
+        //try
         //{
-        //    while(s.hasNext());
-        //     String name = s.next();
-        //    String year = s.next();
-        //    String genre = s.next();
-        //    String rating = s.next();
+        s = new Scanner(LoadingFilm.class.getResourceAsStream("/com/example/eksamensprojekt/Media/film.txt"),"UTF-8");
+        System.out.println("");
+        while (s.hasNextLine()) {
+            String oneString = s.nextLine(); //tjekker hver linje, som 1 film
+            String[] line = oneString.split(" *; *"); //splitter ved ;
+            String name = line[0];
+            int year = Integer.parseInt(line[1]);
+            String[] genre = line[2].split(", ");
+            float rating = tryParseToFloat(line[3]);
+            film.add(new Film(name, year, genre, rating, "film"));
+        }
+        //for(Film fi : filmList)
+       // {
+           // System.out.print(fi.getName() +" ");
+           // System.out.print(fi.getYear() +" ");
+            // System.out.print(Arrays.toString(fi.getGenre()) +" ");
+           // System.out.println(fi.getRating());
+        // }
 
-        //    System.out.printf("%s %s %s %s\n", name, year, genre, rating );
         //}
+           // catch (Exception e)
+           // {
+             //   System.out.println("Could not find file");
+          //  }
+
+            return film;
+        }
 
         public void closeFile()
         {
+
             s.close();
         }
 
-    public static void main(String[] args) {
-        LoadingFilm loadingFilm = new LoadingFilm();
-        loadingFilm.openFile();
-        System.out.println("hej");
-    }
+
     }

@@ -13,10 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Controller {
-   private Stage stage;
-   private Scene scene;
-   private Parent root;
+public class StartsideController {
     Login login = new Login();
     @FXML
     TextField Username, knownUsername;
@@ -25,22 +22,14 @@ public class Controller {
     @FXML
     Button SignUpButton;
 
-@FXML
-   public void goToMain(ActionEvent event) throws IOException {
-       Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
-       stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-       scene = new Scene(root);
-       stage.setScene(scene);
-       stage.show();
-   }
     @FXML
     public void goToStartside(ActionEvent event) throws IOException {
         login.login(knownUsername.getText(), knownPassword.getText());
         System.out.println(login.accepted);
-        if(login.accepted == true) {
+        if (login.accepted == true) {
             Parent root = FXMLLoader.load(getClass().getResource("Startside.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
         }
@@ -48,32 +37,26 @@ public class Controller {
     @FXML
     public void goToFilmList(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("FilmList.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
+
     @FXML
     public void goToSeriesList(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("SeriesList.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
     @FXML
-    public void goToSignup(ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("Signup.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
+    public void goToMain(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
-    }
-    @FXML
-    public void CreateUser(ActionEvent event) throws IOException{
-        login.makeProfile(Username.getText(), Password.getText());
-        goToMain(event);
-
     }
 }
