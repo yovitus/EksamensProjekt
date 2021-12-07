@@ -28,7 +28,7 @@
          </font>
       </Label>
       <Line endX="819.0" endY="0.9999923706054688" layoutX="97.0" layoutY="105.0" startX="-105.00000762939453" />
-      <ScrollPane accessibleRole="LIST_VIEW" hbarPolicy="ALWAYS" layoutX="-2.0" layoutY="105.0" prefHeight="439.0" prefWidth="917.0" vbarPolicy="ALWAYS">
+      <ScrollPane fx:id="scrollPane" accessibleRole="LIST_VIEW" hbarPolicy="ALWAYS" layoutX="-2.0" layoutY="105.0" prefHeight="439.0" prefWidth="917.0" vbarPolicy="ALWAYS">
          <content>
             <GridPane fx:id="filmGridPane" prefHeight="425.0" prefWidth="891.0">
                <columnConstraints>
@@ -39,11 +39,6 @@
             </GridPane>
          </content>
       </ScrollPane>
-      <TextField layoutX="103.0" layoutY="73.0" prefHeight="27.0" prefWidth="211.0" />
-      <Button layoutX="31.0" layoutY="73.0" mnemonicParsing="false" prefHeight="14.0" prefWidth="68.0" text="Search:">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
+      <TextField fx:id="searchField" layoutX="34.0" layoutY="66.0" onKeyReleased="#search" prefHeight="27.0" prefWidth="171.0" promptText="Search film" />
    </children>
 </AnchorPane>

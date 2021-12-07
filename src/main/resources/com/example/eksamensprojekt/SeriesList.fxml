@@ -32,11 +32,6 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
         </content>
       </ScrollPane>
-      <Button layoutX="21.0" layoutY="62.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="68.0" text="Search:">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
-      <TextField layoutX="95.0" layoutY="64.0" prefHeight="25.0" prefWidth="216.0" />
+      <TextField fx:id="searchField" layoutX="27.0" layoutY="58.0" onKeyReleased="#search" prefHeight="27.0" prefWidth="171.0" promptText="Search film" />
    </children>
 </AnchorPane>

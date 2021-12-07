@@ -2,7 +2,7 @@ package com.example.eksamensprojekt.Models;
 
 import java.util.Arrays;
 
-public class Medier {
+public abstract class Medier {
     protected String name;
     protected int year;
     protected String[] genre;
