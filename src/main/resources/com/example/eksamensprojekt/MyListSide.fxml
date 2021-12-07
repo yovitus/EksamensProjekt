@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="407.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.eksamensprojekt.MyListController">
+<AnchorPane prefHeight="414.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.eksamensprojekt.MyListController">
    <children>
       <TitledPane animated="false" layoutX="83.0" layoutY="-59.0" text="untitled" />
       <Label graphicTextGap="5.0" layoutX="17.0" layoutY="14.0" prefHeight="61.0" prefWidth="128.0" text="My List">
@@ -25,16 +25,17 @@
         </content>
       </ScrollPane>
       <Line endX="422.99993896484375" endY="1.0000152587890625" layoutX="177.0" layoutY="78.0" startX="-190.47157287597656" startY="7.62939453125E-6" />
-      <Button layoutX="148.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToFilmList" prefHeight="53.0" prefWidth="129.0" text="Film List">
+      <Button layoutX="159.0" layoutY="16.0" mnemonicParsing="false" onAction="#goToFilmList" prefHeight="53.0" prefWidth="129.0" text="Film List">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
       </Button>
-      <Button layoutX="302.0" layoutY="15.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="129.0" text="Series List">
+      <Button layoutX="314.0" layoutY="16.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="129.0" text="Series List">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
       </Button>
-      <Button layoutX="526.0" layoutY="6.0" mnemonicParsing="false" text="Log out" />
+      <Button layoutX="506.0" layoutY="1.0" mnemonicParsing="false" onAction="#goToMain" text="Log out" />
+      <Button layoutX="506.0" layoutY="42.0" mnemonicParsing="false" onAction="#goToStartPage" text="Front Page" />
    </children>
 </AnchorPane>

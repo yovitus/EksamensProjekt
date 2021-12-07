@@ -17,7 +17,7 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <Button layoutX="827.0" layoutY="15.0" mnemonicParsing="false" onAction="#goToMain" text="Log ud" />
+      <Button layoutX="815.0" layoutY="15.0" mnemonicParsing="false" onAction="#goToMain" text="Log Out" />
       <Button layoutX="525.0" layoutY="22.0" mnemonicParsing="false" onAction="#goToSeriesList" prefHeight="57.0" prefWidth="171.0" text="Series List">
          <font>
             <Font size="30.0" />
@@ -45,5 +45,6 @@
             <Font size="15.0" />
          </font>
       </Button>
+      <Button layoutX="815.0" layoutY="60.0" mnemonicParsing="false" onAction="#goToStartPage" text="Front Page" />
    </children>
 </AnchorPane>
