@@ -35,6 +35,6 @@
             <Font name="System Bold" size="19.0" />
          </font>
       </Button>
-      <Button layoutX="526.0" layoutY="6.0" mnemonicParsing="false" onAction="#goToMain" text="Log out" />
+      <Button layoutX="526.0" layoutY="6.0" mnemonicParsing="false" text="Log out" />
    </children>
 </AnchorPane>
