@@ -24,7 +24,7 @@
             <Font size="29.0" />
          </font>
       </Button>
-      <Button layoutX="525.0" layoutY="22.0" mnemonicParsing="false" onAction="#goToFilmList" prefHeight="60.0" prefWidth="175.0" text="Series List">
+      <Button layoutX="525.0" layoutY="22.0" mnemonicParsing="false" onAction="#goToSeriesList" prefHeight="60.0" prefWidth="175.0" text="Series List">
          <font>
             <Font size="29.0" />
          </font>
