@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class Login  {
 
     String nameFile = "Signup.txt"; //txt-fil med user ID (username, password)
+    BufferedWriter bufferedWriter;
     FileWriter fileWriter;
     public User user;
     public boolean accepted = false;
@@ -49,10 +50,9 @@ public class Login  {
     public void makeProfile (String username, String password)
     {
         try {
-            File file = new File(nameFile);
-            fileWriter = new FileWriter(new File(nameFile), true); //den overskriver ikke i txt filen hvis true
-            fileWriter.write(username +"," +password + "\n"); //tilføjer username og password til txt-filen
-            fileWriter.close();
+            bufferedWriter = new BufferedWriter(new FileWriter(new File(nameFile), true)); //den overskriver ikke i txt filen hvis true
+            bufferedWriter.write(username +"," +password + "\n"); //tilføjer username og password til txt-filen
+            bufferedWriter.close();
         } catch (IOException e) {
             System.out.println("Could not store data");
         }
