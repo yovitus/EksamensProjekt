@@ -51,7 +51,7 @@ public class StartsideController {
         stage.setScene(scene);
         stage.show();
     }
-    //Test - Knap til MyList
+
     @FXML
     public void goToMyList(ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("MyListSide.fxml"));

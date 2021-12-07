@@ -1,20 +1,12 @@
 package com.example.eksamensprojekt.Models;
 
 public class Signup extends StartPage{
-    protected String firstName;
-    protected String lastName;
-    protected int age;
-    protected String email;
+    protected String username;
     protected String password;
-    protected int bankDetails;
 
-    public Signup(String firstName, String lastName, int age, String email, String password, int bankDetails) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-        this.email = email;
+    public Signup(String username, String password) {
+        this.username = username;
         this.password = password;
-        this.bankDetails = bankDetails;
     }
 
     /*
