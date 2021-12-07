@@ -11,9 +11,9 @@
       <AnchorPane layoutX="-96.0" layoutY="-14.0" prefHeight="400.0" prefWidth="400.0">
          <children>
             <Button layoutX="267.0" layoutY="251.0" mnemonicParsing="false" onAction="#goToStartside" prefHeight="39.0" prefWidth="74.0" text="Log in" />
-            <Label layoutX="126.0" layoutY="46.0" text="Log in to Streaming here">
+            <Label layoutX="106.0" layoutY="43.0" text="Log in to Streaming here">
                <font>
-                  <Font size="35.0" />
+                  <Font name="Baghdad Regular" size="35.0" />
                </font>
             </Label>
             <TextField fx:id="knownPassword" layoutX="224.0" layoutY="205.0" />
