@@ -56,7 +56,7 @@ public class FilmListController {
     public void initialize() {
         LoadingFilm lf = new LoadingFilm();
         List<Film> film = lf.openFile();
-        int index = 0;
+        int i = 0;
         for (Film f : film) {
             Label titleLabel = new Label(f.getName());
             Label yearLabel = new Label(f.getYear() + "");
@@ -64,8 +64,8 @@ public class FilmListController {
             Label ratingLabel = new Label(f.getRating()+ "");
 
 
-            URL imageURL = FilmListController.class.getResource(f.getImage());
-            Image image = new Image(String.valueOf(imageURL));
+            URL url = FilmListController.class.getResource(f.getImage());
+            Image image = new Image(String.valueOf(url));
             ImageView thumbnailImageView = new ImageView(image);
 
             ratingLabel.setPadding(new Insets(0,0,1,0));
@@ -74,9 +74,8 @@ public class FilmListController {
             box.setAlignment(Pos.BASELINE_CENTER);
             box.setPadding(new Insets(12,12,12,12));
 
-            filmGridPane.add(box, index % 3, Math.floorDiv(index, 3)); //gør at hver række går fra index 0 til 2 og floor gør at der divideres med 3 fra listen, tager den heltal lavest
-            index++;
-            System.out.println("try to insert" + f.getName());
+            filmGridPane.add(box, i % 3, Math.floorDiv(i, 3)); //gør at hver række går fra index 0 til 2 og floor gør at der divideres med 3 fra listen, tager den heltal lavest
+            i++;
         }
     }
 }

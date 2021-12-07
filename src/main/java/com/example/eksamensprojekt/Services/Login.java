@@ -13,7 +13,7 @@ public class Login  {
     public User user;
 
 
-    //tjekker om oplysninger (brugernavn og password) er korrekt, hvis signup er lavet, eller sender den en exception
+    //tjekker om oplysninger (brugernavn og password) er korrekt, hvis  akeUser er lavet, eller sender den en exception
     public Login() {
 
     }
@@ -22,6 +22,7 @@ public class Login  {
         boolean found = true; //når id er fundet, stopper den med at søge
         String tmpUser = "";
         String tmpPswd = "";
+        boolean found = false; //når id er fundet, stopper den med at søge
         try {
             Scanner sc = new Scanner(new File(nameFile)); //Scanner der skal scanne txt-filen
             sc.useDelimiter("[,\n]"); //Læser noget før komma, efter komma ved den det er noget nyt, så læser den på næste linje
@@ -31,7 +32,7 @@ public class Login  {
                 tmpUser = sc.next();
                 tmpPswd = sc.next();
                 //trim så hvis de skriver mellemrum, så fjerner den det
-                if (tmpUser.trim().equals(username.trim()) && tmpPswd.trim().equals(password.trim())) {
+                if (tmpUser.equals(username.trim()) && tmpPswd.equals(password.trim())) {
                     accepted = true;
                     break;
                 }
@@ -53,7 +54,7 @@ public class Login  {
             fileWriter.write(signUp(username, password)); //tilføjer username og password til txt-filen
             fileWriter.close();
         } catch (IOException e) {
-            System.out.println("ID not accepted");
+            System.out.println("Could not store data");
         }
 
     }

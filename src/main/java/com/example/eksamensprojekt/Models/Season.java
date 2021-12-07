@@ -2,10 +2,10 @@ package com.example.eksamensprojekt.Models;
 
 public class Season extends Series
 {
-    public Season(String name, int year, String[] genre, float rating, String typeMedia) {
-
-
-        super(name, year, genre, rating, typeMedia);
+    public String episode;
+    public Season(String name, int year, String[] genre, float rating, String typeMedia, String season, String episode) {
+        super(name, year, genre, rating, typeMedia, season);
+        this.episode = episode;
     }
 
     @Override

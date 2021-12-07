@@ -1,5 +1,1 @@
-navn,kode
-hej,kode
-yoyo,kodeord
-hej,dig
-,
+heyhey,hejhej
