@@ -11,7 +11,7 @@ public class Login  {
     String nameFile = "Signup.txt"; //txt-fil med user ID (username, password)
     FileWriter fileWriter;
     public User user;
-
+    public boolean accepted = false;
 
     //tjekker om oplysninger (brugernavn og password) er korrekt, hvis  akeUser er lavet, eller sender den en exception
     public Login() {
