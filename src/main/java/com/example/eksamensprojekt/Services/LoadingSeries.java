@@ -6,16 +6,17 @@ import java.util.List;
 import java.util.Scanner;
 
 public class LoadingSeries {
-        private Scanner s;
-        List<String[]> series;
+    private Scanner s;
+    List<String[]> series;
 
-        public LoadingSeries() {
-            series = new ArrayList<>();
-        }
+    public LoadingSeries() {
+        series = new ArrayList<>();
+    }
 
-        public List<String[]> openFile ()
-        {
+    //public List<String[]> openFile() {
+            /*
             try
+
             {
                 InputStream istream = LoadingSeries.class.getResourceAsStream("/com/Media/serier.txt");
                 System.out.println(istream);
@@ -47,4 +48,6 @@ public class LoadingSeries {
             ls.openFile();
             System.out.println("hej");
     }
+    */
+
 }
