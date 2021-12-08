@@ -1,4 +1,4 @@
-package com.example.eksamensprojekt.Services;
+/*package com.example.eksamensprojekt.Services;
 
 
 import com.example.eksamensprojekt.Models.User;
@@ -24,3 +24,5 @@ public class LoginTest {
         assertEquals("greatestpassword",user.password);
     }
 }
+
+ */

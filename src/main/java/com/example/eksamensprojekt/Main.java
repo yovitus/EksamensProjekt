@@ -14,6 +14,7 @@ import java.util.List;
 
 public class Main extends Application {
     @Override
+
     public void start(Stage stage) throws IOException {
         //try {
         //Scanner sc = new Scanner(Main.class.getResourceAsStream("/com/example/eksamensprojekt/Media/film.txt"),"UTF-8");
