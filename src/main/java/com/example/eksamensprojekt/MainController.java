@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MainController {
+    @FXML
     Label loginFailMessage;
     Login login = new Login();
     @FXML
