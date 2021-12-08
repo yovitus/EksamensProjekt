@@ -51,6 +51,7 @@ public class Login  {
     {
         try {
             bufferedWriter = new BufferedWriter(new FileWriter(new File(nameFile), true)); //den overskriver ikke i txt filen hvis true
+            if(!username.equals("") && !password.equals(""))
             bufferedWriter.write(username +"," +password + "\n"); //tilføjer username og password til txt-filen
             bufferedWriter.close();
         } catch (IOException e) {
