@@ -1,6 +1,6 @@
 package com.example.eksamensprojekt.Models;
 
-public class Signup extends StartPage{
+public class Signup{
     protected String username;
     protected String password;
 
@@ -8,13 +8,5 @@ public class Signup extends StartPage{
         this.username = username;
         this.password = password;
     }
-
-    /*
-    Denne information skal gemmes i klassen 'BrugerData'
-
-    Da alt er tastet ind og man trykker på knappen "Sign up", så videreføres man til siden 'Bruger'
-     */
-
-
 
 }
