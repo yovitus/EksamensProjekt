@@ -25,9 +25,6 @@ import java.net.URL;
 import java.util.List;
 
 public class SeriesListController {
-    @FXML
-    private GridPane seriesGridPane;
-
 
     @FXML
     public void goToSeriesList(ActionEvent event) throws IOException {
@@ -65,6 +62,8 @@ public class SeriesListController {
         stage.show();
     }
 
+    @FXML
+    private GridPane seriesGridPane;
 
     @FXML
     public void initialize() {
@@ -78,7 +77,7 @@ public class SeriesListController {
             Label ratingLabel = new Label(s.getRating() + "");
 
 
-            URL url = FilmListController.class.getResource(s.getImage());
+            URL url = SeriesListController.class.getResource(s.getImage());
             Image image = new Image(String.valueOf(url));
             ImageView thumbnailImageView = new ImageView(image);
 

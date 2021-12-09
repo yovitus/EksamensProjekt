@@ -10,8 +10,6 @@ import java.util.*;
 public class LoadingSeries {
     private Scanner s;
     List<Series> series;
-    int yearRelease = 0;
-    int yearEnd = 0;
 
     public LoadingSeries() {
         series = new ArrayList<>();
@@ -43,6 +41,7 @@ public class LoadingSeries {
                 String[] genre = line[2].split(", ");
                 float rating = tryParseToFloat(line[3]);
                 String[] season = line[4].split(", ");
+                //String episode = season.split();
 
                 series.add(new Series(name, rYear, genre, rating, "series", season, endYear));
             }

@@ -27,6 +27,7 @@ public abstract class Medier {
         System.out.println("du har gjort noget fokert");
         return "";
     }
+
     public String genreToString()
     {
         String genreString = Arrays.toString(genre);

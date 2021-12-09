@@ -5,16 +5,25 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <AnchorPane prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.eksamensprojekt.SeriesListController">
    <children>
+      <Label layoutX="525.0" layoutY="22.0" text="Series List">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
       <Button layoutX="827.0" layoutY="15.0" mnemonicParsing="false" onAction="#goToMain" text="Log out">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button layoutX="330.0" layoutY="21.0" mnemonicParsing="false" onAction="#goToFilmList" prefHeight="61.0" prefWidth="160.0" text="Film List">
+      <Button layoutX="330.0" layoutY="22.0" mnemonicParsing="false" onAction="#goToFilmList" prefHeight="61.0" prefWidth="160.0" text="Film List">
          <font>
             <Font size="30.0" />
          </font>
@@ -22,12 +31,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label layoutX="527.0" layoutY="35.0" prefHeight="36.0" prefWidth="126.0" text="Series List">
-         <font>
-            <Font size="28.0" />
-         </font>
-      </Label>
-      <Label layoutX="27.0" layoutY="8.0" prefHeight="40.0" prefWidth="282.0" text="Stream film and series">
+      <Label layoutX="34.0" layoutY="15.0" onMouseClicked="#goToStartside" prefHeight="48.0" prefWidth="281.0" text="Stream film and series">
          <font>
             <Font size="30.0" />
          </font>
@@ -35,11 +39,28 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
-      <Line endX="810.0000610351562" layoutX="100.0" layoutY="100.0" startX="-100.0" />
-      <ScrollPane layoutX="-2.0" layoutY="101.0" onMouseEntered="#goToStartside" prefHeight="434.0" prefWidth="907.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-        </content>
+      <Line endX="819.0" endY="0.9999923706054688" layoutX="97.0" layoutY="105.0" startX="-105.00000762939453" />
+      <ScrollPane fx:id="scrollPane" accessibleRole="LIST_VIEW" hbarPolicy="ALWAYS" layoutX="-2.0" layoutY="105.0" prefHeight="439.0" prefWidth="917.0" vbarPolicy="ALWAYS">
+         <content>
+            <GridPane fx:id="seriesGridPane" prefHeight="425.0" prefWidth="891.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+               </rowConstraints>
+               <children>
+                  <VBox prefHeight="199.0" prefWidth="84.0" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
+         </content>
       </ScrollPane>
+      <Button layoutX="216.0" layoutY="66.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="85.0" text="Sort Genre" />
    </children>
 </AnchorPane>
+
+

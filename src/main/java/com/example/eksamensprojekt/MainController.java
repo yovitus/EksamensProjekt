@@ -46,6 +46,7 @@ public class MainController {
              loginFailMessage.setText("WRONG USERNAME OR PASSWORD");
         }
     }
+
     @FXML
     public void goToSignup(ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("Signup.fxml"));
