@@ -48,9 +48,16 @@ public class MyListController {
         stage.show();
     }
 
-
-    //Vis tilføjede medier
     //Metode - Fjern tilføjede medier
+    /*
+    @FXML
+    public void deleteMediaFromMyList(ActionEvent event) throws IOException{
+        mylist.remove([medie])
+    }
+    */
+
+    //Vis tilføjede medier ligesom i FilmListcontroller
+
 
 
 }
