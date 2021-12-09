@@ -13,7 +13,6 @@ public class Login  {
     public User user;
     public boolean accepted = false;
 
-
     //tjekker om oplysninger (brugernavn og password) er korrekt, hvis  akeUser er lavet, eller sender den en exception
     public Login() {
 
@@ -36,6 +35,7 @@ public class Login  {
                     accepted = true;
                     sc.close();
                     user = new User(tmpUser.trim(), tmpPswd.trim());
+
                     break;
                 }
 
@@ -50,8 +50,8 @@ public class Login  {
     {
         try {
             File file = new File(nameFile);
-            fileWriter = new FileWriter(new File(nameFile), true); //den overskriver ikke i txt filen hvis true
-            fileWriter.write(username +"," +password + "\n"); //tilføjer username og password til txt-filen
+            FileWriter fileWriter = new FileWriter(new File(nameFile), true); //den overskriver ikke i txt filen hvis true
+            fileWriter.write(username +","+ password+"\n"); //tilføjer username og password til txt-filen
             fileWriter.close();
         } catch (IOException e) {
             System.out.println("Could not store data");
