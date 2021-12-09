@@ -1,5 +1,7 @@
 package com.example.eksamensprojekt.Services;
 
+import com.example.eksamensprojekt.Models.Episode;
+import com.example.eksamensprojekt.Models.Season;
 import com.example.eksamensprojekt.Models.Series;
 
 import java.io.IOException;
@@ -35,15 +37,27 @@ public class LoadingSeries {
                 String[] line = oneString.split(" *; *"); //splitter ved ;
 
                 String name = line[0];
+                //splitter årstallene
+                //endYear indeholder "-" + om der er et årstal bagefter
                 String releaseYear = line[1].substring(0, 4);
                 int rYear = Integer.parseInt(releaseYear);
                 String endYear = line[1].substring(4);
+                //Dele genre op i et array
                 String[] genre = line[2].split(", ");
+                //laver String om til float
                 float rating = tryParseToFloat(line[3]);
-                String[] season = line[4].split(", ");
-                //String episode = season.split();
+                //dele season op i array og opretter et Season object
+                String[] seasons = line[4].split(", ");
+                Season[] seasonList = new Season[seasons.length];
+                //finder episode antal og opretter Episode object
+                String episodes = line[1].substring(line[1].indexOf("-") +1);
+                int counter = 0;
+                for(int i = 0; i < episodes.length(); i++) {
+                    counter++;
+                }
+                Episode[] episodeList = new Episode[counter];
 
-                series.add(new Series(name, rYear, genre, rating, "series", season, endYear));
+                series.add(new Series(name, rYear, genre, rating, "series", endYear, seasonList, episodeList));
             }
         }
 
@@ -139,6 +153,10 @@ public class LoadingSeries {
                     String[] yearArray = line[1].split("-");
                     int yearRelease = Integer.parseInt(yearArray[0]);
                     int yearEnd = Integer.parseInt(yearArray[1]);
+
+
+     Måske deler op i flere steder (tror ikke det virker)
+            //String[] episode = line[4].split("-|, ");
      */
 }
 

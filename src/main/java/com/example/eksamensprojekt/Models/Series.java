@@ -2,13 +2,15 @@ package com.example.eksamensprojekt.Models;
 
 public class Series extends Medier
 {
-    public String[] season;
     public String endYear;
+    public Season[] seasons;
+    public Episode[] episodes;
 
-    public Series(String name, int year, String[] genre, float rating, String typeMedia, String[] season, String endYear) {
+    public Series(String name, int year, String[] genre, float rating, String typeMedia, String endYear, Season[] seasons, Episode[] episodes) {
         super(name, year, genre, rating, typeMedia);
-        this.season = season;
         this.endYear = endYear;
+        this.seasons = seasons;
+        this.episodes = episodes;
     }
 
     public String getEndYear() {
@@ -17,7 +19,13 @@ public class Series extends Medier
         }else {
             return "" + endYear;
         }
-
     }
+/*
+    public int getSeason() {
+        return seasons.length();
+    }
+
+ */
+
 
 }

@@ -1,23 +1,22 @@
 package com.example.eksamensprojekt.Models;
 
 
-public class Season extends Series
+public class Season
 {
-    //public String episode;
-    public Integer[] episodes;
+    public String[] seasons;
 
-    public Season(String name, int year, String[] genre, float rating, String typeMedia, String[] season, String endYear,
-                  Integer[] episodes) {
-        super(name, year, genre, rating, typeMedia, season, endYear);
-        //this.episode = episode;
-        this.episodes = episodes;
+    public Season(String[] seasons) {
+        this.seasons = new String[seasons.length];
     }
-/*
-    public void addEpisode(Integer episode) {
+
+    public void addSeason(String season) {
         int index = 0;
-        episode = episodes[index];
+        season = seasons[index];
         index++;
     }
 
- */
+    public int getLength() {
+        return seasons.length;
+    }
+
 }
