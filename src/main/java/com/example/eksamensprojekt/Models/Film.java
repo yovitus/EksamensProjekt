@@ -6,5 +6,4 @@ public class Film extends Medier
     {
         super(name, year, genre, rating, typeMedia);
     }
-
 }

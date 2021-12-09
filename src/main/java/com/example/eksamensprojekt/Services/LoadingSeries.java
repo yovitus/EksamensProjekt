@@ -11,11 +11,13 @@ public class LoadingSeries {
     private Scanner s;
     List<Series> series;
 
-    public LoadingSeries() {
+    public LoadingSeries()
+    {
         series = new ArrayList<>();
     }
 
-    public float tryParseToFloat(String value) {
+    public float tryParseToFloat(String value)
+    {
         NumberFormat format = NumberFormat.getInstance(Locale.FRANCE);
         Number number = null;
         try {
@@ -26,7 +28,8 @@ public class LoadingSeries {
         return number.floatValue();
     }
 
-    public List<Series> openFile() {
+    public List<Series> openFile()
+    {
         try {
             s = new Scanner(LoadingSeries.class.getResourceAsStream("/com/example/eksamensprojekt/Media/serier.txt"), "UTF-8");
             System.out.println("");
@@ -53,7 +56,8 @@ public class LoadingSeries {
         return series;
     }
 
-    public void closeFile() {
+    public void closeFile()
+    {
         s.close();
     }
 

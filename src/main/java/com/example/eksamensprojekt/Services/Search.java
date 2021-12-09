@@ -1,44 +1,90 @@
 package com.example.eksamensprojekt.Services;
 
 import com.example.eksamensprojekt.Models.Film;
-import com.example.eksamensprojekt.Models.Genre;
+import com.example.eksamensprojekt.Models.Series;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Search {
-    List<Genre> genre;
+
     public Scanner s;
-
-    public Search() {
-        genre = new ArrayList<>();
-    }
-
 
     public List<Film> getSearchedFilm(String value, List<Film> film) {
         //film med value kommer ud som stream, men med collect så samles det til en liste
+        if(value.equals(""))
+            return film;
         return film
                 .stream()
                 .filter(e -> e.getName().toLowerCase().contains(value.toLowerCase()) || (e.getYear() + "").equals(value))
                 .collect(Collectors.toList());
     }
-    /*
-    public List<Genre> openGenre() {
-        s = new Scanner(Search.class.getResourceAsStream("/com/example/eksamensprojekt/Media/film.txt"), "UTF-8");
-        System.out.println("");
-        while (s.hasNextLine()) {
-            String oneString = s.nextLine(); //tjekker hver linje, som 1 film
-            String[] line = oneString.split(" *; *"); //splitter ved ;
-            String[] genreName = line[2].split(", ");
-            genre.add(new Genre(genreName));
+
+    public List<Series> getSearchedSeries(String value, List<Series> series) {
+        return series
+                .stream()
+                .filter(e -> e.getName().toLowerCase().contains(value.toLowerCase()) || (e.getYear() + "").equals(value))
+                .collect(Collectors.toList());
+    }
+
+   /*public List<Genre> openGenre() {
+        try {
+            s = new Scanner(Search.class.getResourceAsStream("/com/example/eksamensprojekt/Media/film.txt"), "UTF-8");
+            System.out.println("");
+            while (s.hasNextLine()) {
+                String oneString = s.nextLine(); //tjekker hver linje, som 1 film
+                String[] line = oneString.split(" *; *"); //splitter ved ;
+                String[] genreName = line[2].toLowerCase().split(", ");
+                genre.add(new Genre(genreName));
+            }
+        }   catch (Exception e)
+            {
+                System.out.println("Could not find file");
+            }
+        return genre;
+    }*/
+   public List<Film> getSearchedFilmGenre(String value, List<Film> film) {
+       //film med value kommer ud som stream, men med collect så samles det til en liste
+       var genreListe = film.stream()
+               .filter(f -> Arrays.stream(f.getGenre()).anyMatch(value::equals)).collect(Collectors.toList());
+       System.out.println(genreListe);
+       return genreListe;
+   }
+
+   public List<String> getAllGenreFilm(List<Film> film) {
+       HashSet<String> oneTypeGenre = new HashSet<>();
+       for (Film f : film) {
+           for(String s : f.getGenre())
+           {
+               oneTypeGenre.add(s);
+           }
+       }
+       List<String> list = new ArrayList<>(oneTypeGenre);
+       List<String> sortedList = list.stream().sorted().collect(Collectors.toList());
+       sortedList.add(0,"All");
+       return sortedList;
+   }
+
+    public List<Series> getSearchedSeriesGenre(String value, List<Series> series) {
+        //film med value kommer ud som stream, men med collect så samles det til en liste
+        var genreListe = series.stream()
+                .filter(f -> Arrays.stream(f.getGenre()).anyMatch(value::equals)).collect(Collectors.toList());
+        System.out.println(genreListe);
+        return genreListe;
+    }
+
+    public HashSet<String> getAllGenreSeries(List<Series> series) {
+        HashSet<String> oneTypeGenre = new HashSet<>();
+        for (Series s : series) {
+            for(String st : s.getGenre())
+            {
+                oneTypeGenre.add(st);
+            }
         }
+        return oneTypeGenre;
     }
-    public List<Film> getSearchedGenre (String value, List<Genre> genre)
-        {
-           return genre.stream().filter(e -> e.getGenreName().toLowerCase().equals(value.toLowerCase());
-        } */
-    }
+}
+
+
+
 
