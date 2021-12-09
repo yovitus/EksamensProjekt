@@ -51,5 +51,10 @@
             </GridPane>
          </content>
       </ScrollPane>
+      <Button layoutX="719.0" layoutY="28.0" mnemonicParsing="false" onAction="#goToMyList" prefHeight="49.0" prefWidth="92.0" text="My List">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

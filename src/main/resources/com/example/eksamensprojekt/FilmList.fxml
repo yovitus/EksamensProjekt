@@ -61,5 +61,11 @@
       </ScrollPane>
       <TextField fx:id="searchField" layoutX="34.0" layoutY="66.0" onAction="#search" onKeyReleased="#search" prefHeight="27.0" prefWidth="171.0" promptText="Search film" />
       <Button layoutX="216.0" layoutY="66.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="85.0" text="Sort Genre" />
+      <Button layoutX="803.0" layoutY="53.0" mnemonicParsing="false" onAction="#goToStartPage" text="Front Page" />
+      <Button layoutX="708.0" layoutY="32.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="84.0" text="My List">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
