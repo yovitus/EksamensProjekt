@@ -65,5 +65,7 @@ public class LoadingFilm {
             s.close();
         }
 
-
+    public List<Film> getFilm() {
+        return film;
     }
+}
