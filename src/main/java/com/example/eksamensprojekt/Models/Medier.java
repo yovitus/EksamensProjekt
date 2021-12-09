@@ -2,7 +2,7 @@ package com.example.eksamensprojekt.Models;
 
 import java.util.Arrays;
 
-public class Medier {
+public abstract class Medier {
     protected String name;
     protected int year;
     protected String[] genre;
@@ -27,6 +27,7 @@ public class Medier {
         System.out.println("du har gjort noget fokert");
         return "";
     }
+
     public String genreToString()
     {
         String genreString = Arrays.toString(genre);

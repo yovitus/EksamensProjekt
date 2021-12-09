@@ -1,9 +1,2 @@
 heyhey,hejhej
 1234,4567
-ahsd,orm
-ellie,ellie
-el,el
-idk,idk
-idk,idk
-e,e
-t,t

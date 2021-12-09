@@ -23,15 +23,6 @@ public class SignupController {
     Button SignUpButton;
 
     @FXML
-    public void goToSignup(ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("Signup.fxml"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
     public void goToMain(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
