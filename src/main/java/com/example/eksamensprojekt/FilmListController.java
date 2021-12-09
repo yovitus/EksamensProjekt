@@ -31,8 +31,8 @@ public class FilmListController {
     List<Film> film;
 
     @FXML
-    public void goToFilmList(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("FilmList.fxml"));
+    public void goToSeriesList(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("SeriesList.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -48,8 +48,8 @@ public class FilmListController {
     }
 
     @FXML
-    public void goToSeriesList(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("SeriesList.fxml"));
+    public void goToMain(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -57,8 +57,17 @@ public class FilmListController {
     }
 
     @FXML
-    public void goToMain(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+    public void goToStartPage(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Startside.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    public void goToMyList(ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("MyListSide.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
