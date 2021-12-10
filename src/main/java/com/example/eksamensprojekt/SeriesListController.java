@@ -129,7 +129,7 @@ public class SeriesListController {
         filterSeries = series;
         renderSeries(series);
         Search se = new Search();
-        ObservableList<String> list = FXCollections.observableArrayList(se.getAllGenreSeries(ls.openFile()));
+        ObservableList<String> list = FXCollections.observableArrayList(se.getAllGenreSeries(series));
         comboBox.setItems(list);
     }
 

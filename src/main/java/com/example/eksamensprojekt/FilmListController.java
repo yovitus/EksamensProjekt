@@ -90,6 +90,7 @@ public class FilmListController {
     @FXML
     public void renderFilm(List<Film> film)
     {
+
     int i = 0;
         for (Film f : film) {
         //Laver parametrer til labels
@@ -114,6 +115,7 @@ public class FilmListController {
 
         filmGridPane.add(box, i % 3, Math.floorDiv(i, 3)); //gør at hver række går fra index 0 til 2 og floor gør at der divideres med 3 fra listen, tager den heltal lavest
         i++;
+
     }
 }
     @FXML
@@ -125,9 +127,13 @@ public class FilmListController {
     @FXML
     public void searchFilm(KeyEvent event)
     {
+        System.out.println("searchFilm");
+        System.out.println(film.size());
         Search se = new Search();
         List<Film> filterFilm = se.getSearchedFilm(searchField.getText(), this.filterFilm);
         clearView();
+        System.out.println(this.film.size());
+        System.out.println(this.filterFilm.size());
         renderFilm(filterFilm);
         System.out.println(event);
     }
@@ -135,18 +141,22 @@ public class FilmListController {
     @FXML
     public void initialize()
     {
+        System.out.println("initialize");
         LoadingFilm lf = new LoadingFilm();
         film = lf.openFile();
         filterFilm = film;
         renderFilm(film);
         Search se = new Search();
-        ObservableList<String> list = FXCollections.observableArrayList(se.getAllGenreFilm(lf.openFile()));
+        ObservableList<String> list = FXCollections.observableArrayList(se.getAllGenreFilm(film));
         comboBox.setItems(list);
+        
+
     }
 
     @FXML
     public void select(ActionEvent event)
     {
+        System.out.println("select");
         resetSelect();
         var combo = comboBox.getSelectionModel().getSelectedItem().toString();
         if(combo.equals("All"))
