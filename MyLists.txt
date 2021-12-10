@@ -1,3 +1,4 @@
-testl MyList;
-The Godfather: 1972: [Crime, Drama]: 9.2: Film;
+testl;
+Raging Bull: 1980: [Biography, Drama, Sport]: 8.2: Film;
+Casablanca: 1942: [Drama, Romance, War]: 8.5: Film;
 Stop;

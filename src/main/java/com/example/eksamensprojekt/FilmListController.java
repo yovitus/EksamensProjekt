@@ -141,7 +141,7 @@ public class FilmListController {
                 ArrayList mlFilm = ml.mylistFilm;
                 mlFilm.add(f);
                 try {
-                    ml.writeMyListFilm(f, "testl");
+                    ml.writeMyListFilm(f, "testl", mlFilm);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

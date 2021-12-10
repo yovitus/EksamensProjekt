@@ -66,17 +66,21 @@ public class MyListController {
         stage.show();
     }
 
+    //TESTMETODE!!
     @FXML
     public void testAddFilm() throws IOException {
         MyList ml = new MyList(); //instantierer mylist
         LoadingFilm lf = new LoadingFilm();  //-II- loadingfilm
         List<Film> film = lf.openFile(); //fylder film arrayliste
         ArrayList mlFilm = ml.mylistFilm;
-        //mlFilm.add(film.get(3));
-        //mlFilm.add(film.get(4));
+        mlFilm.add(film.get(3)); //Raging Bull
+        mlFilm.add(film.get(4)); //Casablanca
         //System.out.println(mlFilm.get(0).toString()); //tjek om tilføjet
-        //ml.writeMyListFilm(film.get(3), "testl");
-        ml.findLoadListFilm("testl", mlFilm); //loader film fra txt-fil til arrayL
+        ml.writeMyListFilm(film.get(3), "testl", mlFilm);
+        ml.writeMyListFilm(film.get(4), "testl", mlFilm);
+        //ml.findLoadListFilm("testl", mlFilm); //loader film fra txt-fil til arrayL
+        //ml.removeFilmFromMyList(film.get(4), mlFilm); //sletter film fra txt og arrayL
+
         //ml.writeMyListFilm(film.get(7), "annetest"); //tilføj ny film til txt-fil
     }
 
@@ -84,8 +88,10 @@ public class MyListController {
     private GridPane MyListfilmGridPane;
 
     @FXML
-    public void renderMyListFilm(ArrayList<Film> film)
-    {
+    private GridPane seriesGridPane;
+
+    @FXML
+    public void renderMyListFilm(ArrayList<Film> film) {
         int i = 0;
         for (Film f : film) {
             //Laver parametrer til labels
@@ -130,10 +136,8 @@ public class MyListController {
     //test initialize
     public void initialize() throws IOException {
         MyList ml = new MyList(); //instantierer mylist
-        LoadingFilm lf = new LoadingFilm();  //-II- loadingfilm
-        List<Film> film = lf.openFile(); //fylder film arrayliste
-        ArrayList AList = ml.mylistFilm;
+        ArrayList AList = ml.mylistFilm; //opretter en mylistfilm
         ml.findLoadListFilm("testl", AList);
-        //renderMyListFilm(AList);
+        renderMyListFilm(AList);
     }
 }

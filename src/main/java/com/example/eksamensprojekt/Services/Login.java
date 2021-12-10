@@ -54,11 +54,11 @@ public class Login  {
         try {
             bufferedWriter = new BufferedWriter(new FileWriter(new File(nameFile), true)); //den overskriver ikke i txt filen hvis true
             if(!username.equals("") && !password.equals(""))
-                bufferedWriter.write(username +"," +password + "\n"); //tilføjer username og password til txt-filen
+                bufferedWriter.write(username + "," + password + "\n"); //tilføjer username og password til txt-filen
             bufferedWriter.close();
             bufferedWriter2 = new BufferedWriter(new FileWriter(new File(fileMyList), true));
             if(!username.equals("")){
-                bufferedWriter2.write(username + " MyList; " + "\n" + "Stop;"); //tilføjer username til Mylist-fil
+                bufferedWriter2.write(username + ";\n" + "Stop;"); //tilføjer username til Mylist-fil
                 bufferedWriter2.close();
             }
 
