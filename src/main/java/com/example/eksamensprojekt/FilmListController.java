@@ -158,18 +158,11 @@ public class FilmListController {
         renderFilm(this.filterFilm);
     }
 
-
-
     private void resetSelect()
     {
         filterFilm = film;
     }
 
-    @FXML
-    public void resetSelectAction(ActionEvent event)
-    {
-        filterFilm = film;
-    }
 
 }
 

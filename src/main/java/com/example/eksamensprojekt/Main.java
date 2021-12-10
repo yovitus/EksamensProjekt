@@ -2,6 +2,7 @@ package com.example.eksamensprojekt;
 
 import com.example.eksamensprojekt.Models.Film;
 import com.example.eksamensprojekt.Services.LoadingFilm;
+import com.example.eksamensprojekt.Services.LoadingSeries;
 import com.example.eksamensprojekt.Services.Search;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -17,10 +18,11 @@ public class Main extends Application {
     @Override
 
     public void start(Stage stage) throws IOException {
-       /*LoadingFilm lf = new LoadingFilm();
+      /* LoadingFilm lf = new LoadingFilm();
        Search se = new Search();
-       se.getAllGenre(lf.openFile());*/
-
+       se.getAllGenreFilm(lf.openFile());
+        LoadingSeries ls = new LoadingSeries();
+        se.getAllGenreSeries(ls.openFile());*/
         try {
         //Scanner sc = new Scanner(Main.class.getResourceAsStream("/com/example/eksamensprojekt/Media/film.txt"),"UTF-8");
             Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));

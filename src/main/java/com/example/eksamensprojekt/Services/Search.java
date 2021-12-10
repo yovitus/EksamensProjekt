@@ -21,6 +21,8 @@ public class Search {
     }
 
     public List<Series> getSearchedSeries(String value, List<Series> series) {
+        if(value.equals(""))
+            return series;
         return series
                 .stream()
                 .filter(e -> e.getName().toLowerCase().contains(value.toLowerCase()) || (e.getYear() + "").equals(value))
@@ -62,6 +64,7 @@ public class Search {
        List<String> list = new ArrayList<>(oneTypeGenre);
        List<String> sortedList = list.stream().sorted().collect(Collectors.toList());
        sortedList.add(0,"All");
+       System.out.println("Film genre liste:" + sortedList);
        return sortedList;
    }
 
@@ -73,17 +76,21 @@ public class Search {
         return genreListe;
     }
 
-    public HashSet<String> getAllGenreSeries(List<Series> series) {
+    public List<String> getAllGenreSeries(List<Series> series) {
         HashSet<String> oneTypeGenre = new HashSet<>();
         for (Series s : series) {
-            for(String st : s.getGenre())
-            {
+            for (String st : s.getGenre()) {
                 oneTypeGenre.add(st);
             }
         }
-        return oneTypeGenre;
+            List<String> list = new ArrayList<>(oneTypeGenre);
+            List<String> sortedList = list.stream().sorted().collect(Collectors.toList());
+            sortedList.add(0, "All");
+            System.out.println("Serie genre lister" + sortedList);
+            return sortedList;
     }
 }
+
 
 
 
