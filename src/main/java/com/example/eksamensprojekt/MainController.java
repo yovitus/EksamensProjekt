@@ -43,7 +43,7 @@ public class MainController {
             stage.setScene(scene);
             stage.show();
         } else {
-             loginFailMessage.setText("WRONG USERNAME OR PASSWORD");
+            loginFailMessage.setText("WRONG USERNAME OR PASSWORD");
         }
     }
 

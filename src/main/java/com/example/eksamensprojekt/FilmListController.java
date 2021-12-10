@@ -15,6 +15,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 //import javafx.scene.control.ScrollPane;
@@ -90,32 +91,54 @@ public class FilmListController {
     @FXML
     public void renderFilm(List<Film> film)
     {
-    int i = 0;
+        int i = 0;
         for (Film f : film) {
-        //Laver parametrer til labels
-        Label titleLabel = new Label(f.getName());
-        Label yearLabel = new Label(f.getYear() + "");
-        Label genreToStringLabel = new Label(f.genreToString()+ "");
-        Label ratingLabel = new Label(f.getRating()+ "");
+            //Laver parametrer til labels
+            Label titleLabel = new Label(f.getName());
+            Label yearLabel = new Label(f.getYear() + "");
+            Label genreToStringLabel = new Label(f.genreToString()+ "");
+            Label ratingLabel = new Label(f.getRating()+ "");
+            Button btn=new Button("Play Film");
 
-        //Henter image/thumbnail
-        URL url = FilmListController.class.getResource(f.getImage());
-        Image image = new Image(String.valueOf(url));
-        ImageView thumbnailImageView = new ImageView(image);
+            //Henter image/thumbnail
+            URL url = FilmListController.class.getResource(f.getImage());
+            Image image = new Image(String.valueOf(url));
+            ImageView thumbnailImageView = new ImageView(image);
 
-        ratingLabel.setPadding(new Insets(0,0,1,0));
+            ratingLabel.setPadding(new Insets(0,0,1,0));
 
-        //Laver en virtuel box i hvert rum i gridpane, som smider alle labels ind i rækkefølge
-        VBox box = new VBox(titleLabel,yearLabel,genreToStringLabel,ratingLabel,thumbnailImageView);
-        box.setAlignment(Pos.BASELINE_CENTER);
-        box.setPadding(new Insets(12,12,12,12));
-        //tryk på film
-        //box.setOnMouseClicked(event -> );
+            //Laver en virtuel box i hvert rum i gridpane, som smider alle labels ind i rækkefølge
+            VBox box = new VBox(titleLabel,yearLabel,genreToStringLabel,ratingLabel,thumbnailImageView,btn);
+            box.setAlignment(Pos.BASELINE_CENTER);
+            box.setPadding(new Insets(12,12,12,12));
+            //tryk på film
+            //box.setOnMouseClicked(event -> );
 
-        filmGridPane.add(box, i % 3, Math.floorDiv(i, 3)); //gør at hver række går fra index 0 til 2 og floor gør at der divideres med 3 fra listen, tager den heltal lavest
-        i++;
+            filmGridPane.add(box, i % 3, Math.floorDiv(i, 3)); //gør at hver række går fra index 0 til 2 og floor gør at der divideres med 3 fra listen, tager den heltal lavest
+            i++;
+
+            btn.setOnMouseClicked((event)-> {
+                try {
+                    FXMLLoader fxmlLoader= new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("Playwindow.fxml"));
+
+                    Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+                    Stage stage = new Stage();
+                    stage.setTitle("Movie playing");
+                    stage.setScene(scene);
+                    stage.show();
+                }
+                catch (IOException e) {
+                    throw new RuntimeException(e);
+
+
+                }
+            });
+
+
+        }
     }
-}
+
     @FXML
     public void clearView()
     {
@@ -173,4 +196,22 @@ public class FilmListController {
 
 
 }
+
+          /*  btn.setOnMouseClicked((event)-> {
+                try {
+                    FXMLLoader fxmlLoader= new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("Playwindow.fxml"));
+
+                    Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+                    Stage stage = new Stage();
+                    stage.setTitle("Movie playing");
+                    stage.setScene(scene);
+                    stage.show();
+                }
+                catch (IOException e) {
+                    throw new RuntimeException(e);
+
+
+                }
+            });*/
 

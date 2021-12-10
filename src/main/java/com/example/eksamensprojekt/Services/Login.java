@@ -28,7 +28,7 @@ public class Login  {
         try {
             Scanner sc = new Scanner(new File(nameFile)); //Scanner der skal scanne txt-filen
             sc.useDelimiter("[,\n]"); //Læser noget før komma, efter komma ved den det er noget nyt, så læser den på næste linje
-             //Hvis login stemmer overens med det nognes brugerID i txt-filen, ændres den til true
+            //Hvis login stemmer overens med det nognes brugerID i txt-filen, ændres den til true
             while (!found && sc.hasNext()) {
                 //tjekker efter ID i txt-filen
                 tmpUser = sc.next();
@@ -53,7 +53,7 @@ public class Login  {
         try {
             bufferedWriter = new BufferedWriter(new FileWriter(new File(nameFile), true)); //den overskriver ikke i txt filen hvis true
             if(!username.equals("") && !password.equals(""))
-            bufferedWriter.write(username +"," +password + "\n"); //tilføjer username og password til txt-filen
+                bufferedWriter.write(username +"," +password + "\n"); //tilføjer username og password til txt-filen
             bufferedWriter.close();
             bufferedWriter = new BufferedWriter(new FileWriter(new File(fileMyList), true));
             if(!username.equals("")){
@@ -67,4 +67,3 @@ public class Login  {
     }
 
 }
-
