@@ -6,17 +6,20 @@ public class Season
     public String[] seasons;
 
     public Season(String[] seasons) {
-        this.seasons = new String[seasons.length];
+        this.seasons = seasons;
+    }
+/*
+    public String[][] ListOfSeasonsAndEpisodes(int seasons, int episodes) {
+        String[][] listing = new String[seasons][episodes];
+        for (int i = 0; i < listing.length; i++) {
+            for (int j = 0; j < listing[i].length; j++) {
+                listing[i][j] = new String(seasons, episodes);
+            }
+        }
+        return listing;
     }
 
-    public void addSeason(String season) {
-        int index = 0;
-        season = seasons[index];
-        index++;
-    }
+ */
 
-    public int getLength() {
-        return seasons.length;
-    }
 
 }

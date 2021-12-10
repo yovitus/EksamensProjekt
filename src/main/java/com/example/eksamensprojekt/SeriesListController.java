@@ -73,6 +73,8 @@ public class SeriesListController {
         for (Series s : series) {
             Label titleLabel = new Label(s.getName());
             Label yearLabel = new Label(s.getYear() + s.getEndYear());
+            Label seasonLabel = new Label(s.getSeasonLength() + " seasons");
+            Label episodeLabel = new Label(s.getEpisodeLength() + " episodes");
             Label genreToStringLabel = new Label(s.genreToString() + "");
             Label ratingLabel = new Label(s.getRating() + "");
 
@@ -83,7 +85,7 @@ public class SeriesListController {
 
             ratingLabel.setPadding(new Insets(0, 0, 1, 0));
 
-            VBox box = new VBox(titleLabel, yearLabel, genreToStringLabel, ratingLabel, thumbnailImageView);
+            VBox box = new VBox(titleLabel, yearLabel, seasonLabel, episodeLabel, genreToStringLabel, ratingLabel, thumbnailImageView);
             box.setAlignment(Pos.BASELINE_CENTER);
             box.setPadding(new Insets(12, 12, 12, 12));
 
