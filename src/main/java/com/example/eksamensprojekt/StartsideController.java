@@ -34,6 +34,7 @@ public class StartsideController {
             stage.show();
         }
     }
+
     @FXML
     public void goToFilmList(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("FilmList.fxml"));

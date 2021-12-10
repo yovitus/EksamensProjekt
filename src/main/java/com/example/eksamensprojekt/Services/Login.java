@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class Login  {
 
     String nameFile = "Signup.txt"; //txt-fil med user ID (username, password)
+    String fileMyList = "MyLists.txt"; //txt-fil med username til personlig Mylist
     BufferedWriter bufferedWriter;
     FileWriter fileWriter;
     public User user;
@@ -54,6 +55,11 @@ public class Login  {
             if(!username.equals("") && !password.equals(""))
             bufferedWriter.write(username +"," +password + "\n"); //tilføjer username og password til txt-filen
             bufferedWriter.close();
+            bufferedWriter = new BufferedWriter(new FileWriter(new File(fileMyList), true));
+            if(!username.equals("")){
+                bufferedWriter.write(username + " MyList: " + "\n" + "Stop"); //tilføjer username til Mylist-fil
+            }
+
         } catch (IOException e) {
             System.out.println("Could not store data");
         }

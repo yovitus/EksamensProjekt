@@ -35,5 +35,6 @@
       </Button>
       <Button layoutX="506.0" layoutY="1.0" mnemonicParsing="false" onAction="#goToMain" text="Log out" />
       <Button layoutX="506.0" layoutY="42.0" mnemonicParsing="false" onAction="#goToStartPage" text="Front Page" />
+      <Button layoutX="447.0" layoutY="30.0" mnemonicParsing="false" onAction="#testAddFilm" text="Test" />
    </children>
 </AnchorPane>

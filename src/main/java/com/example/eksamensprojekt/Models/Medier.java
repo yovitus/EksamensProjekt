@@ -41,4 +41,9 @@ public abstract class Medier {
     public String[] getGenre() { return genre; }
 
     public float getRating() { return rating; }
+
+    @Override
+    public String toString(){
+        return (this.getName() + this.genreToString() + this.getYear() + this.getRating());
+    }
 }

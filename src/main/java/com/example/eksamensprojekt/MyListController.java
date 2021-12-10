@@ -1,5 +1,8 @@
 package com.example.eksamensprojekt;
 
+import com.example.eksamensprojekt.Models.Film;
+import com.example.eksamensprojekt.Services.LoadingFilm;
+import com.example.eksamensprojekt.Services.MyList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MyListController {
 
@@ -48,16 +53,23 @@ public class MyListController {
         stage.show();
     }
 
-    //Metode - Fjern tilføjede medier
-    /*
     @FXML
-    public void deleteMediaFromMyList(ActionEvent event) throws IOException{
-        mylist.remove([medie])
+    public void testAddFilm() throws IOException {
+        MyList ml = new MyList(); //instantierer mylist
+        LoadingFilm lf = new LoadingFilm();  //-II- loadingfilm
+        List<Film> film = lf.openFile(); //fylder film arrayliste
+        ArrayList mlFilm = ml.mylistFilm;
+        mlFilm.add(film.get(3));
+        mlFilm.add(film.get(4));
+        //System.out.println(mlFilm.get(0).toString()); //tjek om tilføjet
+
+        ml.findLoadListFilm("annetest", mlFilm); //loader film fra txt-fil til arrayL
+
+
+
+        //ml.writeMyListFilm(film.get(7), "annetest"); //tilføj ny film til txt-fil
+
+
     }
-    */
-
-    //Vis tilføjede medier ligesom i FilmListcontroller
-
-
 
 }
