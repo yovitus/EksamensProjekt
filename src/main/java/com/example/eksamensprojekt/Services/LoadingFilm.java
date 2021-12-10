@@ -43,27 +43,27 @@ public class LoadingFilm {
             }
         }
         //for(Film fi : filmList)
-       // {
-           // System.out.print(fi.getName() +" ");
-           // System.out.print(fi.getYear() +" ");
-            // System.out.print(Arrays.toString(fi.getGenre()) +" ");
-           // System.out.println(fi.getRating());
+        // {
+        // System.out.print(fi.getName() +" ");
+        // System.out.print(fi.getYear() +" ");
+        // System.out.print(Arrays.toString(fi.getGenre()) +" ");
+        // System.out.println(fi.getRating());
         // }
 
         //}
-           catch (Exception e)
-           {
-                System.out.println("Could not find file");
-            }
-
-            return film;
-        }
-
-        public void closeFile()
+        catch (Exception e)
         {
-
-            s.close();
+            System.out.println("Could not find file");
         }
+
+        return film;
+    }
+
+    public void closeFile()
+    {
+
+        s.close();
+    }
 
     public List<Film> getFilm() {
         return film;
