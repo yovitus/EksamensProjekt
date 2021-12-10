@@ -13,6 +13,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
@@ -67,6 +68,16 @@ public class SeriesListController {
         stage.setScene(scene);
         stage.show();
     }
+
+    @FXML
+    public void goToMyList(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("MyList.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     @FXML
     private ComboBox comboBox;
 
@@ -89,6 +100,7 @@ public class SeriesListController {
             Label episodeLabel = new Label(s.getEpisodeLength() + " episodes");
             Label genreToStringLabel = new Label(s.genreToString() + "");
             Label ratingLabel = new Label(s.getRating() + "");
+            Button playButton = new Button("Play");
 
             //Henter image/thumbnail
             URL url = SeriesListController.class.getResource(s.getImage());
@@ -98,14 +110,50 @@ public class SeriesListController {
             ratingLabel.setPadding(new Insets(0, 0, 1, 0));
 
             //Laver en virtuel box i hvert rum i gridpane, som smider alle labels ind i rækkefølge
-            VBox box = new VBox(titleLabel, yearLabel, seasonLabel, episodeLabel, genreToStringLabel, ratingLabel, thumbnailImageView);
+            VBox box = new VBox(titleLabel, yearLabel, seasonLabel, episodeLabel, genreToStringLabel, ratingLabel, thumbnailImageView, playButton);
             box.setAlignment(Pos.BASELINE_CENTER);
             box.setPadding(new Insets(12, 12, 12, 12));
 
             seriesGridPane.add(box, i % 3, Math.floorDiv(i, 3)); //gør at hver række går fra index 0 til 2 og floor gør at der divideres med 3 fra listen, tager den heltal lavest
             i++;
+
+            //viser valgte serie og dens seasons
+            playButton.setOnMouseClicked((event)-> {
+                clearView();
+                VBox imageView = new VBox(thumbnailImageView);
+                imageView.setAlignment(Pos.CENTER);
+                seriesGridPane.add(imageView, 0, 0);
+
+                VBox seasonList = new VBox(10);
+                seasonList.getChildren().add(titleLabel);
+                seasonList.getChildren().add(yearLabel);
+                seasonList.getChildren().add(seasonLabel);
+                for (int j = 0; j < s.getSeasonLength(); j++) {
+                    seasonList.getChildren().add(new Button("Season " + (int)(j + 1)));
+                }
+                seriesGridPane.add(seasonList, 1, 0);
+
+
+
+
+                /*try {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("Season.fxml"));
+
+                    Scene scene = new Scene(fxmlLoader.load(), 900, 550);
+                    Stage stage = new Stage();
+                    stage.setTitle(s.getName());
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+
+
+                }*/
+            });
         }
     }
+
     @FXML
     public void clearView()
     {

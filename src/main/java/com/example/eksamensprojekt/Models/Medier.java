@@ -24,7 +24,7 @@ public abstract class Medier {
         } else if(typeMedia == "series") {
             return "/com/example/eksamensprojekt/Images/serieforsider/" + name + ".jpg";
         }
-        System.out.println("du har gjort noget fokert");
+        System.out.println("du har gjort noget forkert");
         return "";
     }
 
