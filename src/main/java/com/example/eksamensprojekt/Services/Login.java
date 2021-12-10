@@ -11,6 +11,7 @@ public class Login  {
     String nameFile = "Signup.txt"; //txt-fil med user ID (username, password)
     String fileMyList = "MyLists.txt"; //txt-fil med username til personlig Mylist
     BufferedWriter bufferedWriter;
+    BufferedWriter bufferedWriter2;
     FileWriter fileWriter;
     public User user;
     public boolean accepted = false;
@@ -55,9 +56,10 @@ public class Login  {
             if(!username.equals("") && !password.equals(""))
                 bufferedWriter.write(username +"," +password + "\n"); //tilføjer username og password til txt-filen
             bufferedWriter.close();
-            bufferedWriter = new BufferedWriter(new FileWriter(new File(fileMyList), true));
+            bufferedWriter2 = new BufferedWriter(new FileWriter(new File(fileMyList), true));
             if(!username.equals("")){
-                bufferedWriter.write(username + " MyList: " + "\n" + "Stop"); //tilføjer username til Mylist-fil
+                bufferedWriter2.write(username + " MyList; " + "\n" + "Stop;"); //tilføjer username til Mylist-fil
+                bufferedWriter2.close();
             }
 
         } catch (IOException e) {

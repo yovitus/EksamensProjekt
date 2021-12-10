@@ -3,6 +3,7 @@ package com.example.eksamensprojekt;
 import com.example.eksamensprojekt.Models.Film;
 import com.example.eksamensprojekt.Services.LoadingFilm;
 //import com.example.eksamensprojekt.Services.Search;
+import com.example.eksamensprojekt.Services.MyList;
 import com.example.eksamensprojekt.Services.Search;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
@@ -30,11 +31,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FilmListController {
     List<Film> film;
     List<Film> filterFilm;
+    MyList ml = new MyList();
 
     @FXML
     public void goToSeriesList(ActionEvent event) throws IOException {
@@ -99,6 +102,7 @@ public class FilmListController {
             Label genreToStringLabel = new Label(f.genreToString()+ "");
             Label ratingLabel = new Label(f.getRating()+ "");
             Button btn=new Button("Play Film");
+            Button MyListbtn=new Button("Add to My List");
 
             //Henter image/thumbnail
             URL url = FilmListController.class.getResource(f.getImage());
@@ -108,7 +112,7 @@ public class FilmListController {
             ratingLabel.setPadding(new Insets(0,0,1,0));
 
             //Laver en virtuel box i hvert rum i gridpane, som smider alle labels ind i rækkefølge
-            VBox box = new VBox(titleLabel,yearLabel,genreToStringLabel,ratingLabel,thumbnailImageView,btn);
+            VBox box = new VBox(titleLabel,yearLabel,genreToStringLabel,ratingLabel,thumbnailImageView,btn,MyListbtn);
             box.setAlignment(Pos.BASELINE_CENTER);
             box.setPadding(new Insets(12,12,12,12));
             //tryk på film
@@ -130,11 +134,18 @@ public class FilmListController {
                 }
                 catch (IOException e) {
                     throw new RuntimeException(e);
-
-
                 }
             });
-
+            //Knap til at tilføje film til MyList
+            MyListbtn.setOnMouseClicked((event)-> {
+                ArrayList mlFilm = ml.mylistFilm;
+                mlFilm.add(f);
+                try {
+                    ml.writeMyListFilm(f, "testl");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
 
         }
     }
