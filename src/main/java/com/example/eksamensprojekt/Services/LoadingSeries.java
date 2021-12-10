@@ -1,10 +1,6 @@
 package com.example.eksamensprojekt.Services;
 
-import com.example.eksamensprojekt.Models.Episode;
-import com.example.eksamensprojekt.Models.Season;
 import com.example.eksamensprojekt.Models.Series;
-
-import java.io.IOException;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.*;
@@ -46,11 +42,10 @@ public class LoadingSeries {
                 int rYear = Integer.parseInt(releaseYear);
                 String endYear = line[1].substring(4);
                 //Deler genre op i et array
-                String[] genre = line[2].split(", ");
+                String[] genre = line[2].split(" *, *");
                 //laver String om til float
                 float rating = tryParseToFloat(line[3]);
-
-                //deler season op i array og opretter et Season object
+                //deler season op i array og tilføjer episoder til en ArrayList
                 String[] seasonsArray = line[4].split(", ");
                 String[] episodesArray = null;
                 ArrayList<String> episodesList = new ArrayList<>();
@@ -58,39 +53,6 @@ public class LoadingSeries {
                     episodesArray = seasonsArray[i].split("-");
                     episodesList.add(episodesArray[1]);
                 }
-
-
-
-                /*
-                String[] seasonsArray = line[4].split(", ");
-                String[] episodesArray = null;
-                for(int i = 0; i < seasonsArray.length; i++) {
-                    episodesArray = seasonsArray[i].split("-");
-                }
-                 */
-
-
-
-
-                //finder episode antal og opretter Episode object
-                /*String[] oneRecord = null;
-                String episodeList3 = "";
-                for(int i = 0; i < seasonsArray.length; i++) {
-                    oneRecord = seasonsArray[i].split("-");
-                }
-                for(int j = 1; j < oneRecord.length; j=+2) {
-                    episodeList3 = oneRecord[j];
-                }
-                int episodeInt = Integer.parseInt(episodeList3);
-
-                //String episodes = seasons.substring(seasons.indexOf("-")+1, seasons.indexOf(","));
-                //int episodesInt = Integer.parseInt(episodes);
-                //int counter = 0;
-                //for(int i = 0; i < episodesInt; i++) {
-                    //counter++;
-                //}
-                Episode[] episodeList = new Episode[episodeInt];
-                 */
 
                 series.add(new Series(name, rYear, genre, rating, "series", endYear, seasonsArray, episodesList));
             }
@@ -140,6 +102,40 @@ Med double array
 
  */
 //-----------------------------------------------------
+    //Andet
+    /*
+                String[] seasonsArray = line[4].split(", ");
+                String[] episodesArray = null;
+                for(int i = 0; i < seasonsArray.length; i++) {
+                    episodesArray = seasonsArray[i].split("-");
+                }
+                 */
+
+
+
+
+    //finder episode antal og opretter Episode object
+                /*String[] oneRecord = null;
+                String episodeList3 = "";
+                for(int i = 0; i < seasonsArray.length; i++) {
+                    oneRecord = seasonsArray[i].split("-");
+                }
+                for(int j = 1; j < oneRecord.length; j=+2) {
+                    episodeList3 = oneRecord[j];
+                }
+                int episodeInt = Integer.parseInt(episodeList3);
+
+                //String episodes = seasons.substring(seasons.indexOf("-")+1, seasons.indexOf(","));
+                //int episodesInt = Integer.parseInt(episodes);
+                //int counter = 0;
+                //for(int i = 0; i < episodesInt; i++) {
+                    //counter++;
+                //}
+                Episode[] episodeList = new Episode[episodeInt];
+                 */
+
+
+
 
     //public List<String[]> openFile() {
             /*

@@ -1,7 +1,6 @@
 package com.example.eksamensprojekt.Models;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Series extends Medier
 {
@@ -25,7 +24,6 @@ public class Series extends Medier
         }
     }
 
-
     public int getSeasonLength() {
         return seasons.length;
     }
@@ -33,20 +31,4 @@ public class Series extends Medier
     public ArrayList<String> getEpisodeLength() {
         return episodes;
     }
-
-    /*
-    public String getEpisodeLength() {
-        String output = "";
-        for(int i = 0; i < seasons[i].length; i++) {
-            output = Arrays.toString(seasons[i]) + "episodes";
-        }
-        return output;
-    }
-
-    public int getEpisodeLength() {
-        return episodes.length;
-    }
-     */
-
-
 }

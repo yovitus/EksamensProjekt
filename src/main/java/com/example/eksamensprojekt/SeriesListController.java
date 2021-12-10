@@ -1,8 +1,6 @@
 package com.example.eksamensprojekt;
 
-import com.example.eksamensprojekt.Models.Film;
 import com.example.eksamensprojekt.Models.Series;
-import com.example.eksamensprojekt.Services.LoadingFilm;
 import com.example.eksamensprojekt.Services.LoadingSeries;
 import com.example.eksamensprojekt.Services.Search;
 import javafx.collections.FXCollections;
@@ -87,6 +85,8 @@ public class SeriesListController {
         //Laver parametrer til labels
         Label titleLabel = new Label(s.getName());
         Label yearLabel = new Label(s.getYear() + s.getEndYear());
+        Label seasonLabel = new Label(s.getSeasonLength() + " seasons");
+        Label episodeLabel = new Label(s.getEpisodeLength() + " episodes");
         Label genreToStringLabel = new Label(s.genreToString() + "");
         Label ratingLabel = new Label(s.getRating() + "");
 
@@ -98,7 +98,7 @@ public class SeriesListController {
         ratingLabel.setPadding(new Insets(0, 0, 1, 0));
 
         //Laver en virtuel box i hvert rum i gridpane, som smider alle labels ind i rækkefølge
-        VBox box = new VBox(titleLabel, yearLabel, genreToStringLabel, ratingLabel, thumbnailImageView);
+        VBox box = new VBox(titleLabel, yearLabel, seasonLabel, episodeLabel, genreToStringLabel, ratingLabel, thumbnailImageView);
         box.setAlignment(Pos.BASELINE_CENTER);
         box.setPadding(new Insets(12, 12, 12, 12));
 

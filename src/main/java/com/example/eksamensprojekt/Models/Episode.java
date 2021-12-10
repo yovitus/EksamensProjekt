@@ -6,6 +6,4 @@ public class Episode {
     public Episode(String[] episodes) {
         this.episodes = episodes;
     }
-
-
 }
