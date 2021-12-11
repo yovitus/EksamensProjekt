@@ -1,6 +1,8 @@
 package com.example.eksamensprojekt;
 
 import com.example.eksamensprojekt.Models.Film;
+import com.example.eksamensprojekt.Models.Series;
+import com.example.eksamensprojekt.Services.LoadingSeries;
 import com.example.eksamensprojekt.Services.MyList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,7 +28,8 @@ import java.util.List;
 
 public class MyListController {
     MyList ml = new MyList(); //instantierer mylist
-    ArrayList AList = ml.mylistFilm; //tom mylistfilm
+    ArrayList AListF = ml.mylistFilm; //tom mylistfilm
+    ArrayList AListS = ml.mylistSeries; //tom mylistseries
 
     public MyListController() throws FileNotFoundException {
     }
@@ -125,9 +128,18 @@ public class MyListController {
             });
         }}
 
+    public void TestMethod() throws IOException {
+        LoadingSeries ls = new LoadingSeries();
+        List<Series> sList = ls.openFile();
+        //AListS.add(sList.get(0)); //tilføjer Twin Peaks
+
+        //ml.writeMyListFilm(//serie);
+        ml.findLoadListMedie(AListF, AListS); //Loader serie og film korrekt?
+    }
+
     @FXML
     public void initialize() throws IOException {
-        ml.findLoadListFilm(AList); //Loader film fra txt-fil
-        renderMyListFilm(AList); //displayer film for nuværende user
+        ml.findLoadListMedie(AListF, AListS); //Loader film fra txt-fil - SKAL OGSÅ LOADER SERIER!
+        renderMyListFilm(AListF); //displayer film for nuværende user
     }
 }

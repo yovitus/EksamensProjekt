@@ -142,7 +142,7 @@ public class FilmListController {
             //Knap til at tilføje film til MyList
             MyListbtn.setOnMouseClicked((event)-> {
                 try {
-                    ml.writeMyListFilm(f);
+                    ml.writeMyListMedie(f, null);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

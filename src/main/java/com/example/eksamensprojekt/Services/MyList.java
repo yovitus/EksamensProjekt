@@ -38,26 +38,28 @@ public class MyList {
         mylistFilm = new ArrayList<Film>();
         mylistSeries = new ArrayList<Series>();
 
-        //scan CurrentUsername.txt og indlæs usn
+        //scan CurrentUsername.txt og indlæs username for nuværende bruger
         s = new Scanner(new File(cUsernameList));
         this.currentUsername = s.nextLine();
         counter = 0;
     }
 
-    //Indlæs MyListFilm for nuværende bruger
-    public void findLoadListFilm(ArrayList AList) throws IOException {
+    //Indlæs MyList film og serier for nuværende bruger til arrayL
+    public void findLoadListMedie(ArrayList<Film> AListF, ArrayList<Series> AListS) throws IOException {
         s = new Scanner(new File(fileMyList)); //Scanner der skal scanne txt-filen, "MyLists.txt
         s.useDelimiter("[;\n]"); //efter ; skift linje
 
         //Loader specifik mylistFilm for bruger
         while (s.hasNext()) {
             if(s.nextLine().equals(currentUsername + ";")) {
+                System.out.println(("username fundet!"));
                 while (s.hasNext()){
                     String nextRead = s.nextLine();
+                    System.out.println((nextRead));
                     if(nextRead.equals("Stop;")){
                         System.out.println("End of list reached!");
                         break;
-                    } else if (!nextRead.equals("Deleted;")) {
+                    } else if (!nextRead.equals("Deleted;") && !nextRead.contains("series;")) {
                         String oneString = nextRead; //tjekker hver linje
                         String[] line = oneString.split(" *: *"); //splitter ved :
                         String name = line[0];
@@ -66,15 +68,38 @@ public class MyList {
                         String genre2 = genre1.replace("]", ""); //fjerner ]
                         String[] genre = genre2.split(", ");
                         float rating = Float.parseFloat(line[3]);
-                        AList.add(new Film(name, year, genre, rating, "film")); //tilføj elementer til arrayliste fra txt-fil
-                        System.out.println("One element has been loaded!");
-                    }}
+                        AListF.add(new Film(name, year, genre, rating, "film")); //tilføj elementer til arrayliste fra txt-fil
+                        System.out.println("One element has been loaded to FilmList!");
+                    } else if (!nextRead.equals("Deleted;") && !nextRead.contains("film;")){
+                        String oneString = nextRead;
+                        String[] line = oneString.split(" *: *"); //splitter ved ;
+
+                        String name = line[0];
+                        String releaseYear = line[1].substring(0, 4);
+                        int rYear = Integer.parseInt(releaseYear);
+                        String endYear = line[1].substring(4);
+                        //Deler genre op i et array
+                        String[] genre = line[2].split(" *, *");
+                        //laver String om til float
+                        float rating = Float.parseFloat(line[3]);
+                        //deler season op i array og tilføjer episoder til en ArrayList<String>
+                        String[] seasonsArray = line[4].split(", ");
+                        String[] episodesArray = null;
+                        ArrayList<String> episodesList = new ArrayList<>();
+                        for(int i = 0; i < seasonsArray.length; i++) {
+                            episodesArray = seasonsArray[i].split("-");
+                            episodesList.add(episodesArray[1]);
+                        }
+                        AListS.add(new Series(name, rYear, genre, rating, "series", endYear, seasonsArray, episodesList));
+                        System.out.println("One element has been loaded to SeriesList!");
+                    }
+                }
                 break;
             }}}
 
 
     //Skriver nye Film ind på .txt filen
-    public void writeMyListFilm(Film film) throws IOException {
+    public void writeMyListMedie(Film film, Series series) throws IOException {
         Scanner sc = new Scanner(new File(fileMyList)); //Scanner der skal scanne txt-filen
         sc.useDelimiter("[;\n]"); //ny linje
         bufferedWriter = new BufferedWriter(new FileWriter(new File(fileMyList), true));
@@ -98,11 +123,14 @@ public class MyList {
             String lineNewStart = Files.readAllLines(Paths.get(fileMyList)).get(counter);
             if(!lineNewStart.equals("Stop;")){
                 counter++;
+                if(film != null){
                 if(lineNewStart.equals(getFilmInfo(film))) {
                     System.out.println("Film already on list!");
                     match = true;
-                }
-            } else if (lineNewStart.equals("Stop;")){ //film er IKKE allerede på listen
+                }/*} else if (series != null){
+                    if(lineNewStart.equals(//serieinfo)){}}
+                } */
+            }} else if (lineNewStart.equals("Stop;")){ //film er IKKE allerede på listen
                 break;
             }}
 
@@ -112,7 +140,6 @@ public class MyList {
             System.out.println((lineNewStart));
             if(found == true && lineNewStart.equals("Stop;")){
                 ChangelineToFilm(film, "\n" + "Stop;", "Stop;", counter);
-                //bufferedWriter.write( "\n" + "Stop;"); //Skriver nederst pt - RET!
                 bufferedWriter.close();
                 written = true;
             } else if (lineNewStart.equals("Deleted;")){ //byt om på!!
@@ -150,6 +177,19 @@ public class MyList {
         return (navn + ": " + år + ": " + str + ": " + bedøm + ": " + typeM + ";");
 
     }
+    /*
+    public String getSeriesInfo(Series series){
+        getName()
+        getYear()
+        getGenre()
+        getRating()
+        getEndYear()
+        getSeasonLength()
+
+
+        public int getNumberOfEpisodes(){ return episodes.size();}
+    } */
+
     //Ændrer 'Stop' til info om film i txt-fil
     public void ChangelineToFilm(Film film, String newW, String old, int counter) throws IOException {
         List<String> fileContent = new ArrayList<>(Files.readAllLines(Path.of(fileMyList)));
@@ -174,7 +214,7 @@ public class MyList {
         Files.write(Path.of(fileMyList), fileContent);
     }
 
-    public void findLoadListSeries(ArrayList AList) throws IOException {
+    public void findLoadListMedie(ArrayList AList) throws IOException {
         //load serier
     }
 }
