@@ -16,7 +16,7 @@
 
 <AnchorPane prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.eksamensprojekt.SeriesListController">
    <children>
-      <Label layoutX="525.0" layoutY="22.0" text="Series List">
+      <Label layoutX="525.0" layoutY="35.0" text="Series List">
          <font>
             <Font size="30.0" />
          </font>
@@ -63,5 +63,10 @@
       </ScrollPane>
       <TextField fx:id="searchField" layoutX="34.0" layoutY="66.0" onAction="#searchSeries" onKeyReleased="#searchSeries" prefHeight="27.0" prefWidth="171.0" promptText="Search series" />
       <ComboBox fx:id="comboBox" layoutX="217.0" layoutY="67.0" onAction="#select" prefHeight="26.0" prefWidth="90.0" promptText="Genre" />
+      <Button layoutX="708.0" layoutY="32.0" mnemonicParsing="false" onAction="#goToMyList" prefHeight="37.0" prefWidth="84.0" text="My List">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
