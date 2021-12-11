@@ -134,13 +134,13 @@ public class MyListController {
         //AListS.add(sList.get(0)); //tilføjer Twin Peaks
 
         //ml.writeMyListFilm(//serie);
-        //ml.writeMyListMedie(null, sList.get(0));
-        ml.findLoadListMedie(AListF, AListS); //Loader serie og film korrekt?
+        //ml.writeMyListMedie(null, sList.get(2));
+        //ml.findLoadListMedie(AListF, AListS); //Loader serie og film korrekt?
     }
 
     @FXML
     public void initialize() throws IOException {
-        //ml.findLoadListMedie(AListF, AListS); //Loader film fra txt-fil - SKAL OGSÅ LOADER SERIER!
-        //renderMyListFilm(AListF); //displayer film for nuværende user
+        ml.findLoadListMedie(AListF, AListS); //Loader film fra txt-fil - SKAL OGSÅ LOADER SERIER!
+        renderMyListFilm(AListF); //displayer film for nuværende user
     }
 }

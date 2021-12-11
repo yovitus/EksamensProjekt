@@ -48,7 +48,7 @@ public class MyList {
                     if(nextRead.equals("Stop;")){
                         System.out.println("End of list reached!");
                         break;
-                    /* } else if (!nextRead.equals("Deleted;") && !nextRead.contains("Series;")) {
+                     } else if (!nextRead.equals("Deleted;") && !nextRead.contains("Series;")) {
                         String oneString = nextRead; //tjekker hver linje
                         String[] line = oneString.split(" *: *"); //splitter ved :
                         String name = line[0];
@@ -59,27 +59,19 @@ public class MyList {
                         float rating = Float.parseFloat(line[3]);
                         AListF.add(new Film(name, year, genre, rating, "film")); //tilføj elementer til arrayliste fra txt-fil
                         System.out.println("One element has been loaded to FilmList!");
-                    */ } else if (!nextRead.equals("Deleted;") && !nextRead.contains("film;")){
+                     } else if (!nextRead.equals("Deleted;") && !nextRead.contains("Film;")){
                         String oneString = nextRead;
                         String[] line = oneString.split(" *: *"); //splitter ved ;
-
                         String name = line[0];
                         String releaseYear = line[1].substring(0, 4);
                         int rYear = Integer.parseInt(releaseYear);
                         String endYear = line[1].substring(4);
                         //Deler genre op i et array
-                        String[] genre = line[2].split(" *, *");
+                        String[] genre = line[2].split(", ");
+
                         //laver String om til float
                         float rating = Float.parseFloat(line[3]);
-                        //deler season op i array og tilføjer episoder til en ArrayList<String>
-                        String[] seasonsArray = line[4].split(", ");
-                        String[] episodesArray = null;
-                        ArrayList<String> episodesList = new ArrayList<>();
-                        for(int i = 0; i < seasonsArray.length; i++) {
-                            episodesArray = seasonsArray[i].split("-");
-                            episodesList.add(episodesArray[1]);
-                        }
-                        AListS.add(new Series(name, rYear, genre, rating, "series", endYear, seasonsArray, episodesList));
+                        AListS.add(new Series(name, rYear, genre, rating, "series", endYear, null, null));
                         System.out.println("One element has been loaded to SeriesList!");
                     }
                 }
