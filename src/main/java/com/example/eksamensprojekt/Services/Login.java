@@ -10,6 +10,7 @@ public class Login  {
 
     String nameFile = "Signup.txt"; //txt-fil med user ID (username, password)
     String fileMyList = "MyLists.txt"; //txt-fil med username til personlig Mylist
+    String cUsernameList = "CurrentUsername.txt";
     BufferedWriter bufferedWriter;
     BufferedWriter bufferedWriter2;
     FileWriter fileWriter;
@@ -22,7 +23,7 @@ public class Login  {
 
     }
 
-    public User login(String username, String password) {
+    public User login(String username, String password) throws IOException {
         String tmpUser = "";
         String tmpPswd = "";
         boolean found = false; //når id er fundet, stopper den med at søge
@@ -46,6 +47,12 @@ public class Login  {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
+        //skriver current username ind i fil, eller erstatter forrige med nuværende
+        bufferedWriter = new BufferedWriter(new FileWriter(new File(cUsernameList)));
+        bufferedWriter.write(tmpUser.trim()); //tilføjer nuværende username til txt-filen
+        bufferedWriter.close();
+
         return user;
     }
 

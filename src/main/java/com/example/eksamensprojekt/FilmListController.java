@@ -29,6 +29,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -38,6 +39,9 @@ public class FilmListController {
     List<Film> film;
     List<Film> filterFilm;
     MyList ml = new MyList();
+
+    public FilmListController() throws FileNotFoundException {
+    }
 
     @FXML
     public void goToSeriesList(ActionEvent event) throws IOException {
@@ -141,7 +145,7 @@ public class FilmListController {
                 ArrayList mlFilm = ml.mylistFilm;
                 mlFilm.add(f);
                 try {
-                    ml.writeMyListFilm(f, "testl", mlFilm);
+                    ml.writeMyListFilm(f, mlFilm);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

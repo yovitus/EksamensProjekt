@@ -70,18 +70,17 @@ public class MyListController {
     @FXML
     public void testAddFilm() throws IOException {
         MyList ml = new MyList(); //instantierer mylist
-        LoadingFilm lf = new LoadingFilm();  //-II- loadingfilm
-        List<Film> film = lf.openFile(); //fylder film arrayliste
-        ArrayList mlFilm = ml.mylistFilm;
-        mlFilm.add(film.get(3)); //Raging Bull
-        mlFilm.add(film.get(4)); //Casablanca
-        //System.out.println(mlFilm.get(0).toString()); //tjek om tilføjet
-        ml.writeMyListFilm(film.get(3), "testl", mlFilm);
-        ml.writeMyListFilm(film.get(4), "testl", mlFilm);
+        //LoadingFilm lf = new LoadingFilm();  //-II- loadingfilm
+        //List<Film> film = lf.openFile(); //fylder film arrayliste
+        //ArrayList mlFilm = ml.mylistFilm;
+        //mlFilm.add(film.get(3)); //Raging Bull
+        //mlFilm.add(film.get(4)); //Casablanca
+
+        //ml.writeMyListFilm(film.get(3), "testl", mlFilm);
+        //ml.writeMyListFilm(film.get(4), "testl", mlFilm);
         //ml.findLoadListFilm("testl", mlFilm); //loader film fra txt-fil til arrayL
         //ml.removeFilmFromMyList(film.get(4), mlFilm); //sletter film fra txt og arrayL
 
-        //ml.writeMyListFilm(film.get(7), "annetest"); //tilføj ny film til txt-fil
     }
 
     @FXML
@@ -137,7 +136,9 @@ public class MyListController {
     public void initialize() throws IOException {
         MyList ml = new MyList(); //instantierer mylist
         ArrayList AList = ml.mylistFilm; //opretter en mylistfilm
-        ml.findLoadListFilm("testl", AList);
+        //metode - get current username
+        //Kør findloadlist med current username!
+        ml.findLoadListFilm(AList);
         renderMyListFilm(AList);
     }
 }
