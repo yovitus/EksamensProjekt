@@ -97,7 +97,7 @@ public class MyListController {
     private GridPane seriesGridPane;
 
     @FXML
-    public void renderMyListFilm(ArrayList<Film> film) {
+    public void renderMyListFilm(List<Film> film) {
         int i = 0;
         for (Film f : film) {
             //Laver parametrer til labels
