@@ -1,8 +1,9 @@
 testl;
-Twin Peaks: 1990-1991: Crime, Drama, Mystery: 8.8: 1-8, 2-22: series;
 West Side Story: 1961: [Crime, Drama]: 7.6: Film;
 The Godfather part II: 1974: [Crime, Drama]: 9.0: Film;
-Psycho: 1960: [Horror, Mystery, Thriller]: 8.5: Film;
+Deleted;
+Twin Peaks: 1990-1991: [Crime, Drama, Mystery]: 8.8: Series;
+The Wizard Of Oz: 1939: [[Adventure, Family, Fantasy]]: 8.0: Film;
 Stop;
 test2;
 The Wizard Of Oz: 1939: [Adventure, Family, Fantasy]: 8.0: Film;

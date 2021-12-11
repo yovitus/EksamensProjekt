@@ -1,31 +1,19 @@
 package com.example.eksamensprojekt.Services;
 
 import java.io.*;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
 import com.example.eksamensprojekt.Models.Film;
-import com.example.eksamensprojekt.Models.Medier;
 import com.example.eksamensprojekt.Models.Series;
-/*
-import com.example.eksamensprojekt.Models.User;
-import com.example.eksamensprojekt.SeriesListController;
-import com.example.eksamensprojekt.StartsideController;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox; */
 
 import java.util.ArrayList;
 
 public class MyList {
     BufferedWriter bufferedWriter;
-    FileWriter fileWriter;
+    //FileWriter fileWriter;
     public ArrayList mylistFilm;
     public ArrayList mylistSeries;
     String fileMyList = "MyLists.txt";
@@ -53,13 +41,14 @@ public class MyList {
         while (s.hasNext()) {
             if(s.nextLine().equals(currentUsername + ";")) {
                 System.out.println(("username fundet!"));
+
                 while (s.hasNext()){
                     String nextRead = s.nextLine();
-                    System.out.println((nextRead));
+                    //System.out.println((nextRead));
                     if(nextRead.equals("Stop;")){
                         System.out.println("End of list reached!");
                         break;
-                    } else if (!nextRead.equals("Deleted;") && !nextRead.contains("series;")) {
+                    /* } else if (!nextRead.equals("Deleted;") && !nextRead.contains("Series;")) {
                         String oneString = nextRead; //tjekker hver linje
                         String[] line = oneString.split(" *: *"); //splitter ved :
                         String name = line[0];
@@ -70,7 +59,7 @@ public class MyList {
                         float rating = Float.parseFloat(line[3]);
                         AListF.add(new Film(name, year, genre, rating, "film")); //tilføj elementer til arrayliste fra txt-fil
                         System.out.println("One element has been loaded to FilmList!");
-                    } else if (!nextRead.equals("Deleted;") && !nextRead.contains("film;")){
+                    */ } else if (!nextRead.equals("Deleted;") && !nextRead.contains("film;")){
                         String oneString = nextRead;
                         String[] line = oneString.split(" *: *"); //splitter ved ;
 
@@ -105,6 +94,7 @@ public class MyList {
         bufferedWriter = new BufferedWriter(new FileWriter(new File(fileMyList), true));
         boolean found = false;
         boolean written = false;
+            //System.out.println(getSeriesInfo(series));
 
         //finder mylist tilhørende nuværende bruger
         while (!found) {
@@ -127,10 +117,13 @@ public class MyList {
                 if(lineNewStart.equals(getFilmInfo(film))) {
                     System.out.println("Film already on list!");
                     match = true;
-                }/*} else if (series != null){
-                    if(lineNewStart.equals(//serieinfo)){}}
-                } */
-            }} else if (lineNewStart.equals("Stop;")){ //film er IKKE allerede på listen
+                }} else if (series != null){
+                    if(lineNewStart.equals(getSeriesInfo((series)))){
+                        System.out.println("Series already on list!");
+                        match = true;
+                    }
+                }} else if (lineNewStart.equals("Stop;")){ //medie er IKKE allerede på listen
+                System.out.println("That medie is currently not on the list!");
                 break;
             }}
 
@@ -138,16 +131,27 @@ public class MyList {
         while(!written && found && !match){
             String lineNewStart = Files.readAllLines(Paths.get(fileMyList)).get(counter);
             System.out.println((lineNewStart));
-            if(found == true && lineNewStart.equals("Stop;")){
-                ChangelineToFilm(film, "\n" + "Stop;", "Stop;", counter);
+            if(film != null){ //hvis det er FILM, som tilføjes
+            if(found && lineNewStart.equals("Deleted;")){
+                ChangelineToMedie(film, null,"", "Deleted;", counter);
                 bufferedWriter.close();
                 written = true;
-            } else if (lineNewStart.equals("Deleted;")){ //byt om på!!
-                ChangelineToFilm(film, "", "Deleted;", counter);
+            } else if (found && lineNewStart.equals("Stop;")){ //byt om på!!
+                ChangelineToMedie(film, null,"\n" + "Stop;", "Stop;", counter);
                 bufferedWriter.close();
                 written = true;
+            }} else if (series != null){ //hvis det er SERIE, som tilføjes
+                if(found == true && lineNewStart.equals("Stop;")){
+                    ChangelineToMedie(null, series,"\n" + "Stop;", "Stop;", counter);
+                    bufferedWriter.close();
+                    written = true;
+                } else if (lineNewStart.equals("Deleted;")){
+                    ChangelineToMedie(null, series, "", "Deleted;", counter);
+                    bufferedWriter.close();
+                    written = true;
             }
-            counter++; }}
+            counter++; }
+}}
 
     //Slet film fra mylists-txt
     public void removeFilmFromMyList(Film film) throws IOException {
@@ -174,29 +178,34 @@ public class MyList {
         String str = Arrays.toString(genre);
         float bedøm = (film.getRating());
         String typeM = "Film";
-        return (navn + ": " + år + ": " + str + ": " + bedøm + ": " + typeM + ";");
+        return (navn + ": " + år + ": " + "[" + str + "]: " + bedøm + ": " + typeM + ";");
 
     }
-    /*
+
     public String getSeriesInfo(Series series){
-        getName()
-        getYear()
-        getGenre()
-        getRating()
-        getEndYear()
-        getSeasonLength()
-
-
-        public int getNumberOfEpisodes(){ return episodes.size();}
-    } */
+        String navn = series.getName();
+        String år = series.getYear() + series.getEndYear();
+        String[] genre = series.getGenre(); //læs som string array
+        String str = Arrays.toString(genre);
+        float rating = series.getRating();
+        int sæsonLængde = series.getSeasonLength();
+        //getNumberOfEpisodes() skal måske ikke bruges?
+        String typeM = "Series";
+        return (navn + ": " + år + ": " + str + ": " + rating + ": " + typeM + ";");
+    }
 
     //Ændrer 'Stop' til info om film i txt-fil
-    public void ChangelineToFilm(Film film, String newW, String old, int counter) throws IOException {
+    public void ChangelineToMedie(Film film, Series series, String newW, String old, int counter) throws IOException {
         List<String> fileContent = new ArrayList<>(Files.readAllLines(Path.of(fileMyList)));
         for (int i = counter; i < fileContent.size(); i++) {
             if (fileContent.get(i).equals(old)) {
-                fileContent.set(i, (getFilmInfo(film) + newW));
-                break;
+                if(film != null) {
+                    fileContent.set(i, (getFilmInfo(film) + newW));
+                    break;
+                } else if (series != null){
+                    fileContent.set(i, (getSeriesInfo(series) + newW));
+                    break;
+                }
             }
         }
         Files.write(Path.of(fileMyList), fileContent);
