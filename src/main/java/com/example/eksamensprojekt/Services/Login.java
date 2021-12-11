@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Login  {
 
     String nameFile = "Signup.txt"; //txt-fil med user ID (username, password)
-    String fileMyList = "MyLists.txt"; //txt-fil med username til personlig Mylist
+    String fileMyList = "MyLists.txt"; //txt-fil med username (bruges til personlig Mylist)
     String cUsernameList = "CurrentUsername.txt";
     BufferedWriter bufferedWriter;
     BufferedWriter bufferedWriter2;
@@ -48,7 +48,7 @@ public class Login  {
             e.printStackTrace();
         }
 
-        //skriver current username ind i fil, eller erstatter forrige med nuværende
+        //skriver current username ind i MyLists-fil, eller erstatter forrige username med nuværende
         bufferedWriter = new BufferedWriter(new FileWriter(new File(cUsernameList)));
         bufferedWriter.write(tmpUser.trim());
         bufferedWriter.close();
