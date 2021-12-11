@@ -69,8 +69,8 @@ public class SeriesListController {
     }
 
     @FXML
-    public void goToMyList(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("MyList.fxml"));
+    public void goToMyList(ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("MyListSide.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
