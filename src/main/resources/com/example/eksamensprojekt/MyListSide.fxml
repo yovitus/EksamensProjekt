@@ -15,28 +15,27 @@
    <children>
       <Label graphicTextGap="5.0" layoutX="17.0" layoutY="14.0" prefHeight="61.0" prefWidth="128.0" text="My List">
          <font>
-            <Font name="Al Tarikh Regular" size="36.0" />
+            <Font name="Al Tarikh Regular" size="38.0" />
          </font>
       </Label>
       <Line endX="722.0" endY="1.0" layoutX="177.0" layoutY="78.0" startX="-190.47157287597656" startY="7.62939453125E-6" />
-      <Button layoutX="159.0" layoutY="16.0" mnemonicParsing="false" onAction="#goToFilmList" prefHeight="53.0" prefWidth="129.0" text="Film List">
+      <Button layoutX="166.0" layoutY="11.0" mnemonicParsing="false" onAction="#goToFilmList" prefHeight="63.0" prefWidth="132.0" text="Film List">
          <font>
-            <Font name="System Bold" size="19.0" />
+            <Font name="Al Tarikh Regular" size="26.0" />
          </font>
       </Button>
-      <Button layoutX="314.0" layoutY="16.0" mnemonicParsing="false" onAction="#goToSeriesList" prefHeight="53.0" prefWidth="129.0" text="Series List">
+      <Button layoutX="312.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToSeriesList" prefHeight="63.0" prefWidth="167.0" text="Series List">
          <font>
-            <Font name="System Bold" size="19.0" />
+            <Font name="Al Tarikh Regular" size="26.0" />
          </font>
       </Button>
-      <Button layoutX="580.0" layoutY="3.0" mnemonicParsing="false" onAction="#goToMain" text="Log out" />
-      <Button layoutX="570.0" layoutY="43.0" mnemonicParsing="false" onAction="#goToStartPage" text="Front Page" />
-      <Button layoutX="488.0" layoutY="30.0" mnemonicParsing="false" onAction="#testAddFilm" text="Test" />
+      <Button layoutX="802.0" layoutY="4.0" mnemonicParsing="false" onAction="#goToMain" text="Log out" />
+      <Button layoutX="790.0" layoutY="34.0" mnemonicParsing="false" onAction="#goToStartPage" text="Front Page" />
       <ScrollPane layoutX="-1.0" layoutY="79.0" prefHeight="474.0" prefWidth="900.0">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="470.0" prefWidth="900.0">
                <children>
-                  <GridPane fx:id="MyListfilmGridPane" layoutX="-2.0" layoutY="105.0" prefHeight="439.0" prefWidth="917.0">
+                  <GridPane fx:id="MyListfilmGridPane" layoutX="-2.0" prefHeight="544.0" prefWidth="917.0">
                       <columnConstraints>
                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -54,5 +53,9 @@
                </children></AnchorPane>
         </content>
       </ScrollPane>
+      <Label fx:id="deleteFilmMessage" alignment="CENTER" layoutX="506.0" layoutY="13.0" prefHeight="57.0" prefWidth="250.0" textFill="RED">
+         <font>
+            <Font name="Al Tarikh Regular" size="24.0" />
+         </font></Label>
    </children>
 </AnchorPane>

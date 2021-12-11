@@ -76,7 +76,7 @@ public class MyListController {
     private GridPane MyListfilmGridPane;
 
     @FXML
-    private GridPane seriesGridPane;
+    Label deleteFilmMessage;
 
     @FXML
     public void renderMyListFilm(List<Film> film) {
@@ -123,6 +123,7 @@ public class MyListController {
             RemoveFilmbtn.setOnMouseClicked((event) -> {
                 try {
                     ml.removeFilmFromMyList(f, AList);
+                    deleteFilmMessage.setText("Film will be removed");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
