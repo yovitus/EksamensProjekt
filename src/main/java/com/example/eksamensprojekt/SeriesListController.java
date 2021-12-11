@@ -1,8 +1,6 @@
 package com.example.eksamensprojekt;
 
-import com.example.eksamensprojekt.Models.Film;
 import com.example.eksamensprojekt.Models.Series;
-import com.example.eksamensprojekt.Services.LoadingFilm;
 import com.example.eksamensprojekt.Services.LoadingSeries;
 import com.example.eksamensprojekt.Services.Search;
 import javafx.collections.FXCollections;
@@ -82,29 +80,31 @@ public class SeriesListController {
     @FXML
     public void renderSeries(List<Series> series)
     {
-    int i = 0;
+        int i = 0;
         for (Series s : series) {
 
-        //Laver parametrer til labels
-        Label titleLabel = new Label(s.getName());
-        Label yearLabel = new Label(s.getYear() + s.getEndYear());
-        Label genreToStringLabel = new Label(s.genreToString() + "");
-        Label ratingLabel = new Label(s.getRating() + "");
+            //Laver parametrer til labels
+            Label titleLabel = new Label(s.getName());
+            Label yearLabel = new Label(s.getYear() + s.getEndYear());
+            Label seasonLabel = new Label(s.getSeasonLength() + " seasons");
+            Label episodeLabel = new Label(s.getEpisodeLength() + " episodes");
+            Label genreToStringLabel = new Label(s.genreToString() + "");
+            Label ratingLabel = new Label(s.getRating() + "");
 
-        //Henter image/thumbnail
-        URL url = SeriesListController.class.getResource(s.getImage());
-        Image image = new Image(String.valueOf(url));
-        ImageView thumbnailImageView = new ImageView(image);
+            //Henter image/thumbnail
+            URL url = SeriesListController.class.getResource(s.getImage());
+            Image image = new Image(String.valueOf(url));
+            ImageView thumbnailImageView = new ImageView(image);
 
-        ratingLabel.setPadding(new Insets(0, 0, 1, 0));
+            ratingLabel.setPadding(new Insets(0, 0, 1, 0));
 
-        //Laver en virtuel box i hvert rum i gridpane, som smider alle labels ind i rækkefølge
-        VBox box = new VBox(titleLabel, yearLabel, genreToStringLabel, ratingLabel, thumbnailImageView);
-        box.setAlignment(Pos.BASELINE_CENTER);
-        box.setPadding(new Insets(12, 12, 12, 12));
+            //Laver en virtuel box i hvert rum i gridpane, som smider alle labels ind i rækkefølge
+            VBox box = new VBox(titleLabel, yearLabel, seasonLabel, episodeLabel, genreToStringLabel, ratingLabel, thumbnailImageView);
+            box.setAlignment(Pos.BASELINE_CENTER);
+            box.setPadding(new Insets(12, 12, 12, 12));
 
-        seriesGridPane.add(box, i % 3, Math.floorDiv(i, 3)); //gør at hver række går fra index 0 til 2 og floor gør at der divideres med 3 fra listen, tager den heltal lavest
-        i++;
+            seriesGridPane.add(box, i % 3, Math.floorDiv(i, 3)); //gør at hver række går fra index 0 til 2 og floor gør at der divideres med 3 fra listen, tager den heltal lavest
+            i++;
         }
     }
     @FXML

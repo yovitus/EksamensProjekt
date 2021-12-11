@@ -24,16 +24,16 @@ public class Main extends Application {
         LoadingSeries ls = new LoadingSeries();
         se.getAllGenreSeries(ls.openFile());*/
         try {
-        //Scanner sc = new Scanner(Main.class.getResourceAsStream("/com/example/eksamensprojekt/Media/film.txt"),"UTF-8");
+            //Scanner sc = new Scanner(Main.class.getResourceAsStream("/com/example/eksamensprojekt/Media/film.txt"),"UTF-8");
             Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
 
             //David Hansson's error handler
-       } catch (Exception e) {
-          Alert alert = new Alert(Alert.AlertType.WARNING, "Sorry, a random error occurred. Try again \n\"" + e.getLocalizedMessage() + "\"");
-          alert.showAndWait().ifPresent(res -> System.exit(0));
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Sorry, a random error occurred. Try again \n\"" + e.getLocalizedMessage() + "\"");
+            alert.showAndWait().ifPresent(res -> System.exit(0));
         }
     }
 

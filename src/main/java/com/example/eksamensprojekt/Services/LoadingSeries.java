@@ -1,8 +1,6 @@
 package com.example.eksamensprojekt.Services;
 
 import com.example.eksamensprojekt.Models.Series;
-
-import java.io.IOException;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.*;
@@ -38,15 +36,25 @@ public class LoadingSeries {
                 String[] line = oneString.split(" *; *"); //splitter ved ;
 
                 String name = line[0];
+                //splitter årstallene
+                //endYear indeholder "-" + om der er et årstal bagefter
                 String releaseYear = line[1].substring(0, 4);
                 int rYear = Integer.parseInt(releaseYear);
                 String endYear = line[1].substring(4);
-                String[] genre = line[2].split(", ");
+                //Deler genre op i et array
+                String[] genre = line[2].split(" *, *");
+                //laver String om til float
                 float rating = tryParseToFloat(line[3]);
-                String[] season = line[4].split(", ");
-                //String episode = season.split();
+                //deler season op i array og tilføjer episoder til en ArrayList
+                String[] seasonsArray = line[4].split(", ");
+                String[] episodesArray = null;
+                ArrayList<String> episodesList = new ArrayList<>();
+                for(int i = 0; i < seasonsArray.length; i++) {
+                    episodesArray = seasonsArray[i].split("-");
+                    episodesList.add(episodesArray[1]);
+                }
 
-                series.add(new Series(name, rYear, genre, rating, "series", season, endYear));
+                series.add(new Series(name, rYear, genre, rating, "series", endYear, seasonsArray, episodesList));
             }
         }
 
@@ -61,9 +69,70 @@ public class LoadingSeries {
         s.close();
     }
 
+/*
+Dette virker for season:
+    String[] seasonsArray = line[4].split(", ");
+    Season[] seasonList = new Season[seasonsArray.length];
+
+Med double array
+ String[] seasonsArray = line[4].split(", ");
+                String[] episodesArray = null;
+                String gem = null;
+                String[] gemListe = null;
+                for(int i = 0; i < seasonsArray.length; i++) {
+                    episodesArray = seasonsArray[i].split("-");
+                    gem = episodesArray[1];
+                    gem = gemListe[i];
+                }
+
+                //String episodesString = episodesArray[1];
+                //for(int j = 0; j < ) {
+
+                //}
+                //int episodesInt = Integer.parseInt(episodesString);
+                Season[][] seasonList = new Season[seasonsArray.length][gemListe.length];
 
 
 
+                Container[][] cargoShip = new Container[coloumns][rowsPerColoumn];
+                for (int i = 0; i < cargoShip.length; i++) {
+                    for (int j = 0; j < cargoShip[i].length; j++) {
+                        cargoShip[i][j] = new Container(i, j);
+                    }
+
+ */
+//-----------------------------------------------------
+    //Andet
+    /*
+                String[] seasonsArray = line[4].split(", ");
+                String[] episodesArray = null;
+                for(int i = 0; i < seasonsArray.length; i++) {
+                    episodesArray = seasonsArray[i].split("-");
+                }
+                 */
+
+
+
+
+    //finder episode antal og opretter Episode object
+                /*String[] oneRecord = null;
+                String episodeList3 = "";
+                for(int i = 0; i < seasonsArray.length; i++) {
+                    oneRecord = seasonsArray[i].split("-");
+                }
+                for(int j = 1; j < oneRecord.length; j=+2) {
+                    episodeList3 = oneRecord[j];
+                }
+                int episodeInt = Integer.parseInt(episodeList3);
+
+                //String episodes = seasons.substring(seasons.indexOf("-")+1, seasons.indexOf(","));
+                //int episodesInt = Integer.parseInt(episodes);
+                //int counter = 0;
+                //for(int i = 0; i < episodesInt; i++) {
+                    //counter++;
+                //}
+                Episode[] episodeList = new Episode[episodeInt];
+                 */
 
 
 
@@ -143,7 +212,10 @@ public class LoadingSeries {
                     String[] yearArray = line[1].split("-");
                     int yearRelease = Integer.parseInt(yearArray[0]);
                     int yearEnd = Integer.parseInt(yearArray[1]);
+
+
+     Måske deler op i flere steder (tror ikke det virker)
+            //String[] episode = line[4].split("-|, ");
      */
 }
-
 
