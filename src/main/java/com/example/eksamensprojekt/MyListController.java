@@ -22,6 +22,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.net.URL;
@@ -29,6 +30,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyListController {
+    MyList ml = new MyList(); //instantierer mylist
+    ArrayList AList = ml.mylistFilm; //opretter en mylistfilm
+
+    public MyListController() throws FileNotFoundException {
+    }
 
     @FXML
     public void goToFilmList(ActionEvent event) throws IOException {
@@ -69,11 +75,11 @@ public class MyListController {
     //TESTMETODE!!
     @FXML
     public void testAddFilm() throws IOException {
-        //MyList ml = new MyList(); //instantierer mylist
-        //LoadingFilm lf = new LoadingFilm();  //-II- loadingfilm
-        //List<Film> film = lf.openFile(); //fylder film arrayliste
-        //ArrayList mlFilm = ml.mylistFilm;
-        //ml.findLoadListFilm(mlFilm); //loader film fra txt-fil til arrayL
+        MyList ml = new MyList(); //instantierer mylist
+        LoadingFilm lf = new LoadingFilm();  //-II- loadingfilm
+        List<Film> film = lf.openFile(); //fylder film arrayliste
+        ArrayList mlFilm = ml.mylistFilm;
+        ml.findLoadListFilm(mlFilm); //loader film fra txt-fil til arrayL
         //mlFilm.add(film.get(0)); //the godfather
         //mlFilm.add(film.get(3)); //Raging Bull
         //mlFilm.add(film.get(4)); //Casablanca
@@ -100,6 +106,7 @@ public class MyListController {
             Label genreToStringLabel = new Label(f.genreToString() + "");
             Label ratingLabel = new Label(f.getRating() + "");
             Button btn = new Button("Play Film");
+            Button RemoveFilmbtn = new Button("Remove Film");
 
             //Henter image/thumbnail
             URL url = MyListController.class.getResource(f.getImage());
@@ -109,7 +116,7 @@ public class MyListController {
             ratingLabel.setPadding(new Insets(0, 0, 1, 0));
 
             //Laver en virtuel box i hvert rum i gridpane, som smider alle labels ind i rækkefølge
-            VBox box = new VBox(titleLabel, yearLabel, genreToStringLabel, ratingLabel, thumbnailImageView, btn);
+            VBox box = new VBox(titleLabel, yearLabel, genreToStringLabel, ratingLabel, thumbnailImageView, btn, RemoveFilmbtn);
             box.setAlignment(Pos.BASELINE_CENTER);
             box.setPadding(new Insets(12, 12, 12, 12));
 
@@ -130,13 +137,19 @@ public class MyListController {
                     throw new RuntimeException(e);
                 }
             });
+
+            RemoveFilmbtn.setOnMouseClicked((event) -> {
+                try {
+                    ml.removeFilmFromMyList(f, AList);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
         }}
 
     @FXML
     //test initialize
     public void initialize() throws IOException {
-        MyList ml = new MyList(); //instantierer mylist
-        ArrayList AList = ml.mylistFilm; //opretter en mylistfilm
         ml.findLoadListFilm(AList); //Kører findloadlist med current username
         renderMyListFilm(AList);
     }
