@@ -50,7 +50,7 @@ public class Login  {
 
         //skriver current username ind i fil, eller erstatter forrige med nuværende
         bufferedWriter = new BufferedWriter(new FileWriter(new File(cUsernameList)));
-        bufferedWriter.write(tmpUser.trim()); //tilføjer nuværende username til txt-filen
+        bufferedWriter.write(tmpUser.trim());
         bufferedWriter.close();
 
         return user;

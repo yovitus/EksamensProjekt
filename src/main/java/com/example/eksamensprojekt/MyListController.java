@@ -72,24 +72,6 @@ public class MyListController {
         stage.show();
     }
 
-    //TESTMETODE!!
-    @FXML
-    public void testAddFilm() throws IOException {
-        MyList ml = new MyList(); //instantierer mylist
-        LoadingFilm lf = new LoadingFilm();  //-II- loadingfilm
-        List<Film> film = lf.openFile(); //fylder film arrayliste
-        ArrayList mlFilm = ml.mylistFilm;
-        ml.findLoadListFilm(mlFilm); //loader film fra txt-fil til arrayL
-        //mlFilm.add(film.get(0)); //the godfather
-        //mlFilm.add(film.get(3)); //Raging Bull
-        //mlFilm.add(film.get(4)); //Casablanca
-
-        //ml.writeMyListFilm(film.get(0), mlFilm);
-        //ml.writeMyListFilm(film.get(4), "testl", mlFilm);
-        //ml.removeFilmFromMyList(film.get(0), mlFilm); //sletter film fra txt og arrayL
-    }
-
-
     @FXML
     private GridPane MyListfilmGridPane;
 
@@ -148,7 +130,6 @@ public class MyListController {
         }}
 
     @FXML
-    //test initialize
     public void initialize() throws IOException {
         ml.findLoadListFilm(AList); //Kører findloadlist med current username
         renderMyListFilm(AList);
