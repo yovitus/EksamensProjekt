@@ -3,6 +3,7 @@ package com.example.eksamensprojekt;
 import com.example.eksamensprojekt.Models.Film;
 import com.example.eksamensprojekt.Services.LoadingFilm;
 //import com.example.eksamensprojekt.Services.Search;
+import com.example.eksamensprojekt.Services.MyList;
 import com.example.eksamensprojekt.Services.Search;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
