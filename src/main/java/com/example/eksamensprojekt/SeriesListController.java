@@ -30,6 +30,7 @@ import java.util.List;
 public class SeriesListController {
 
     private List<Series> series;
+    private List<Series> filterSeries;
 
     @FXML
     public void goToSeriesList(ActionEvent event) throws IOException {
@@ -182,7 +183,7 @@ public class SeriesListController {
     public void searchSeries(KeyEvent event)
     {
         Search se = new Search();
-        List<Series> filterSeries = se.getSearchedSeries(searchField.getText(), this.series);
+        List<Series> filterSeries = se.getSearchedSeries(searchField.getText(), this.filterSeries);
         clearView();
         renderSeries(filterSeries);
         System.out.println(event);
@@ -191,18 +192,29 @@ public class SeriesListController {
     public void initialize() {
         LoadingSeries ls = new LoadingSeries();
         series = ls.openFile();
+        filterSeries = series;
         renderSeries(series);
         Search se = new Search();
-        ObservableList<String> list = FXCollections.observableArrayList(se.getAllGenreSeries(ls.openFile()));
+        ObservableList<String> list = FXCollections.observableArrayList(se.getAllGenreSeries(series));
         comboBox.setItems(list);
     }
 
     @FXML
     public void select(ActionEvent event)
     {
+        resetSelect();
+        var combo = comboBox.getSelectionModel().getSelectedItem().toString();
+        if(combo.equals("All"))
+            return;
         Search se = new Search();
-        List<Series> filterSeries = se.getSearchedSeriesGenre(comboBox.getSelectionModel().getSelectedItem().toString(), this.series);
+        List<Series> filter = se.getSearchedSeriesGenre(combo, this.series);
+        this.filterSeries = se.getSearchedSeries(searchField.getText(), filter);
         clearView();
-        renderSeries(filterSeries);
+        renderSeries(this.filterSeries);
+    }
+
+    private void resetSelect()
+    {
+        filterSeries = series;
     }
 }

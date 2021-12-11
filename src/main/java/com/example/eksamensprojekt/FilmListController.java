@@ -91,7 +91,7 @@ public class FilmListController {
     @FXML
     public void renderFilm(List<Film> film)
     {
-        int i = 0;
+    int i = 0;
         for (Film f : film) {
             //Laver parametrer til labels
             Label titleLabel = new Label(f.getName());
@@ -148,6 +148,8 @@ public class FilmListController {
     @FXML
     public void searchFilm(KeyEvent event)
     {
+        System.out.println("searchFilm");
+        System.out.println(film.size());
         Search se = new Search();
         List<Film> filterFilm = se.getSearchedFilm(searchField.getText(), this.filterFilm);
         clearView();
@@ -158,18 +160,20 @@ public class FilmListController {
     @FXML
     public void initialize()
     {
+        System.out.println("initialize");
         LoadingFilm lf = new LoadingFilm();
         film = lf.openFile();
         filterFilm = film;
         renderFilm(film);
         Search se = new Search();
-        ObservableList<String> list = FXCollections.observableArrayList(se.getAllGenreFilm(lf.openFile()));
+        ObservableList<String> list = FXCollections.observableArrayList(se.getAllGenreFilm(film));
         comboBox.setItems(list);
     }
 
     @FXML
     public void select(ActionEvent event)
     {
+        System.out.println("select");
         resetSelect();
         var combo = comboBox.getSelectionModel().getSelectedItem().toString();
         if(combo.equals("All"))
@@ -188,11 +192,6 @@ public class FilmListController {
         filterFilm = film;
     }
 
-    @FXML
-    public void resetSelectAction(ActionEvent event)
-    {
-        filterFilm = film;
-    }
 
 }
 
