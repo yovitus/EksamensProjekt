@@ -86,7 +86,6 @@ public class MyList {
         bufferedWriter = new BufferedWriter(new FileWriter(new File(fileMyList), true));
         boolean found = false;
         boolean written = false;
-            //System.out.println(getSeriesInfo(series));
 
         //finder mylist tilhørende nuværende bruger
         while (!found) {

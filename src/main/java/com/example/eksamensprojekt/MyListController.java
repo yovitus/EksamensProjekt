@@ -74,10 +74,19 @@ public class MyListController {
     private GridPane MyListfilmGridPane;
 
     @FXML
+    private GridPane seriesGridPane;
+
+    @FXML
     Label deleteFilmMessage;
 
     @FXML
-    public void renderMyListFilm(List<Film> film) {
+    public void clearView()
+    {
+        seriesGridPane.getChildren().clear();
+    }
+
+    @FXML
+    public void renderMyListMedia(List<Film> film, List<Series> series) {
         int i = 0;
         for (Film f : film) {
             //Laver parametrer til labels
@@ -126,21 +135,76 @@ public class MyListController {
                     e.printStackTrace();
                 }
             });
+        }
+        int k = 0;
+        for (Series s : series) {
+
+            //Laver parametrer til labels
+            Label titleLabel = new Label(s.getName());
+            Label yearLabel = new Label(s.getYear() + s.getEndYear());
+            //Label seasonLabel = new Label(s.getSeasonLength() + " seasons");
+            //Label episodeLabel = new Label(s.getEpisodes() + " episodes");
+            Label genreToStringLabel = new Label(s.genreToString() + "");
+            Label ratingLabel = new Label(s.getRating() + "");
+            Button playButton = new Button("Play Series");
+
+            //Henter image/thumbnail
+            URL url = MyListController.class.getResource(s.getImage());
+            Image image = new Image(String.valueOf(url));
+            ImageView thumbnailImageView = new ImageView(image);
+
+            ratingLabel.setPadding(new Insets(0, 0, 1, 0));
+
+            //Laver en virtuel box i hvert rum i GridPane, som smider alle labels ind i rækkefølge
+            VBox box = new VBox(titleLabel, yearLabel, genreToStringLabel, ratingLabel, thumbnailImageView, playButton);
+            box.setAlignment(Pos.BASELINE_CENTER);
+            box.setPadding(new Insets(12, 12, 12, 12));
+
+            seriesGridPane.add(box, k % 3, Math.floorDiv(k, 3)); //gør at hver række går fra index 0 til 2 og floor gør at der divideres med 3 fra listen, tager den heltal lavest
+            k++;
+
+            /* //viser valgte serie og dens seasons
+            playButton.setOnMouseClicked((event)-> {
+                clearView();
+                VBox imageView = new VBox(thumbnailImageView);
+                imageView.setAlignment(Pos.BASELINE_CENTER);
+                imageView.setPadding(new Insets(12, 12, 12, 12));
+                seriesGridPane.add(imageView, 0, 0);
+
+                VBox seasonList = new VBox(10);
+                seasonList.setAlignment(Pos.BASELINE_CENTER);
+                seasonList.setPadding(new Insets(12, 12, 12, 12));
+                Button seasonOne = new Button("Season 1");
+                seasonList.getChildren().addAll(titleLabel, yearLabel, seasonLabel, episodeLabel, seasonOne);
+                for (int j = 1; j < s.getSeasonLength(); j++) {
+                    seasonList.getChildren().add(new Button("Season " + (int) (j + 1)));
+                }
+                seriesGridPane.add(seasonList, 1, 0);
+
+
+                VBox episodeList = new VBox(10);
+                episodeList.setAlignment(Pos.BASELINE_CENTER);
+                episodeList.setPadding(new Insets(12, 12, 12, 12));
+                //ændrer Arraylist<String> til ArrayList<Integer> af episoder
+                ArrayList<Integer> episodesIntArray = s.getIntegerArrayList(s.getEpisodes());
+                Button episodeOne = new Button("Episode 1");
+                episodeList.getChildren().add(episodeOne);
+    }); */
         }}
 
-    public void TestMethod() throws IOException {
-        LoadingSeries ls = new LoadingSeries();
-        List<Series> sList = ls.openFile();
-        //AListS.add(sList.get(0)); //tilføjer Twin Peaks
+        public void TestMethod () throws IOException {
+            //LoadingSeries ls = new LoadingSeries();
+            //List<Series> sList = ls.openFile();
+            //AListS.add(sList.get(0)); //tilføjer Twin Peaks
 
-        //ml.writeMyListFilm(//serie);
-        //ml.writeMyListMedie(null, sList.get(2));
-        //ml.findLoadListMedie(AListF, AListS); //Loader serie og film korrekt?
-    }
+            //ml.writeMyListFilm(//serie);
+            //ml.writeMyListMedie(null, sList.get(2));
+        }
 
-    @FXML
-    public void initialize() throws IOException {
-        ml.findLoadListMedie(AListF, AListS); //Loader film fra txt-fil - SKAL OGSÅ LOADER SERIER!
-        renderMyListFilm(AListF); //displayer film for nuværende user
+        @FXML
+        public void initialize() throws IOException {
+            ml.findLoadListMedie(AListF, AListS); //Loader film fra txt-fil - SKAL OGSÅ LOADER SERIER!
+            renderMyListMedia(AListF, AListS); //displayer film og serier for nuværende user
+
+        }
     }
-}

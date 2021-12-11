@@ -5,6 +5,7 @@ Deleted;
 Twin Peaks: 1990-1991: [Crime, Drama, Mystery]: 8.8: Series;
 The Wizard Of Oz: 1939: [[Adventure, Family, Fantasy]]: 8.0: Film;
 Game Of Thrones: 2011-: [Action, Adventure, Drama]: 9.5: Series;
+Forrest Gump: 1994: [[Drama, Romance]]: 8.8: Film;
 Stop;
 test2;
 The Wizard Of Oz: 1939: [Adventure, Family, Fantasy]: 8.0: Film;
