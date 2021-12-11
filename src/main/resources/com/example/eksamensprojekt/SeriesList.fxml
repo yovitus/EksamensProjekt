@@ -16,7 +16,7 @@
 
 <AnchorPane prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.eksamensprojekt.SeriesListController">
    <children>
-      <Label layoutX="525.0" layoutY="22.0" text="Series List">
+      <Label layoutX="525.0" layoutY="35.0" text="Series List">
          <font>
             <Font size="30.0" />
          </font>

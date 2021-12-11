@@ -13,12 +13,9 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -27,6 +24,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SeriesListController {
@@ -97,7 +95,7 @@ public class SeriesListController {
             Label titleLabel = new Label(s.getName());
             Label yearLabel = new Label(s.getYear() + s.getEndYear());
             Label seasonLabel = new Label(s.getSeasonLength() + " seasons");
-            Label episodeLabel = new Label(s.getEpisodeLength() + " episodes");
+            Label episodeLabel = new Label(s.getEpisodes() + " episodes");
             Label genreToStringLabel = new Label(s.genreToString() + "");
             Label ratingLabel = new Label(s.getRating() + "");
             Button playButton = new Button("Play");
@@ -109,8 +107,8 @@ public class SeriesListController {
 
             ratingLabel.setPadding(new Insets(0, 0, 1, 0));
 
-            //Laver en virtuel box i hvert rum i gridpane, som smider alle labels ind i rækkefølge
-            VBox box = new VBox(titleLabel, yearLabel, seasonLabel, episodeLabel, genreToStringLabel, ratingLabel, thumbnailImageView, playButton);
+            //Laver en virtuel box i hvert rum i GridPane, som smider alle labels ind i rækkefølge
+            VBox box = new VBox(titleLabel, yearLabel, seasonLabel, genreToStringLabel, ratingLabel, thumbnailImageView, playButton);
             box.setAlignment(Pos.BASELINE_CENTER);
             box.setPadding(new Insets(12, 12, 12, 12));
 
@@ -121,35 +119,55 @@ public class SeriesListController {
             playButton.setOnMouseClicked((event)-> {
                 clearView();
                 VBox imageView = new VBox(thumbnailImageView);
-                imageView.setAlignment(Pos.CENTER);
+                imageView.setAlignment(Pos.BASELINE_CENTER);
+                imageView.setPadding(new Insets(12, 12, 12, 12));
                 seriesGridPane.add(imageView, 0, 0);
 
                 VBox seasonList = new VBox(10);
-                seasonList.getChildren().add(titleLabel);
-                seasonList.getChildren().add(yearLabel);
-                seasonList.getChildren().add(seasonLabel);
-                for (int j = 0; j < s.getSeasonLength(); j++) {
-                    seasonList.getChildren().add(new Button("Season " + (int)(j + 1)));
+                seasonList.setAlignment(Pos.BASELINE_CENTER);
+                seasonList.setPadding(new Insets(12, 12, 12, 12));
+                Button seasonOne = new Button("Season 1");
+                seasonList.getChildren().addAll(titleLabel, yearLabel, seasonLabel, episodeLabel, seasonOne);
+                for (int j = 1; j < s.getSeasonLength(); j++) {
+                    seasonList.getChildren().add(new Button("Season " + (int) (j + 1)));
                 }
                 seriesGridPane.add(seasonList, 1, 0);
 
 
+                VBox episodeList = new VBox(10);
+                episodeList.setAlignment(Pos.BASELINE_CENTER);
+                episodeList.setPadding(new Insets(12, 12, 12, 12));
+                //ændrer Arraylist<String> til ArrayList<Integer> af episoder
+                ArrayList<Integer> episodesIntArray = s.getIntegerArrayList(s.getEpisodes());
+                Button episodeOne = new Button("Episode 1");
+                episodeList.getChildren().add(episodeOne);
 
+                //viser episoderne for season 1
+                seasonOne.setOnMouseClicked((event2) -> {
+                    //seriesGridPane.getChildren().remove(episodeList);  Denne fjerner kun episodeButton 1
+                    //seriesGridPane.getChildren().clear/remove(fjerne det som står i GridPane 3,0);
+                    for (int k = 1; k < episodesIntArray.get(Integer.valueOf(0)); k++) {
+                        episodeList.getChildren().add(new Button("Episode " + (int) (k + 1)));
+                    }
+                    seriesGridPane.add(episodeList, 3, 0);
 
-                /*try {
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("Season.fxml"));
+                    //afspiller episode 1 i nyt vindue
+                    episodeOne.setOnMouseClicked((event3) -> {
+                        try {
+                            FXMLLoader fxmlLoader = new FXMLLoader();
+                            fxmlLoader.setLocation(getClass().getResource("Playwindow.fxml"));
 
-                    Scene scene = new Scene(fxmlLoader.load(), 900, 550);
-                    Stage stage = new Stage();
-                    stage.setTitle(s.getName());
-                    stage.setScene(scene);
-                    stage.show();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
+                            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+                            Stage stage = new Stage();
+                            stage.setTitle(s.getName());
+                            stage.setScene(scene);
+                            stage.show();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
 
-
-                }*/
+                    });
+                });
             });
         }
     }
