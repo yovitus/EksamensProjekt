@@ -26,7 +26,7 @@ import java.util.List;
 
 public class MyListController {
     MyList ml = new MyList(); //instantierer mylist
-    ArrayList AList = ml.mylistFilm; //opretter en mylistfilm
+    ArrayList AList = ml.mylistFilm; //tom mylistfilm
 
     public MyListController() throws FileNotFoundException {
     }
@@ -117,7 +117,7 @@ public class MyListController {
 
             RemoveFilmbtn.setOnMouseClicked((event) -> {
                 try {
-                    ml.removeFilmFromMyList(f, AList);
+                    ml.removeFilmFromMyList(f);
                     deleteFilmMessage.setText("Film will be removed");
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -127,7 +127,7 @@ public class MyListController {
 
     @FXML
     public void initialize() throws IOException {
-        ml.findLoadListFilm(AList); //Kører findloadlist med current username
-        renderMyListFilm(AList);
+        ml.findLoadListFilm(AList); //Loader film fra txt-fil
+        renderMyListFilm(AList); //displayer film for nuværende user
     }
 }

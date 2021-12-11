@@ -141,10 +141,8 @@ public class FilmListController {
             });
             //Knap til at tilføje film til MyList
             MyListbtn.setOnMouseClicked((event)-> {
-                ArrayList mlFilm = ml.mylistFilm;
-                mlFilm.add(f);
                 try {
-                    ml.writeMyListFilm(f, mlFilm);
+                    ml.writeMyListFilm(f);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

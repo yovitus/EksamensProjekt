@@ -10,6 +10,7 @@ import java.util.*;
 import com.example.eksamensprojekt.Models.Film;
 import com.example.eksamensprojekt.Models.Medier;
 import com.example.eksamensprojekt.Models.Series;
+/*
 import com.example.eksamensprojekt.Models.User;
 import com.example.eksamensprojekt.SeriesListController;
 import com.example.eksamensprojekt.StartsideController;
@@ -18,7 +19,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.VBox; */
 
 import java.util.ArrayList;
 
@@ -73,7 +74,7 @@ public class MyList {
 
 
     //Skriver nye Film ind på .txt filen
-    public void writeMyListFilm(Film film, ArrayList AList) throws IOException {
+    public void writeMyListFilm(Film film) throws IOException {
         Scanner sc = new Scanner(new File(fileMyList)); //Scanner der skal scanne txt-filen
         sc.useDelimiter("[;\n]"); //ny linje
         bufferedWriter = new BufferedWriter(new FileWriter(new File(fileMyList), true));
@@ -121,10 +122,8 @@ public class MyList {
             }
             counter++; }}
 
-
-
     //Slet film fra mylists-txt
-    public void removeFilmFromMyList(Film film, ArrayList<Film> AList) throws IOException {
+    public void removeFilmFromMyList(Film film) throws IOException {
         Scanner sc = new Scanner(new File(fileMyList)); //Scanner der skal scanne txt-filen
         sc.useDelimiter("[;\n]"); //ny linje
         bufferedWriter = new BufferedWriter(new FileWriter(new File(fileMyList), true));
@@ -140,15 +139,12 @@ public class MyList {
         } System.out.println("Process færdig!");
     }
 
-
     //returnerer string med film-info
     public String getFilmInfo(Film film){
         String navn = film.getName();
         int år = film.getYear();
         String[] genre = film.getGenre(); //læs som string array
         String str = Arrays.toString(genre);
-        //String str1 = str.replace("[", "");
-        //String str2 = str1.replace("]", "");
         float bedøm = (film.getRating());
         String typeM = "Film";
         return (navn + ": " + år + ": " + str + ": " + bedøm + ": " + typeM + ";");
@@ -176,5 +172,9 @@ public class MyList {
             }
         }
         Files.write(Path.of(fileMyList), fileContent);
+    }
+
+    public void findLoadListSeries(ArrayList AList) throws IOException {
+        //load serier
     }
 }
