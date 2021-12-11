@@ -115,7 +115,7 @@ public class MyList {
                 //bufferedWriter.write( "\n" + "Stop;"); //Skriver nederst pt - RET!
                 bufferedWriter.close();
                 written = true;
-            } else if (lineNewStart.equals("Deleted;")){
+            } else if (lineNewStart.equals("Deleted;")){ //byt om på!!
                 ChangelineToFilm(film, "", "Deleted;", counter);
                 bufferedWriter.close();
                 written = true;
