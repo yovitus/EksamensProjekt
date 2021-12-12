@@ -11,7 +11,3 @@ Stop;
 test2;
 The Wizard Of Oz: 1939: [Adventure, Family, Fantasy]: 8.0: Film;
 Stop;
-Heyy;
-The Godfather: 1972: [Crime, Drama]: 9.2: Film;
-Deleted;
-Stop;

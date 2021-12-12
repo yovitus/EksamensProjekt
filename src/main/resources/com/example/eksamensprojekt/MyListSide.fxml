@@ -35,9 +35,8 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="470.0" prefWidth="900.0">
                <children>
-                  <GridPane fx:id="MyListfilmGridPane" layoutX="-2.0" prefHeight="544.0" prefWidth="917.0">
+                  <GridPane fx:id="MyListfilmGridPane" layoutX="-2.0" prefHeight="460.0" prefWidth="503.0">
                       <columnConstraints>
-                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       </columnConstraints>
@@ -47,13 +46,26 @@
                           <RowConstraints />
                       </rowConstraints>
                      <children>
-                         <VBox prefHeight="199.0" prefWidth="84.0" GridPane.rowIndex="2" />
+                         <VBox prefHeight="173.0" prefWidth="296.0" GridPane.rowIndex="2" />
+                     </children>
+                  </GridPane>
+                  <GridPane fx:id="seriesGridPane" layoutX="494.0" prefHeight="461.0" prefWidth="389.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                     </rowConstraints>
+                     <children>
+                        <VBox prefHeight="199.0" prefWidth="84.0" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                </children></AnchorPane>
         </content>
       </ScrollPane>
-      <Label fx:id="deleteFilmMessage" alignment="CENTER" layoutX="506.0" layoutY="13.0" prefHeight="57.0" prefWidth="250.0" textFill="RED">
+      <Label fx:id="deleteMediaMessage" alignment="CENTER" layoutX="506.0" layoutY="13.0" prefHeight="57.0" prefWidth="250.0" textFill="RED">
          <font>
             <Font name="Al Tarikh Regular" size="24.0" />
          </font></Label>
