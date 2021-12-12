@@ -138,15 +138,21 @@ public class SeriesListController { //implements EventHandler<ActionEvent>
 
                 //laver knapper til de forskellige seasons og tilføjer til GridPane
                 VBox seasonList = new VBox(10);
+                VBox backBtn = new VBox(10); //TEST
                 seasonList.setAlignment(Pos.BASELINE_CENTER);
+                backBtn.setAlignment(Pos.BOTTOM_LEFT);
                 seasonList.setPadding(new Insets(12, 12, 12, 12));
+                backBtn.setPadding(new Insets(10,10, 10, 10)); //TEST
                 Button seasonOne = new Button("Season 1");
+                Button goBackBtn = new Button("Go Back"); //TEST
+                backBtn.getChildren().add(goBackBtn); //TEST
                 seasonList.getChildren().addAll(titleLabel, yearLabel, seasonLabel, episodeLabel, seasonOne);
                 for (int j = 1; j < s.getSeasonLength(); j++) {
                     seasonsButton = new Button("Season " + (int) (j + 1));
                     seasonList.getChildren().add(seasonsButton);
                 }
                 seriesGridPane.add(seasonList, 1, 0);
+                seriesGridPane.add(backBtn, 1, 0);
 
 
                 //ændrer String Array til Integer Array af episoder
