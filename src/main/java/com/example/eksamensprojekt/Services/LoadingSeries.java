@@ -1,6 +1,8 @@
 package com.example.eksamensprojekt.Services;
 
 import com.example.eksamensprojekt.Models.Series;
+
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.*;
@@ -47,14 +49,23 @@ public class LoadingSeries {
                 float rating = tryParseToFloat(line[3]);
                 //deler season op i array og tilføjer episoder til en ArrayList<String>
                 String[] seasonsArray = line[4].split(", ");
-                String[] episodesArray = null;
+                String[] episodesReader;
+                String[] episodesArray = new String[seasonsArray.length];
+                for(int i = 0; i < seasonsArray.length; i++) {
+                    episodesReader = seasonsArray[i].split("-");
+                    episodesArray[i] = episodesReader[1];
+                }
+
+
+                /*String[] seasonsArray = line[4].split(", ");
+                String[] episodesArray;
                 ArrayList<String> episodesList = new ArrayList<>();
                 for(int i = 0; i < seasonsArray.length; i++) {
                     episodesArray = seasonsArray[i].split("-");
                     episodesList.add(episodesArray[1]);
-                }
+                }*/
 
-                series.add(new Series(name, rYear, genre, rating, "series", endYear, seasonsArray, episodesList));
+                series.add(new Series(name, rYear, genre, rating, "series", endYear, seasonsArray, episodesArray));
             }
         }
 
