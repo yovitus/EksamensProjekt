@@ -89,6 +89,7 @@ public class MyList {
         bufferedWriter = new BufferedWriter(new FileWriter(new File(fileMyList), true));
         boolean found = false;
         boolean written = false;
+        counter = 0;
 
         //finder mylist tilhørende nuværende bruger
         while (!found) {
@@ -97,7 +98,6 @@ public class MyList {
                 System.out.println("username match fundet!");
                 found = true;
             } else {
-                System.out.println("username match ikke fundet endnu");
                 counter++;
             }}
 
@@ -126,16 +126,18 @@ public class MyList {
             String lineNewStart = Files.readAllLines(Paths.get(fileMyList)).get(counter);
             System.out.println((lineNewStart));
             if(film != null){ //hvis det er FILM, som tilføjes
-            if(found && lineNewStart.equals("Deleted;")){
+            if(lineNewStart.equals("Deleted;")){
                 ChangelineToMedie(film, null,"", "Deleted;", counter);
                 bufferedWriter.close();
                 written = true;
-            } else if (found && lineNewStart.equals("Stop;")){
+            } else if (lineNewStart.equals("Stop;")){
                 ChangelineToMedie(film, null,"\n" + "Stop;", "Stop;", counter);
                 bufferedWriter.close();
                 written = true;
+            } else {
+                counter++;
             }} else if (series != null){ //hvis det er SERIE, som tilføjes
-                if(found == true && lineNewStart.equals("Stop;")){
+                if(lineNewStart.equals("Stop;")){
                     ChangelineToMedie(null, series,"\n" + "Stop;", "Stop;", counter);
                     bufferedWriter.close();
                     written = true;
@@ -143,9 +145,9 @@ public class MyList {
                     ChangelineToMedie(null, series, "", "Deleted;", counter);
                     bufferedWriter.close();
                     written = true;
-            }
-            counter++; }
-}}
+            } else {
+                counter++;
+            }}}}
 
     //Slet film fra mylists-txt
     public void removeMediaFromMyList(Film film, Series series) throws IOException {
@@ -179,7 +181,7 @@ public class MyList {
         String str = Arrays.toString(genre);
         float bedøm = (film.getRating());
         String typeM = "Film";
-        return (navn + ": " + år + ": " + "[" + str + "]: " + bedøm + ": " + typeM + ";");
+        return (navn + ": " + år + ": " + str + ": " + bedøm + ": " + typeM + ";");
 
     }
 

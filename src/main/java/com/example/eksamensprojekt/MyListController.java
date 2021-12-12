@@ -2,7 +2,6 @@ package com.example.eksamensprojekt;
 
 import com.example.eksamensprojekt.Models.Film;
 import com.example.eksamensprojekt.Models.Series;
-import com.example.eksamensprojekt.Services.LoadingSeries;
 import com.example.eksamensprojekt.Services.MyList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,7 +23,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MyListController {
@@ -205,18 +203,6 @@ public class MyListController {
                 episodeList.getChildren().add(episodeOne);
     }); */
         }}}
-/*
-        public void TestMethod () throws IOException {
-            LoadingSeries ls = new LoadingSeries();
-            List<Series> sList = ls.openFile();
-            AListS.add(sList.get(0)); //tilføjer Twin Peaks
-            ml.findLoadListMedie(AListF, AListS);
-
-            //ml.writeMyListMedie(null, sList.get(0));
-
-            System.out.println(ml.getSeriesInfo(AListS.get(0)));
-            ml.removeMediaFromMyList(null, AListS.get(0));
-        } */
 
         @FXML
         public void initialize() throws IOException {
