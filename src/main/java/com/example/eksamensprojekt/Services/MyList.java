@@ -25,11 +25,11 @@ public class MyList {
     public MyList() throws FileNotFoundException {
         mylistFilm = new ArrayList<Film>();
         mylistSeries = new ArrayList<Series>();
+        counter = 0;
 
         //scan CurrentUsername.txt og indlæs username for nuværende bruger
         s = new Scanner(new File(cUsernameList));
         this.currentUsername = s.nextLine();
-        counter = 0;
     }
 
     //Indlæs MyList film og serier for nuværende bruger til arrayL
@@ -101,7 +101,7 @@ public class MyList {
                 counter++;
             }}
 
-        //tjekker om film allerede er på brugerens liste
+        //tjekker om medie allerede er på brugerens liste
         boolean match = false;
         while (found && !match){
             String lineNewStart = Files.readAllLines(Paths.get(fileMyList)).get(counter);
@@ -117,7 +117,7 @@ public class MyList {
                         match = true;
                     }
                 }} else if (lineNewStart.equals("Stop;")){ //medie er IKKE allerede på listen
-                System.out.println("That medie is currently not on the list!");
+                System.out.println("That media is currently NOT on the list!");
                 break;
             }}
 
@@ -221,9 +221,5 @@ public class MyList {
             }
         }
         Files.write(Path.of(fileMyList), fileContent);
-    }
-
-    public void findLoadListMedie(ArrayList AList) throws IOException {
-        //load serier
     }
 }
