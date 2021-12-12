@@ -65,10 +65,9 @@
                </children></AnchorPane>
         </content>
       </ScrollPane>
-      <Label fx:id="deleteFilmMessage" alignment="CENTER" layoutX="506.0" layoutY="13.0" prefHeight="57.0" prefWidth="250.0" textFill="RED">
+      <Label fx:id="deleteMediaMessage" alignment="CENTER" layoutX="506.0" layoutY="13.0" prefHeight="57.0" prefWidth="250.0" textFill="RED">
          <font>
             <Font name="Al Tarikh Regular" size="24.0" />
          </font></Label>
-      <Button layoutX="719.0" layoutY="18.0" mnemonicParsing="false" onAction="#TestMethod" text="Test" />
    </children>
 </AnchorPane>

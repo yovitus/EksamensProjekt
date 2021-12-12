@@ -24,12 +24,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MyListController {
     MyList ml = new MyList(); //instantierer mylist
     ArrayList AListF = ml.mylistFilm; //tom mylistfilm
-    ArrayList AListS = ml.mylistSeries; //tom mylistseries
+    ArrayList<Series> AListS = ml.mylistSeries; //tom mylistseries
 
     public MyListController() throws FileNotFoundException {
     }
@@ -77,7 +78,7 @@ public class MyListController {
     private GridPane seriesGridPane;
 
     @FXML
-    Label deleteFilmMessage;
+    Label deleteMediaMessage;
 
     @FXML
     public void clearView()
@@ -87,6 +88,7 @@ public class MyListController {
 
     @FXML
     public void renderMyListMedia(List<Film> film, List<Series> series) {
+        if(film != null){
         int i = 0;
         for (Film f : film) {
             //Laver parametrer til labels
@@ -129,24 +131,27 @@ public class MyListController {
 
             RemoveFilmbtn.setOnMouseClicked((event) -> {
                 try {
-                    ml.removeFilmFromMyList(f);
-                    deleteFilmMessage.setText("Film will be removed");
+                    ml.removeMediaFromMyList(f, null);
+                    deleteMediaMessage.setText("Film will be removed");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             });
-        }
+        }}
+        if(series != null){
         int k = 0;
         for (Series s : series) {
-
             //Laver parametrer til labels
             Label titleLabel = new Label(s.getName());
             Label yearLabel = new Label(s.getYear() + s.getEndYear());
             //Label seasonLabel = new Label(s.getSeasonLength() + " seasons");
             //Label episodeLabel = new Label(s.getEpisodes() + " episodes");
+
             Label genreToStringLabel = new Label(s.genreToString() + "");
+
             Label ratingLabel = new Label(s.getRating() + "");
             Button playButton = new Button("Play Series");
+            Button RemoveSeriesbtn = new Button("Remove Series");
 
             //Henter image/thumbnail
             URL url = MyListController.class.getResource(s.getImage());
@@ -156,12 +161,21 @@ public class MyListController {
             ratingLabel.setPadding(new Insets(0, 0, 1, 0));
 
             //Laver en virtuel box i hvert rum i GridPane, som smider alle labels ind i rækkefølge
-            VBox box = new VBox(titleLabel, yearLabel, genreToStringLabel, ratingLabel, thumbnailImageView, playButton);
+            VBox box = new VBox(titleLabel, yearLabel, genreToStringLabel, ratingLabel, thumbnailImageView, playButton, RemoveSeriesbtn);
             box.setAlignment(Pos.BASELINE_CENTER);
             box.setPadding(new Insets(12, 12, 12, 12));
 
             seriesGridPane.add(box, k % 3, Math.floorDiv(k, 3)); //gør at hver række går fra index 0 til 2 og floor gør at der divideres med 3 fra listen, tager den heltal lavest
             k++;
+
+            RemoveSeriesbtn.setOnMouseClicked((event) -> {
+                try {
+                    ml.removeMediaFromMyList(null, s);
+                    deleteMediaMessage.setText("Series will be removed");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
 
             /* //viser valgte serie og dens seasons
             playButton.setOnMouseClicked((event)-> {
@@ -190,21 +204,25 @@ public class MyListController {
                 Button episodeOne = new Button("Episode 1");
                 episodeList.getChildren().add(episodeOne);
     }); */
-        }}
-
+        }}}
+/*
         public void TestMethod () throws IOException {
-            //LoadingSeries ls = new LoadingSeries();
-            //List<Series> sList = ls.openFile();
-            //AListS.add(sList.get(0)); //tilføjer Twin Peaks
+            LoadingSeries ls = new LoadingSeries();
+            List<Series> sList = ls.openFile();
+            AListS.add(sList.get(0)); //tilføjer Twin Peaks
+            ml.findLoadListMedie(AListF, AListS);
 
-            //ml.writeMyListFilm(//serie);
-            //ml.writeMyListMedie(null, sList.get(2));
-        }
+            //ml.writeMyListMedie(null, sList.get(0));
+
+            System.out.println(ml.getSeriesInfo(AListS.get(0)));
+            ml.removeMediaFromMyList(null, AListS.get(0));
+        } */
 
         @FXML
         public void initialize() throws IOException {
-            ml.findLoadListMedie(AListF, AListS); //Loader film fra txt-fil - SKAL OGSÅ LOADER SERIER!
-            renderMyListMedia(AListF, AListS); //displayer film og serier for nuværende user
+            ml.findLoadListMedie(AListF, AListS); //Loader medier fra txt-fil
+            renderMyListMedia(AListF, null); //displayer medier for nuværende user
+            renderMyListMedia(null, AListS);
 
         }
     }

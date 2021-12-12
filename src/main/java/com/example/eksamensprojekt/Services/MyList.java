@@ -67,7 +67,10 @@ public class MyList {
                         int rYear = Integer.parseInt(releaseYear);
                         String endYear = line[1].substring(4);
                         //Deler genre op i et array
-                        String[] genre = line[2].split(", ");
+                        //String[] genre = line[2].split(", ");
+                        String genre1 = line[2].replace("[", ""); //fjerner [
+                        String genre2 = genre1.replace("]", ""); //fjerner ]
+                        String[] genre = genre2.split(", ");
 
                         //laver String om til float
                         float rating = Float.parseFloat(line[3]);
@@ -118,7 +121,7 @@ public class MyList {
                 break;
             }}
 
-        //hvis film-match ikke fundet på liste, så tilføj til listen
+        //hvis match ikke fundet på liste, så tilføj til listen
         while(!written && found && !match){
             String lineNewStart = Files.readAllLines(Paths.get(fileMyList)).get(counter);
             System.out.println((lineNewStart));
@@ -127,7 +130,7 @@ public class MyList {
                 ChangelineToMedie(film, null,"", "Deleted;", counter);
                 bufferedWriter.close();
                 written = true;
-            } else if (found && lineNewStart.equals("Stop;")){ //byt om på!!
+            } else if (found && lineNewStart.equals("Stop;")){
                 ChangelineToMedie(film, null,"\n" + "Stop;", "Stop;", counter);
                 bufferedWriter.close();
                 written = true;
@@ -145,7 +148,7 @@ public class MyList {
 }}
 
     //Slet film fra mylists-txt
-    public void removeFilmFromMyList(Film film) throws IOException {
+    public void removeMediaFromMyList(Film film, Series series) throws IOException {
         Scanner sc = new Scanner(new File(fileMyList)); //Scanner der skal scanne txt-filen
         sc.useDelimiter("[;\n]"); //ny linje
         bufferedWriter = new BufferedWriter(new FileWriter(new File(fileMyList), true));
@@ -153,11 +156,18 @@ public class MyList {
 
         while (!found) {
             String lineRead = sc.nextLine();
-            if(lineRead.equals(getFilmInfo(film))){
-                Changeline(lineRead, "Deleted;");
-                System.out.println("Film fundet i liste");
-                found = true;
-            }
+            if(film != null){
+                if(lineRead.equals(getFilmInfo(film))) {
+                    Changeline(lineRead, "Deleted;");
+                    System.out.println("Film slettet fra liste");
+                    found = true;
+            }}
+            if(series != null){
+                if (lineRead.equals(getSeriesInfo(series))){
+                    Changeline(lineRead, "Deleted;");
+                    System.out.println("Serie slettet fra liste");
+                    found = true;
+            }}
         } System.out.println("Process færdig!");
     }
 
@@ -178,9 +188,8 @@ public class MyList {
         String år = series.getYear() + series.getEndYear();
         String[] genre = series.getGenre(); //læs som string array
         String str = Arrays.toString(genre);
+
         float rating = series.getRating();
-        int sæsonLængde = series.getSeasonLength();
-        //getNumberOfEpisodes() skal måske ikke bruges?
         String typeM = "Series";
         return (navn + ": " + år + ": " + str + ": " + rating + ": " + typeM + ";");
     }
