@@ -14,8 +14,8 @@ import java.util.ArrayList;
 public class MyList {
     BufferedWriter bufferedWriter;
     //FileWriter fileWriter;
-    public ArrayList mylistFilm;
-    public ArrayList mylistSeries;
+    public ArrayList<Film> mylistFilm;
+    public ArrayList<Series> mylistSeries;
     String fileMyList = "MyLists.txt";
     String cUsernameList = "CurrentUsername.txt"; //current username txt-fil
     private Scanner s;

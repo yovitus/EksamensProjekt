@@ -1,5 +1,6 @@
 package com.example.eksamensprojekt.Services;
 
+import com.example.eksamensprojekt.Models.Film;
 import com.example.eksamensprojekt.Models.Series;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MyListTest {
     MyList ml  = new MyList();
-    ArrayList AListF = ml.mylistFilm; //tom mylistfilm
+    ArrayList<Film> AListF = ml.mylistFilm; //tom mylistfilm
     ArrayList<Series> AListS = ml.mylistSeries; //tom mylistseries
 
     MyListTest() throws FileNotFoundException {
@@ -30,6 +31,10 @@ class MyListTest {
         The Walking Dead - serie
          */
         ml.findLoadListMedie(AListF, AListS);
+        
+        assertEquals("The Wizard Of Oz", (AListF.get(0)).getName()); //tjek film1
+        assertEquals("The Sound Of Music", (AListF.get(1)).getName()); //tjek film2
+        assertEquals("The Walking Dead", (AListS.get(0)).getName()); //tjek serie
     }
 
     @Test
