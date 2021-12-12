@@ -21,11 +21,13 @@ public class MyList {
     private Scanner s;
     String currentUsername;
     int counter;
+    int counterD;
 
     public MyList() throws FileNotFoundException {
         mylistFilm = new ArrayList<Film>();
         mylistSeries = new ArrayList<Series>();
         counter = 0;
+        counterD = 0;
 
         //scan CurrentUsername.txt og indlæs username for nuværende bruger
         s = new Scanner(new File(cUsernameList));
@@ -36,6 +38,9 @@ public class MyList {
     public void findLoadListMedie(ArrayList<Film> AListF, ArrayList<Series> AListS) throws IOException {
         s = new Scanner(new File(fileMyList)); //Scanner der skal scanne txt-filen, "MyLists.txt
         s.useDelimiter("[;\n]"); //efter ; skift linje
+        counterD = 0;
+        counter = 0;
+
 
         //Loader specifik mylistFilm for bruger
         while (s.hasNext()) {
@@ -47,8 +52,12 @@ public class MyList {
                     //System.out.println((nextRead));
                     if(nextRead.equals("Stop;")){
                         System.out.println("End of list reached!");
-                        break;
-                     } else if (!nextRead.equals("Deleted;") && !nextRead.contains("Series;")) {
+                        if(counterD == 0 || counter == 0){
+                            System.out.println("List is empty!");
+                        } break;
+                     } else if (nextRead.equals("Deleted;")){
+                            counterD++;
+                    }else if (!nextRead.equals("Deleted;") && !nextRead.contains("Series;")) {
                         String oneString = nextRead; //tjekker hver linje
                         String[] line = oneString.split(" *: *"); //splitter ved :
                         String name = line[0];
@@ -59,6 +68,7 @@ public class MyList {
                         float rating = Float.parseFloat(line[3]);
                         AListF.add(new Film(name, year, genre, rating, "film")); //tilføj elementer til arrayliste fra txt-fil
                         System.out.println("One element has been loaded to FilmList!");
+                        counter++;
                      } else if (!nextRead.equals("Deleted;") && !nextRead.contains("Film;")){
                         String oneString = nextRead;
                         String[] line = oneString.split(" *: *"); //splitter ved ;
@@ -76,6 +86,7 @@ public class MyList {
                         float rating = Float.parseFloat(line[3]);
                         AListS.add(new Series(name, rYear, genre, rating, "series", endYear, null, null));
                         System.out.println("One element has been loaded to SeriesList!");
+                        counter++;
                     }
                 }
                 break;
