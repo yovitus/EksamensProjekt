@@ -147,7 +147,6 @@ public class FilmListController {
                     e.printStackTrace();
                 }
             });
-
         }
     }
 
