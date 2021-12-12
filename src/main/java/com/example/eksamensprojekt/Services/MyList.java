@@ -1,62 +1,62 @@
 package com.example.eksamensprojekt.Services;
 
 import java.io.*;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
 import com.example.eksamensprojekt.Models.Film;
-import com.example.eksamensprojekt.Models.Medier;
 import com.example.eksamensprojekt.Models.Series;
-import com.example.eksamensprojekt.Models.User;
-import com.example.eksamensprojekt.SeriesListController;
-import com.example.eksamensprojekt.StartsideController;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 
 public class MyList {
     BufferedWriter bufferedWriter;
-    FileWriter fileWriter;
-    public ArrayList mylistFilm;
-    public ArrayList mylistSeries;
+    //FileWriter fileWriter;
+    public ArrayList<Film> mylistFilm;
+    public ArrayList<Series> mylistSeries;
     String fileMyList = "MyLists.txt";
     String cUsernameList = "CurrentUsername.txt"; //current username txt-fil
     private Scanner s;
     String currentUsername;
     int counter;
+    int counterD;
 
     public MyList() throws FileNotFoundException {
         mylistFilm = new ArrayList<Film>();
         mylistSeries = new ArrayList<Series>();
+        counter = 0;
+        counterD = 0;
 
-        //scan CurrentUsername.txt og indlæs usn
+        //scan CurrentUsername.txt og indlæs username for nuværende bruger
         s = new Scanner(new File(cUsernameList));
         this.currentUsername = s.nextLine();
-        counter = 0;
     }
 
-    //Indlæs MyListFilm for nuværende bruger
-    public void findLoadListFilm(ArrayList AList) throws IOException {
+    //Indlæs MyList film og serier for nuværende bruger til arrayL
+    public void findLoadListMedie(ArrayList<Film> AListF, ArrayList<Series> AListS) throws IOException {
         s = new Scanner(new File(fileMyList)); //Scanner der skal scanne txt-filen, "MyLists.txt
         s.useDelimiter("[;\n]"); //efter ; skift linje
+        counterD = 0;
+
 
         //Loader specifik mylistFilm for bruger
         while (s.hasNext()) {
             if(s.nextLine().equals(currentUsername + ";")) {
+                System.out.println(("username fundet!"));
+
                 while (s.hasNext()){
                     String nextRead = s.nextLine();
+                    //System.out.println((nextRead));
                     if(nextRead.equals("Stop;")){
                         System.out.println("End of list reached!");
-                        break;
-                    } else if (!nextRead.equals("Deleted;")) {
+                        if(counterD == 0 || counter == 0){
+                            System.out.println("List is empty!");
+                        } break;
+                     } else if (nextRead.equals("Deleted;")){
+                            counterD++;
+                    }else if (!nextRead.equals("Deleted;") && !nextRead.contains("Series;")) {
                         String oneString = nextRead; //tjekker hver linje
                         String[] line = oneString.split(" *: *"); //splitter ved :
                         String name = line[0];
@@ -65,20 +65,41 @@ public class MyList {
                         String genre2 = genre1.replace("]", ""); //fjerner ]
                         String[] genre = genre2.split(", ");
                         float rating = Float.parseFloat(line[3]);
-                        AList.add(new Film(name, year, genre, rating, "film")); //tilføj elementer til arrayliste fra txt-fil
-                        System.out.println("One element has been loaded!");
-                    }}
+                        AListF.add(new Film(name, year, genre, rating, "film")); //tilføj elementer til arrayliste fra txt-fil
+                        System.out.println("One element has been loaded to FilmList!");
+                        counter++;
+                     } else if (!nextRead.equals("Deleted;") && !nextRead.contains("Film;")){
+                        String oneString = nextRead;
+                        String[] line = oneString.split(" *: *"); //splitter ved ;
+                        String name = line[0];
+                        String releaseYear = line[1].substring(0, 4);
+                        int rYear = Integer.parseInt(releaseYear);
+                        String endYear = line[1].substring(4);
+                        //Deler genre op i et array
+                        //String[] genre = line[2].split(", ");
+                        String genre1 = line[2].replace("[", ""); //fjerner [
+                        String genre2 = genre1.replace("]", ""); //fjerner ]
+                        String[] genre = genre2.split(", ");
+
+                        //laver String om til float
+                        float rating = Float.parseFloat(line[3]);
+                        AListS.add(new Series(name, rYear, genre, rating, "series", endYear, null, null));
+                        System.out.println("One element has been loaded to SeriesList!");
+                        counter++;
+                    }
+                }
                 break;
             }}}
 
 
     //Skriver nye Film ind på .txt filen
-    public void writeMyListFilm(Film film, ArrayList AList) throws IOException {
+    public void writeMyListMedie(Film film, Series series) throws IOException {
         Scanner sc = new Scanner(new File(fileMyList)); //Scanner der skal scanne txt-filen
         sc.useDelimiter("[;\n]"); //ny linje
         bufferedWriter = new BufferedWriter(new FileWriter(new File(fileMyList), true));
         boolean found = false;
         boolean written = false;
+        counter = 0;
 
         //finder mylist tilhørende nuværende bruger
         while (!found) {
@@ -87,44 +108,59 @@ public class MyList {
                 System.out.println("username match fundet!");
                 found = true;
             } else {
-                System.out.println("username match ikke fundet endnu");
                 counter++;
             }}
 
-        //tjekker om film allerede er på brugerens liste
+        //tjekker om medie allerede er på brugerens liste
         boolean match = false;
         while (found && !match){
             String lineNewStart = Files.readAllLines(Paths.get(fileMyList)).get(counter);
             if(!lineNewStart.equals("Stop;")){
                 counter++;
+                if(film != null){
                 if(lineNewStart.equals(getFilmInfo(film))) {
                     System.out.println("Film already on list!");
                     match = true;
-                }
-            } else if (lineNewStart.equals("Stop;")){ //film er IKKE allerede på listen
+                }} else if (series != null){
+                    if(lineNewStart.equals(getSeriesInfo((series)))){
+                        System.out.println("Series already on list!");
+                        match = true;
+                    }
+                }} else if (lineNewStart.equals("Stop;")){ //medie er IKKE allerede på listen
+                System.out.println("That media is currently NOT on the list!");
                 break;
             }}
 
-        //hvis film-match ikke fundet på liste, så tilføj til listen
+        //hvis match ikke fundet på liste, så tilføj til listen
         while(!written && found && !match){
             String lineNewStart = Files.readAllLines(Paths.get(fileMyList)).get(counter);
             System.out.println((lineNewStart));
-            if(found == true && lineNewStart.equals("Stop;")){
-                ChangelineToFilm(film, "\n" + "Stop;", "Stop;", counter);
-                //bufferedWriter.write( "\n" + "Stop;"); //Skriver nederst pt - RET!
+            if(film != null){ //hvis det er FILM, som tilføjes
+            if(lineNewStart.equals("Deleted;")){
+                ChangelineToMedie(film, null,"", "Deleted;", counter);
                 bufferedWriter.close();
                 written = true;
-            } else if (lineNewStart.equals("Deleted;")){
-                ChangelineToFilm(film, "", "Deleted;", counter);
+            } else if (lineNewStart.equals("Stop;")){
+                ChangelineToMedie(film, null,"\n" + "Stop;", "Stop;", counter);
                 bufferedWriter.close();
                 written = true;
-            }
-            counter++; }}
-
-
+            } else {
+                counter++;
+            }} else if (series != null){ //hvis det er SERIE, som tilføjes
+                if(lineNewStart.equals("Stop;")){
+                    ChangelineToMedie(null, series,"\n" + "Stop;", "Stop;", counter);
+                    bufferedWriter.close();
+                    written = true;
+                } else if (lineNewStart.equals("Deleted;")){
+                    ChangelineToMedie(null, series, "", "Deleted;", counter);
+                    bufferedWriter.close();
+                    written = true;
+            } else {
+                counter++;
+            }}}}
 
     //Slet film fra mylists-txt
-    public void removeFilmFromMyList(Film film, ArrayList<Film> AList) throws IOException {
+    public void removeMediaFromMyList(Film film, Series series) throws IOException {
         Scanner sc = new Scanner(new File(fileMyList)); //Scanner der skal scanne txt-filen
         sc.useDelimiter("[;\n]"); //ny linje
         bufferedWriter = new BufferedWriter(new FileWriter(new File(fileMyList), true));
@@ -132,14 +168,20 @@ public class MyList {
 
         while (!found) {
             String lineRead = sc.nextLine();
-            if(lineRead.equals(getFilmInfo(film))){
-                Changeline(lineRead, "Deleted;");
-                System.out.println("Film fundet i liste");
-                found = true;
-            }
+            if(film != null){
+                if(lineRead.equals(getFilmInfo(film))) {
+                    Changeline(lineRead, "Deleted;");
+                    System.out.println("Film slettet fra liste");
+                    found = true;
+            }}
+            if(series != null){
+                if (lineRead.equals(getSeriesInfo(series))){
+                    Changeline(lineRead, "Deleted;");
+                    System.out.println("Serie slettet fra liste");
+                    found = true;
+            }}
         } System.out.println("Process færdig!");
     }
-
 
     //returnerer string med film-info
     public String getFilmInfo(Film film){
@@ -147,20 +189,36 @@ public class MyList {
         int år = film.getYear();
         String[] genre = film.getGenre(); //læs som string array
         String str = Arrays.toString(genre);
-        //String str1 = str.replace("[", "");
-        //String str2 = str1.replace("]", "");
         float bedøm = (film.getRating());
         String typeM = "Film";
         return (navn + ": " + år + ": " + str + ": " + bedøm + ": " + typeM + ";");
 
     }
+
+    public String getSeriesInfo(Series series){
+        String navn = series.getName();
+        String år = series.getYear() + series.getEndYear();
+        String[] genre = series.getGenre(); //læs som string array
+        String str = Arrays.toString(genre);
+
+        float rating = series.getRating();
+        String typeM = "Series";
+        return (navn + ": " + år + ": " + str + ": " + rating + ": " + typeM + ";");
+    }
+
     //Ændrer 'Stop' til info om film i txt-fil
-    public void ChangelineToFilm(Film film, String newW, String old, int counter) throws IOException {
+    //https://newbedev.com/java-replace-line-in-text-file, 10. dec. 2021
+    public void ChangelineToMedie(Film film, Series series, String newW, String old, int counter) throws IOException {
         List<String> fileContent = new ArrayList<>(Files.readAllLines(Path.of(fileMyList)));
         for (int i = counter; i < fileContent.size(); i++) {
             if (fileContent.get(i).equals(old)) {
-                fileContent.set(i, (getFilmInfo(film) + newW));
-                break;
+                if(film != null) {
+                    fileContent.set(i, (getFilmInfo(film) + newW));
+                    break;
+                } else if (series != null){
+                    fileContent.set(i, (getSeriesInfo(series) + newW));
+                    break;
+                }
             }
         }
         Files.write(Path.of(fileMyList), fileContent);

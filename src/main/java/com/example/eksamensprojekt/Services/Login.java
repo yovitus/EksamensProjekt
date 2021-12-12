@@ -48,7 +48,8 @@ public class Login  {
             e.printStackTrace();
         }
 
-        //skriver current username ind i MyLists-fil, eller erstatter forrige username med nuværende
+        //skriver current username ind i CurrentUsername-fil, eller erstatter forrige username med nuværende
+        //skal bruges til MyList
         bufferedWriter = new BufferedWriter(new FileWriter(new File(cUsernameList)));
         bufferedWriter.write(tmpUser.trim());
         bufferedWriter.close();

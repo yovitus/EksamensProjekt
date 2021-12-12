@@ -1,7 +1,9 @@
 package com.example.eksamensprojekt;
 
+import com.example.eksamensprojekt.Models.Medier;
 import com.example.eksamensprojekt.Models.Series;
 import com.example.eksamensprojekt.Services.LoadingSeries;
+import com.example.eksamensprojekt.Services.MyList;
 import com.example.eksamensprojekt.Services.Search;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +24,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -31,6 +34,10 @@ public class SeriesListController {
 
     private List<Series> series;
     private List<Series> filterSeries;
+    MyList ml = new MyList();
+
+    public SeriesListController() throws FileNotFoundException {
+    }
 
     @FXML
     public void goToSeriesList(ActionEvent event) throws IOException {
@@ -69,8 +76,8 @@ public class SeriesListController {
     }
 
     @FXML
-    public void goToMyList(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("MyList.fxml"));
+    public void goToMyList(ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("MyListSide.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -100,6 +107,7 @@ public class SeriesListController {
             Label genreToStringLabel = new Label(s.genreToString() + "");
             Label ratingLabel = new Label(s.getRating() + "");
             Button playButton = new Button("Play");
+            Button MyListbtn = new Button("Add to My List");
 
             //Henter image/thumbnail
             URL url = SeriesListController.class.getResource(s.getImage());
@@ -109,7 +117,7 @@ public class SeriesListController {
             ratingLabel.setPadding(new Insets(0, 0, 1, 0));
 
             //Laver en virtuel box i hvert rum i GridPane, som smider alle labels ind i rækkefølge
-            VBox box = new VBox(titleLabel, yearLabel, seasonLabel, genreToStringLabel, ratingLabel, thumbnailImageView, playButton);
+            VBox box = new VBox(titleLabel, yearLabel, seasonLabel, genreToStringLabel, ratingLabel, thumbnailImageView, playButton, MyListbtn);
             box.setAlignment(Pos.BASELINE_CENTER);
             box.setPadding(new Insets(12, 12, 12, 12));
 
@@ -169,6 +177,14 @@ public class SeriesListController {
 
                     });
                 });
+            });
+            //Knap til at tilføje serier til MyList
+            MyListbtn.setOnMouseClicked((event)-> {
+                try {
+                    ml.writeMyListMedie(null, s);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             });
         }
     }

@@ -32,6 +32,8 @@ public class Series extends Medier
         return episodes;
     }
 
+    public int getNumberOfEpisodes(){ return episodes.size();}
+
     //Har fundet denne metode her:   (ved ikke om det er nødvendigt at kildehenvise her)
     //https://stackoverflow.com/questions/7708698/convert-arrayliststring-to-an-arraylistinteger-or-integer-array
     //11.12.21 - kl. 10:45
