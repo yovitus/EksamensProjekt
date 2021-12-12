@@ -19,6 +19,8 @@ class MyListTest {
     LoadingSeries ls = new LoadingSeries();
     LoadingFilm lf = new LoadingFilm();
     String fileMyList = "MyLists.txt";
+    List<Series> series = ls.openFile(); //loader serier
+    List<Film> film = lf.openFile(); //loader film
 
     MyListTest() throws FileNotFoundException {
     }
@@ -50,8 +52,6 @@ class MyListTest {
         før testen køres!
          */
         login.login("testml", "testml1"); //logger ind som testml - tom MyList
-        List<Series> series = ls.openFile(); //loader serier
-        List<Film> film = lf.openFile(); //loader film
 
         ml.writeMyListMedie(film.get(3), null); //forsøger at tilføje Raging Bull - film
         ml.writeMyListMedie(film.get(0), null); //tilføjer The Godfather - film
@@ -66,24 +66,42 @@ class MyListTest {
     void removeMediaFromMyListTest() throws IOException {
         /* Tjek om medier fjernes ordentligt fra MyLists.txt
         når bruger sletter medie (for username = testR)
-        testR har allerede Twin Peaks (serie) og Raging Bull (film)
-        på MyList. HUSK AT TILFØJE, FØR TEST KØRES! */
-
+        */
         login.login("testR" ,"testR1");
-        List<Series> series = ls.openFile(); //loader serier
-        List<Film> film = lf.openFile(); //loader film
 
+        //Medier tilføjes til Mylists.txt
+        ml.writeMyListMedie(film.get(3), null);
+        ml.writeMyListMedie(null, series.get(0));
+
+        //Nu slettes tilføjede medier
         ml.removeMediaFromMyList(null, series.get(0)); //fjerner Twin Peaks
         ml.removeMediaFromMyList(film.get(3), null); //fjerner Raging Bull
 
         ml.findLoadListMedie(AListF, AListS);
-        /* Hvis System.out.println skriver ''List is empty!'' i terminalen,
-        så er de to medier blevet slettet fra listen, og listen
-        er nu tom. */
+        assertEquals(0, AListS.size()); //tjekker længde af serie ArrayL
+        assertEquals(0, AListF.size()); //tjekker længde af Film ArrayL
     }
 
-    //getfilminfo
-    //getseriesinfo
+    @Test
+    void getFilmInfoTest() {
+        /* Skal tjekke om metoden indlæser korrekt nødvendig info fra
+        specifikt film-objekt. */
+
+        assertEquals("The Godfather: 1972: [Crime, Drama]: 9.2: Film;", ml.getFilmInfo(film.get(0)));
+        assertEquals("Raging Bull: 1980: [Biography, Drama, Sport]: 8.2: Film;", ml.getFilmInfo(film.get(3)));
+    }
+
+    @Test
+    void getSeriesInfoTest() {
+        /* Skal tjekke om metoden indlæser korrekt nødvendig info fra
+        specifikt serie-objekt. */
+
+        assertEquals("The Sopranos: 1999-2007: [Crime, Drama]: 9.2: Series;", ml.getSeriesInfo(series.get(1)));
+        assertEquals("Twin Peaks: 1990-1991: [Crime, Drama, Mystery]: 8.8: Series;", ml.getSeriesInfo(series.get(0)));
+        
+    }
+
+
     //changelinetomedie
     //changeline
 }

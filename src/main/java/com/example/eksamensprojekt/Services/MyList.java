@@ -39,7 +39,6 @@ public class MyList {
         s = new Scanner(new File(fileMyList)); //Scanner der skal scanne txt-filen, "MyLists.txt
         s.useDelimiter("[;\n]"); //efter ; skift linje
         counterD = 0;
-        counter = 0;
 
 
         //Loader specifik mylistFilm for bruger
