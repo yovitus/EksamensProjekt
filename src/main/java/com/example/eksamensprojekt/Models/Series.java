@@ -2,14 +2,13 @@ package com.example.eksamensprojekt.Models;
 
 import java.util.ArrayList;
 
-public class Series extends Medier
-{
+public class Series extends Medier {
     public String endYear;
     public String[] seasons;
-    public ArrayList<String> episodes;
+    public String[] episodes;
 
     public Series(String name, int year, String[] genre, float rating, String typeMedia, String endYear,
-                  String[] seasons, ArrayList<String> episodes) {
+                  String[] seasons, String[] episodes) {
         super(name, year, genre, rating, typeMedia);
         this.endYear = endYear;
         this.seasons = seasons;
@@ -17,22 +16,36 @@ public class Series extends Medier
     }
 
     public String getEndYear() {
-        if(endYear.equals("")) {
+        if (endYear.equals("")) {
             return "";
-        }else {
+        } else {
             return "" + endYear;
         }
     }
 
+    public String[] getSeasons() {return seasons;}
     public int getSeasonLength() {
         return seasons.length;
     }
 
-    public ArrayList<String> getEpisodes() {
+    public String[] getEpisodes() {
         return episodes;
     }
 
-    public int getNumberOfEpisodes(){ return episodes.size();}
+
+
+
+    //https://stackoverflow.com/questions/18838781/converting-string-array-to-an-integer-array
+    //11.12.21 kl. 15:50
+    //burde adde try-catch
+    public Integer[] getIntegerArray(String[] stringArray) {
+        Integer[] intArray = new Integer[stringArray.length];
+        for(int i = 0; i < stringArray.length ; i++) {
+            intArray[i] = Integer.parseInt(stringArray[i]);
+        }
+        return intArray;
+    }
+
 
     //Har fundet denne metode her:   (ved ikke om det er nødvendigt at kildehenvise her)
     //https://stackoverflow.com/questions/7708698/convert-arrayliststring-to-an-arraylistinteger-or-integer-array
