@@ -207,6 +207,7 @@ public class MyList {
     }
 
     //Ændrer 'Stop' til info om film i txt-fil
+    //https://newbedev.com/java-replace-line-in-text-file, 10. dec. 2021
     public void ChangelineToMedie(Film film, Series series, String newW, String old, int counter) throws IOException {
         List<String> fileContent = new ArrayList<>(Files.readAllLines(Path.of(fileMyList)));
         for (int i = counter; i < fileContent.size(); i++) {

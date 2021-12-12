@@ -16,3 +16,6 @@ testR;
 Deleted;
 Deleted;
 Stop;
+TestTilFilm;
+TestTilSerie;
+TestTilString;

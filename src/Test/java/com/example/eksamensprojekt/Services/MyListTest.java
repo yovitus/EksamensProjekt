@@ -98,10 +98,24 @@ class MyListTest {
 
         assertEquals("The Sopranos: 1999-2007: [Crime, Drama]: 9.2: Series;", ml.getSeriesInfo(series.get(1)));
         assertEquals("Twin Peaks: 1990-1991: [Crime, Drama, Mystery]: 8.8: Series;", ml.getSeriesInfo(series.get(0)));
-        
     }
 
+    @Test
+    void changeLineToMedieTest() throws IOException {
+        /* Skal tjekke om metoden ændrer specific linje i MyLists.txt
+         til korrekt medie-info.
+          Husk at skrive "TestTilFilm;" og "TestTilSerie;" i txt-filen
+          før test køres */
+        ml.ChangelineToMedie(film.get(0), null, "", "TestTilFilm;", 0);
+        ml.ChangelineToMedie(null, series.get(0), "", "TestTilSerie;", 0);
 
-    //changelinetomedie
-    //changeline
+    }
+
+    @Test
+    void changeLineGeneralTest() throws IOException {
+        /* Skal tjekke om metoden ændrer specific linje i MyLists.txt
+         som ønsket.
+          Husk at skrive "TestTilString;" i txt-filen før test køres */
+        ml.Changeline("TestTilString;", "Method works!");
+    }
 }
