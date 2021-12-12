@@ -9,21 +9,19 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LoginTest {
-    @Test
-    public void makeUser() {
+    /*@Test
+    public void testMakeProfile() {
         Login login = new Login();
-        login.makeProfile("yovitus","greatestpassword");
-        assertEquals("yovitus,greatestpassword", "yovitus,greatestpassword");
-    }
+        var value = login.makeProfile("yovitus","greatestpassword");
+        assertEquals("yovitusgreatestpassword", "");
+    }*/
 
     @Test
-    public void testSignup() throws IOException {
+    public void testLogin() throws IOException {
         Login lg = new Login();
         lg.makeProfile("yovitus", "greatestpassword");
-        User user = lg.login("yovitus","greatestpassword");
-        assertEquals("yovitus",user.username);
-        assertEquals("greatestpassword",user.password);
+        User user = lg.login("yovitus", "greatestpassword");
+        assertEquals("yovitus", user.username);
+        assertEquals("greatestpassword", user.password);
     }
 }
-
-
