@@ -204,6 +204,10 @@ public class MyListController {
     }); */
         }}}
 
+        public void loadImage(Series s){
+            URL url = MyListController.class.getResource(s.getImage());
+        }
+
         @FXML
         public void initialize() throws IOException {
             ml.findLoadListMedie(AListF, AListS); //Loader medier fra txt-fil

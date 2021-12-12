@@ -18,7 +18,6 @@ class MyListTest {
     Login login = new Login();
     LoadingSeries ls = new LoadingSeries();
     LoadingFilm lf = new LoadingFilm();
-    String fileMyList = "MyLists.txt";
     List<Series> series = ls.openFile(); //loader serier
     List<Film> film = lf.openFile(); //loader film
 
@@ -58,8 +57,8 @@ class MyListTest {
         ml.writeMyListMedie(null, series.get(0)); //tilføjer Twin Peaks - serie
         ml.findLoadListMedie(AListF, AListS); //loader skrevne medier til ArrayListe
 
-        assertEquals("Twin Peaks", (AListS.get(0)).getName()); //tjek serie
-        assertEquals("The Godfather", (AListF.get(1)).getName()); //tjek film
+        assertEquals((ml.getSeriesInfo(series.get(0))), ml.getSeriesInfo(AListS.get(0))); //tjek serie
+        assertEquals(ml.getFilmInfo(film.get(0)), ml.getFilmInfo(AListF.get(1))); //tjek film
     }
 
     @Test
