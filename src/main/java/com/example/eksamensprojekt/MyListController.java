@@ -109,7 +109,7 @@ public class MyListController {
             box.setAlignment(Pos.BASELINE_CENTER);
             box.setPadding(new Insets(12, 12, 12, 12));
 
-            MyListfilmGridPane.add(box, i % 3, Math.floorDiv(i, 3)); //gør at hver række går fra index 0 til 2 og floor gør at der divideres med 3 fra listen, tager den heltal lavest
+            MyListfilmGridPane.add(box, i % 2, Math.floorDiv(i, 2)); //gør at hver række går fra index 0 til 2 og floor gør at der divideres med 3 fra listen, tager den heltal lavest
             i++;
 
             btn.setOnMouseClicked((event) -> {
@@ -163,7 +163,7 @@ public class MyListController {
             box.setAlignment(Pos.BASELINE_CENTER);
             box.setPadding(new Insets(12, 12, 12, 12));
 
-            seriesGridPane.add(box, k % 3, Math.floorDiv(k, 3)); //gør at hver række går fra index 0 til 2 og floor gør at der divideres med 3 fra listen, tager den heltal lavest
+            seriesGridPane.add(box, k % 2, Math.floorDiv(k, 2)); //gør at hver række går fra index 0 til 2 og floor gør at der divideres med 3 fra listen, tager den heltal lavest
             k++;
 
             RemoveSeriesbtn.setOnMouseClicked((event) -> {
