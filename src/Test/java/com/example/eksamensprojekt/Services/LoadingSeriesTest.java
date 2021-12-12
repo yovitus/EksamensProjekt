@@ -13,17 +13,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LoadingSeriesTest {
     private LoadingSeries ls = new LoadingSeries();
-/*
-    @Test
-    void tryParseToFloat() {
-    }*/
-    /*
-    @Test
-    void closeFile() {
-    }*/
 
     @Test
-    void testOpenFileNotEmpty() {
+    void testTryParseToFloat() {
+        assertEquals(8.3, ls.tryParseToFloat("8.3"));
+    }
+
+    @Test
+    void testOpenFile() {
         ls.series = ls.openFile();
         Series liste = ls.series.get(5);
         /*Series se = new Series("Twin Peaks",
