@@ -140,7 +140,7 @@ public class SeriesListController { //implements EventHandler<ActionEvent>
                 VBox seasonList = new VBox(10);
                 VBox backBtn = new VBox(10); //TEST
                 seasonList.setAlignment(Pos.BASELINE_CENTER);
-                backBtn.setAlignment(Pos.BOTTOM_LEFT);
+                backBtn.setAlignment(Pos.TOP_LEFT);
                 seasonList.setPadding(new Insets(12, 12, 12, 12));
                 backBtn.setPadding(new Insets(10,10, 10, 10)); //TEST
                 Button seasonOne = new Button("Season 1");
@@ -192,6 +192,11 @@ public class SeriesListController { //implements EventHandler<ActionEvent>
                         }
 
                     });
+                });
+
+                goBackBtn.setOnMouseClicked((event4) -> {
+                    seriesGridPane.getChildren().clear();
+                        renderSeries(series);
                 });
             });
             //Knap til at tilføje serier til MyList
