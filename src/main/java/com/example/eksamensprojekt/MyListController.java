@@ -241,6 +241,7 @@ public class MyListController {
                 try {
                     ml.removeMediaFromMyList(null, s);
                     deleteMediaMessage.setText("Series will be removed");
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }});}}}
