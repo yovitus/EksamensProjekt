@@ -4,8 +4,10 @@ import com.example.eksamensprojekt.Models.Film;
 import com.example.eksamensprojekt.Models.Series;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SearchTest {
     ArrayList<Film> film;
@@ -16,9 +18,7 @@ public class SearchTest {
     {
         Search se = new Search();
         var value = se.getSearchedFilm("The Godfather", film);
-        assertEquals("The Godfather", "The Godfather");
-
-
+        assertTrue(value.get(0).getName().contains("The Godfather"));
     }
 
     @Test
@@ -26,7 +26,7 @@ public class SearchTest {
     {
         Search se = new Search();
         var value= se.getSearchedSeries("Twin Peaks", series);
-        assertEquals("Twin Peaks", "Twin Peaks");
+        assertTrue(value.get(0).getName().contains("Twin Peaks"));
     }
 
     //Test for searched genre only
@@ -35,7 +35,7 @@ public class SearchTest {
     {
         Search se = new Search();
         var value = se.getSearchedFilmGenre("Action", film);
-        assertEquals("Action", "Action");
+        assertTrue(Arrays.stream(value.get(0).getGenre()).anyMatch("Action"::equals));
 
     }
     @Test
@@ -43,6 +43,6 @@ public class SearchTest {
     {
         Search se = new Search();
         var value = se.getSearchedSeriesGenre("Comedy", series);
-        assertEquals("Comedy", "Comedy");
+        assertTrue(Arrays.stream(value.get(0).getGenre()).anyMatch("Comedy"::equals));
     }
 }
