@@ -9,5 +9,6 @@ Game Of Thrones: 2011-: [Action, Adventure, Drama]: 9.5: Series;
 Breaking Bad: 2008-2013: [Crime, Drama, Thriller]: 9.5: Series;
 Stop;
 testl;
-Game Of Thrones: 2011-: [Action, Adventure, Drama]: 9.5: 1-10, 2-10, 3-10, 4-10, 5-10, 6-10, 7-7: Series;
+Deleted;
+The Sopranos: 1999-2007: [Crime, Drama]: 9.2: 1-13, 2-13, 3-13, 4-13, 5-13, 6-21: Series;
 Stop;
