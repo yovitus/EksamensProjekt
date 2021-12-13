@@ -4,28 +4,39 @@ import com.example.eksamensprojekt.Models.Film;
 import com.example.eksamensprojekt.Models.Series;
 import org.junit.jupiter.api.Test;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SearchTest2 {
 
         ArrayList<Film> film;
         ArrayList<Series> series;
+        LoadingFilm lf = new LoadingFilm();
+        MyList ml = new MyList();
 
-        //Test for search only
+    public SearchTest2() throws FileNotFoundException {
+    }
+
+    //Test for search only
         @Test
         public void testGetSearchedFilm() {
             Search se = new Search();
-            var value = se.getSearchedFilm("Raging Bull", film);
-            //assertTrue(value.get(0).getName().contains("Raging Bull"));
+            List<Film> lFilm = lf.openFile(); //loader liste af alle film
+            /*Søger igennem film-liste for at finde match, og
+            putter match ind i ny liste 'value' */
+            List<Film> value = se.getSearchedFilm("Raging Bull", lFilm);
 
-            boolean passes=false;
-            if(value.contains("Raging Bull")){
-                passes=true;
-            }
-            assertTrue(passes);
+            /*Vi anvender en metode fra MyList.java (som er blevet testet i
+            * MyListTest.java), for at tjekke, om navnet på den tilføjede film
+            * matcher det, som det skal være */
+            System.out.println(ml.getFilmInfo(value.get(0)));
+            assertTrue(ml.getFilmInfo(value.get(0)).contains("Raging Bull"));
+
 
       /*  boolean passes = false;
         for (Film f : film) {
