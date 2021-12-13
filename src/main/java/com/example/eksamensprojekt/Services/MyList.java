@@ -80,10 +80,18 @@ public class MyList {
                         String genre1 = line[2].replace("[", ""); //fjerner [
                         String genre2 = genre1.replace("]", ""); //fjerner ]
                         String[] genre = genre2.split(", ");
-
                         //laver String om til float
                         float rating = Float.parseFloat(line[3]);
-                        AListS.add(new Series(name, rYear, genre, rating, "series", endYear, null, null));
+
+                        //deler season op i array og tilføjer episoder til en ArrayList<String>
+                        String[] seasonsArray = line[4].split(", "); //antal sæsoner
+                        String[] episodesReader; //tom array
+                        String[] episodesArray = new String[seasonsArray.length]; //længde af antal sæsoner
+                        for(int i = 0; i < seasonsArray.length; i++) {
+                            episodesReader = seasonsArray[i].split("-"); //får [s, e] osv.
+                            episodesArray[i] = episodesReader[1]; //får hver s' antal ep gemt
+                        }
+                        AListS.add(new Series(name, rYear, genre, rating, "series", endYear, seasonsArray, episodesArray));
                         System.out.println("One element has been loaded to SeriesList!");
                         counter++;
                     }
@@ -200,12 +208,12 @@ public class MyList {
         String[] genre = series.getGenre(); //læs som string array
         String str = Arrays.toString(genre);
 
-
         float rating = series.getRating();
         String typeM = "Series";
-        return (navn + ": " + år + ": " + str + ": " + rating + ": " + typeM + ";");
+        return (navn + ": " + år + ": " + str + ": " + rating + ": " + getSeasonAndEpisodes(series) + typeM + ";");
     }
 
+    //Hjælpemetode til getSeriesInfo
     public String getSeasonAndEpisodes(Series series){
         String[] season = series.getSeasons(); //String[] af sæson-tal
         String line = "";
