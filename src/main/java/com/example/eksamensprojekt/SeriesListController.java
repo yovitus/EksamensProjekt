@@ -8,6 +8,7 @@ import com.example.eksamensprojekt.Services.Search;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -28,6 +29,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SeriesListController {
@@ -76,7 +78,7 @@ public class SeriesListController {
     }
 
     @FXML
-    public void goToMyList(ActionEvent event) throws IOException{
+    public void goToMyList(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("MyListSide.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
@@ -94,8 +96,7 @@ public class SeriesListController {
     private TextField searchField;
 
     @FXML
-    public void renderSeries(List<Series> series)
-    {
+    public void renderSeries(List<Series> series) {
         int i = 0;
         for (Series s : series) {
 
@@ -103,9 +104,10 @@ public class SeriesListController {
             Label titleLabel = new Label(s.getName());
             Label yearLabel = new Label(s.getYear() + s.getEndYear());
             Label seasonLabel = new Label(s.getSeasonLength() + " seasons");
-            Label episodeLabel = new Label(s.getEpisodes() + " episodes");
+            Label episodeLabel = new Label(Arrays.toString(s.getEpisodes()) + " episodes");
             Label genreToStringLabel = new Label(s.genreToString() + "");
             Label ratingLabel = new Label(s.getRating() + "");
+            //Laver knapper til hver enkelt serie
             Button playButton = new Button("Play");
             Button MyListbtn = new Button("Add to My List");
 
@@ -114,72 +116,92 @@ public class SeriesListController {
             Image image = new Image(String.valueOf(url));
             ImageView thumbnailImageView = new ImageView(image);
 
-            ratingLabel.setPadding(new Insets(0, 0, 1, 0));
+            //ratingLabel.setPadding(new Insets(0, 0, 1, 0));
 
-            //Laver en virtuel box i hvert rum i GridPane, som smider alle labels ind i rækkefølge
+            //Laver en virtuel box i hvert rum i GridPane, som smider alle labels/knapper ind i rækkefølge
             VBox box = new VBox(titleLabel, yearLabel, seasonLabel, genreToStringLabel, ratingLabel, thumbnailImageView, playButton, MyListbtn);
             box.setAlignment(Pos.BASELINE_CENTER);
             box.setPadding(new Insets(12, 12, 12, 12));
-
             seriesGridPane.add(box, i % 3, Math.floorDiv(i, 3)); //gør at hver række går fra index 0 til 2 og floor gør at der divideres med 3 fra listen, tager den heltal lavest
             i++;
 
-            //viser valgte serie og dens seasons
-            playButton.setOnMouseClicked((event)-> {
+            //SEASON: viser valgte serie og dens seasons
+            playButton.setOnMouseClicked((event) -> {
                 clearView();
                 VBox imageView = new VBox(thumbnailImageView);
                 imageView.setAlignment(Pos.BASELINE_CENTER);
                 imageView.setPadding(new Insets(12, 12, 12, 12));
-                seriesGridPane.add(imageView, 0, 0);
+                imageView.getChildren().addAll(titleLabel, yearLabel, seasonLabel, episodeLabel);
+                seriesGridPane.add(imageView, 0, 1);
 
+                //Laver en tilbage knap
+                VBox backBtn = new VBox(10);
+                backBtn.setAlignment(Pos.TOP_LEFT);
+                backBtn.setPadding(new Insets(10, 10, 10, 10));
+                Button goBackBtn = new Button("Go Back");
+                backBtn.getChildren().add(goBackBtn);
+                seriesGridPane.add(backBtn, 0,0);
+
+                //SEASON: laver knapper til de forskellige seasons og tilføjer til GridPane
                 VBox seasonList = new VBox(10);
                 seasonList.setAlignment(Pos.BASELINE_CENTER);
                 seasonList.setPadding(new Insets(12, 12, 12, 12));
-                Button seasonOne = new Button("Season 1");
-                seasonList.getChildren().addAll(titleLabel, yearLabel, seasonLabel, episodeLabel, seasonOne);
-                for (int j = 1; j < s.getSeasonLength(); j++) {
-                    seasonList.getChildren().add(new Button("Season " + (int) (j + 1)));
+
+                //Season knapper
+                Button[] buttonsArrayS = new Button[s.getSeasonLength()];
+                for (int j = 0; j < s.getSeasonLength(); j++) {
+                    buttonsArrayS[j] = new Button("Season " + (j + 1));
+                    seasonList.getChildren().add(buttonsArrayS[j]);
                 }
-                seriesGridPane.add(seasonList, 1, 0);
+                seriesGridPane.add(seasonList, 1, 1);
+                //seriesGridPane.add(backBtn, 1, 0);
 
-
+                //EPISODE: ændrer String Array til Integer Array af episoder
+                Integer[] episodesIntArray = s.getIntegerArray(s.getEpisodes());
                 VBox episodeList = new VBox(10);
                 episodeList.setAlignment(Pos.BASELINE_CENTER);
                 episodeList.setPadding(new Insets(12, 12, 12, 12));
-                //ændrer Arraylist<String> til ArrayList<Integer> af episoder
-                ArrayList<Integer> episodesIntArray = s.getIntegerArrayList(s.getEpisodes());
-                Button episodeOne = new Button("Episode 1");
-                episodeList.getChildren().add(episodeOne);
+                seriesGridPane.add(episodeList, 2, 1);
 
-                //viser episoderne for season 1
-                seasonOne.setOnMouseClicked((event2) -> {
-                    //seriesGridPane.getChildren().remove(episodeList);  Denne fjerner kun episodeButton 1
-                    //seriesGridPane.getChildren().clear/remove(fjerne det som står i GridPane 3,0);
-                    for (int k = 1; k < episodesIntArray.get(Integer.valueOf(0)); k++) {
-                        episodeList.getChildren().add(new Button("Episode " + (int) (k + 1)));
-                    }
-                    seriesGridPane.add(episodeList, 3, 0);
+                //EPISODE: viser episoderne for valgte season
+                //EPISODE: laver knapper til de forskellige episoder og tilføjer til GridPane
+                for (int b = 0; b < buttonsArrayS.length; b++) {
+                    int season = b; //EventHandler kender ikke til b-variablen fra for-løkken, efter vi har trykket på knappen
+                    buttonsArrayS[season].setOnMouseClicked((event2) -> {
+                        Button[] buttonsArrayE = new Button[episodesIntArray[season]];
+                        episodeList.getChildren().clear();
+                        for (int p = 0; p < episodesIntArray[season]; p++) {
+                            buttonsArrayE[p] = new Button("Episode " + (p + 1));
+                            episodeList.getChildren().add(buttonsArrayE[p]);
 
-                    //afspiller episode 1 i nyt vindue
-                    episodeOne.setOnMouseClicked((event3) -> {
-                        try {
-                            FXMLLoader fxmlLoader = new FXMLLoader();
-                            fxmlLoader.setLocation(getClass().getResource("Playwindow.fxml"));
 
-                            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-                            Stage stage = new Stage();
-                            stage.setTitle(s.getName());
-                            stage.setScene(scene);
-                            stage.show();
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
+                            //EPISODE: afspiller valgte episode i nyt vindue
+                            buttonsArrayE[p].setOnMouseClicked((event3) -> {
+                                try {
+                                    FXMLLoader fxmlLoader = new FXMLLoader();
+                                    fxmlLoader.setLocation(getClass().getResource("Playwindow.fxml"));
+
+                                    Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+                                    Stage stage = new Stage();
+                                    stage.setTitle(s.getName());
+                                    stage.setScene(scene);
+                                    stage.show();
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            });
                         }
-
                     });
+                }
+                //Knap til at gå tilbage fra oversigt over sæsoner
+                goBackBtn.setOnMouseClicked((event4) -> {
+                    seriesGridPane.getChildren().clear();
+                    renderSeries(series);
                 });
             });
+
             //Knap til at tilføje serier til MyList
-            MyListbtn.setOnMouseClicked((event)-> {
+            MyListbtn.setOnMouseClicked((event) -> {
                 try {
                     ml.writeMyListMedie(null, s);
                 } catch (IOException e) {
@@ -189,21 +211,21 @@ public class SeriesListController {
         }
     }
 
+
     @FXML
-    public void clearView()
-    {
+    public void clearView() {
         seriesGridPane.getChildren().clear();
     }
 
     @FXML
-    public void searchSeries(KeyEvent event)
-    {
+    public void searchSeries(KeyEvent event) {
         Search se = new Search();
         List<Series> filterSeries = se.getSearchedSeries(searchField.getText(), this.filterSeries);
         clearView();
         renderSeries(filterSeries);
         System.out.println(event);
     }
+
     @FXML
     public void initialize() {
         LoadingSeries ls = new LoadingSeries();
@@ -216,11 +238,10 @@ public class SeriesListController {
     }
 
     @FXML
-    public void select(ActionEvent event)
-    {
+    public void select(ActionEvent event) {
         resetSelect();
         var combo = comboBox.getSelectionModel().getSelectedItem().toString();
-        if(combo.equals("All"))
+        if (combo.equals("All"))
             return;
         Search se = new Search();
         List<Series> filter = se.getSearchedSeriesGenre(combo, this.series);
@@ -229,8 +250,7 @@ public class SeriesListController {
         renderSeries(this.filterSeries);
     }
 
-    private void resetSelect()
-    {
+    private void resetSelect() {
         filterSeries = series;
     }
 }

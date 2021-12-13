@@ -95,8 +95,14 @@ class MyListTest {
         /* Skal tjekke om metoden indlæser korrekt nødvendig info fra
         specifikt serie-objekt. */
 
-        assertEquals("The Sopranos: 1999-2007: [Crime, Drama]: 9.2: Series;", ml.getSeriesInfo(series.get(1)));
-        assertEquals("Twin Peaks: 1990-1991: [Crime, Drama, Mystery]: 8.8: Series;", ml.getSeriesInfo(series.get(0)));
+        assertEquals("The Sopranos: 1999-2007: [Crime, Drama]: 9.2: 1-13, 2-13, 3-13, 4-13, 5-13, 6-21: Series;", ml.getSeriesInfo(series.get(1)));
+        assertEquals("Twin Peaks: 1990-1991: [Crime, Drama, Mystery]: 8.8: 1-8, 2-22: Series;", ml.getSeriesInfo(series.get(0)));
+    }
+
+    @Test
+    void seasonAndEpisodesTest() {
+        // Tjek om oversigt over sæson + episoder skrives korrekt
+        assertEquals("1-8, 2-22: ", ml.getSeasonAndEpisodes(series.get(0)));
     }
 
     @Test

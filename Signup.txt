@@ -6,7 +6,5 @@ nig,nog
 hej,hey
 user,pass
 Dougan,Gusepic
-1,2
-yovitus,greatestpassword
-yovitus,greatestpassword
-yovitus,greatestpassword
+Heyy,123
+testl,testll

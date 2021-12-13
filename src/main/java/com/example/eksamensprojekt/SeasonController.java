@@ -6,6 +6,7 @@ import com.example.eksamensprojekt.Services.Search;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -154,6 +155,15 @@ public class SeasonController {
         LoadingSeries ls = new LoadingSeries();
         series = ls.openFile();
         renderSeries(series);
+    }
+
+    public void loadSeasonFxml(Event event) throws IOException {
+        //Load new FXML and assign it to scene
+        Parent root = FXMLLoader.load(getClass().getResource("Season.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
 
     }
 }
