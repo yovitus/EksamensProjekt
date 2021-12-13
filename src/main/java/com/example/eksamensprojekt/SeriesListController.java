@@ -127,74 +127,78 @@ public class SeriesListController {
 
             //SEASON: viser valgte serie og dens seasons
             playButton.setOnMouseClicked((event) -> {
-                        clearView();
-                        VBox imageView = new VBox(thumbnailImageView);
-                        imageView.setAlignment(Pos.BASELINE_CENTER);
-                        imageView.setPadding(new Insets(12, 12, 12, 12));
-                        imageView.getChildren().addAll(titleLabel, yearLabel, seasonLabel, episodeLabel);
-                        seriesGridPane.add(imageView, 0, 0);
+                clearView();
+                VBox imageView = new VBox(thumbnailImageView);
+                imageView.setAlignment(Pos.BASELINE_CENTER);
+                imageView.setPadding(new Insets(12, 12, 12, 12));
+                imageView.getChildren().addAll(titleLabel, yearLabel, seasonLabel, episodeLabel);
+                seriesGridPane.add(imageView, 0, 1);
 
-                        //SEASON: laver knapper til de forskellige seasons og tilføjer til GridPane
-                        VBox seasonList = new VBox(10);
-                        VBox backBtn = new VBox(10);
-                        seasonList.setAlignment(Pos.BASELINE_CENTER);
-                        backBtn.setAlignment(Pos.TOP_LEFT);
-                        seasonList.setPadding(new Insets(12, 12, 12, 12));
-                        backBtn.setPadding(new Insets(10, 10, 10, 10));
-                        Button goBackBtn = new Button("Go Back");
-                        backBtn.getChildren().add(goBackBtn);
-                        //Season knapper
-                        Button[] buttonsArrayS = new Button[s.getSeasonLength()];
-                        for (int j = 0; j < s.getSeasonLength(); j++) {
-                            buttonsArrayS[j] = new Button("Season " + (j + 1));
-                            seasonList.getChildren().add(buttonsArrayS[j]);
-                        }
-                        seriesGridPane.add(seasonList, 1, 0);
-                        seriesGridPane.add(backBtn, 1, 0);
+                //Laver en tilbage knap
+                VBox backBtn = new VBox(10);
+                backBtn.setAlignment(Pos.TOP_LEFT);
+                backBtn.setPadding(new Insets(10, 10, 10, 10));
+                Button goBackBtn = new Button("Go Back");
+                backBtn.getChildren().add(goBackBtn);
+                seriesGridPane.add(backBtn, 0,0);
 
-                        //EPISODE: ændrer String Array til Integer Array af episoder
-                        Integer[] episodesIntArray = s.getIntegerArray(s.getEpisodes());
-                        VBox episodeList = new VBox(10);
-                        episodeList.setAlignment(Pos.BASELINE_CENTER);
-                        episodeList.setPadding(new Insets(12, 12, 12, 12));
-                        seriesGridPane.add(episodeList, 2, 0);
+                //SEASON: laver knapper til de forskellige seasons og tilføjer til GridPane
+                VBox seasonList = new VBox(10);
+                seasonList.setAlignment(Pos.BASELINE_CENTER);
+                seasonList.setPadding(new Insets(12, 12, 12, 12));
 
-                        //EPISODE: viser episoderne for valgte season
-                        //EPISODE: laver knapper til de forskellige episoder og tilføjer til GridPane
-                        for (int b = 0; b < buttonsArrayS.length; b++) {
-                            int season = b; //EventHandler kender ikke til b-variablen fra for-løkken, efter vi har trykket på knappen
-                            buttonsArrayS[season].setOnMouseClicked((event2) -> {
-                                Button[] buttonsArrayE = new Button[episodesIntArray[season]];
-                                episodeList.getChildren().clear();
-                                for (int p = 0; p < episodesIntArray[season]; p++) {
-                                    buttonsArrayE[p] = new Button("Episode " + (p + 1));
-                                    episodeList.getChildren().add(buttonsArrayE[p]);
+                //Season knapper
+                Button[] buttonsArrayS = new Button[s.getSeasonLength()];
+                for (int j = 0; j < s.getSeasonLength(); j++) {
+                    buttonsArrayS[j] = new Button("Season " + (j + 1));
+                    seasonList.getChildren().add(buttonsArrayS[j]);
+                }
+                seriesGridPane.add(seasonList, 1, 1);
+                //seriesGridPane.add(backBtn, 1, 0);
+
+                //EPISODE: ændrer String Array til Integer Array af episoder
+                Integer[] episodesIntArray = s.getIntegerArray(s.getEpisodes());
+                VBox episodeList = new VBox(10);
+                episodeList.setAlignment(Pos.BASELINE_CENTER);
+                episodeList.setPadding(new Insets(12, 12, 12, 12));
+                seriesGridPane.add(episodeList, 2, 1);
+
+                //EPISODE: viser episoderne for valgte season
+                //EPISODE: laver knapper til de forskellige episoder og tilføjer til GridPane
+                for (int b = 0; b < buttonsArrayS.length; b++) {
+                    int season = b; //EventHandler kender ikke til b-variablen fra for-løkken, efter vi har trykket på knappen
+                    buttonsArrayS[season].setOnMouseClicked((event2) -> {
+                        Button[] buttonsArrayE = new Button[episodesIntArray[season]];
+                        episodeList.getChildren().clear();
+                        for (int p = 0; p < episodesIntArray[season]; p++) {
+                            buttonsArrayE[p] = new Button("Episode " + (p + 1));
+                            episodeList.getChildren().add(buttonsArrayE[p]);
 
 
-                                    //EPISODE: afspiller valgte episode i nyt vindue
-                                    buttonsArrayE[p].setOnMouseClicked((event3) -> {
-                                        try {
-                                            FXMLLoader fxmlLoader = new FXMLLoader();
-                                            fxmlLoader.setLocation(getClass().getResource("Playwindow.fxml"));
+                            //EPISODE: afspiller valgte episode i nyt vindue
+                            buttonsArrayE[p].setOnMouseClicked((event3) -> {
+                                try {
+                                    FXMLLoader fxmlLoader = new FXMLLoader();
+                                    fxmlLoader.setLocation(getClass().getResource("Playwindow.fxml"));
 
-                                            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-                                            Stage stage = new Stage();
-                                            stage.setTitle(s.getName());
-                                            stage.setScene(scene);
-                                            stage.show();
-                                        } catch (IOException e) {
-                                            throw new RuntimeException(e);
-                                        }
-                                    });
+                                    Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+                                    Stage stage = new Stage();
+                                    stage.setTitle(s.getName());
+                                    stage.setScene(scene);
+                                    stage.show();
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
                                 }
                             });
                         }
+                    });
+                }
                 //Knap til at gå tilbage fra oversigt over sæsoner
                 goBackBtn.setOnMouseClicked((event4) -> {
                     seriesGridPane.getChildren().clear();
                     renderSeries(series);
                 });
-                });
+            });
 
             //Knap til at tilføje serier til MyList
             MyListbtn.setOnMouseClicked((event) -> {
