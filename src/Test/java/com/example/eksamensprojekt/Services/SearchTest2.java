@@ -17,7 +17,10 @@ public class SearchTest2 {
         ArrayList<Film> film;
         ArrayList<Series> series;
         LoadingFilm lf = new LoadingFilm();
+        LoadingSeries ls = new LoadingSeries();
         MyList ml = new MyList();
+        List<Film> lFilm = lf.openFile(); //loader liste af alle film
+        List<Series> lSeries = ls.openFile();
 
     public SearchTest2() throws FileNotFoundException {
     }
@@ -26,7 +29,6 @@ public class SearchTest2 {
         @Test
         public void testGetSearchedFilm() {
             Search se = new Search();
-            List<Film> lFilm = lf.openFile(); //loader liste af alle film
             /*Søger igennem film-liste for at finde match, og
             putter match ind i ny liste 'value' */
             List<Film> value = se.getSearchedFilm("Raging Bull", lFilm);
@@ -76,10 +78,16 @@ public class SearchTest2 {
         public void testGetSearchedFilmGenre ()
         {
             Search se = new Search();
-            var value = se.getSearchedFilmGenre("Action", film);
-            assertTrue(Arrays.stream(value.get(0).getGenre()).anyMatch("Action"::equals));
+            var value = se.getSearchedFilmGenre("Action", lFilm);
 
+            for(int i = 0; i < value.size(); i++) {
+                //System.out.println(ml.getFilmInfo(value.get(i)));
+                assertTrue((ml.getFilmInfo(value.get(i)).contains("Action")));
+            }
         }
+
+
+
         @Test
         public void testGetSearchedSeriesGenre ()
         {
