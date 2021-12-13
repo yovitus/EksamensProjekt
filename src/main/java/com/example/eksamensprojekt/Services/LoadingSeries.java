@@ -48,12 +48,13 @@ public class LoadingSeries {
                 //laver String om til float
                 float rating = tryParseToFloat(line[3]);
                 //deler season op i array og tilføjer episoder til en ArrayList<String>
-                String[] seasonsArray = line[4].split(", ");
-                String[] episodesReader;
-                String[] episodesArray = new String[seasonsArray.length];
+                String[] seasonsArray = line[4].split(", "); //antal sæsoner
+                String[] episodesReader; //tom array
+                String[] episodesArray = new String[seasonsArray.length]; //længde af antal sæsoner
                 for(int i = 0; i < seasonsArray.length; i++) {
-                    episodesReader = seasonsArray[i].split("-");
-                    episodesArray[i] = episodesReader[1];
+                    episodesReader = seasonsArray[i].split("-"); //får [s, e] osv.
+                    episodesArray[i] = episodesReader[1]; //får hver s' antal ep gemt
+
                 }
 
 

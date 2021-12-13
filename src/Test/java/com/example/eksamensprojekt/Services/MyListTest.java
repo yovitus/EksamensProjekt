@@ -100,6 +100,12 @@ class MyListTest {
     }
 
     @Test
+    void seasonAndEpisodesTest() {
+        // Tjek om oversigt over sæson + episoder skrives korrekt
+        assertEquals("1-8, 2-22: ", ml.getSeasonAndEpisodes(series.get(0)));
+    }
+
+    @Test
     void changeLineToMedieTest() throws IOException {
         /* Skal tjekke om metoden ændrer specific linje i MyLists.txt
          til korrekt medie-info.

@@ -134,7 +134,6 @@ public class MyList {
         //hvis match ikke fundet på liste, så tilføj til listen
         while(!written && found && !match){
             String lineNewStart = Files.readAllLines(Paths.get(fileMyList)).get(counter);
-            System.out.println((lineNewStart));
             if(film != null){ //hvis det er FILM, som tilføjes
             if(lineNewStart.equals("Deleted;")){
                 ChangelineToMedie(film, null,"", "Deleted;", counter);
@@ -201,9 +200,22 @@ public class MyList {
         String[] genre = series.getGenre(); //læs som string array
         String str = Arrays.toString(genre);
 
+
         float rating = series.getRating();
         String typeM = "Series";
         return (navn + ": " + år + ": " + str + ": " + rating + ": " + typeM + ";");
+    }
+
+    public String getSeasonAndEpisodes(Series series){
+        String[] season = series.getSeasons(); //String[] af sæson-tal
+        String line = "";
+        for(int i = 0; i < season.length; i++){
+            if (i == (season.length - 1)){
+                line += season[i] + ": ";
+            } else if(i < (season.length - 1)){
+                line += season[i] + ", ";
+        }}
+        return line;
     }
 
     //Ændrer 'Stop' til info om film i txt-fil
