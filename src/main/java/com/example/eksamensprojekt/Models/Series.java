@@ -33,8 +33,6 @@ public class Series extends Medier {
     }
 
 
-
-
     //https://stackoverflow.com/questions/18838781/converting-string-array-to-an-integer-array
     //11.12.21 kl. 15:50
     //burde adde try-catch
