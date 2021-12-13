@@ -24,18 +24,23 @@ public class MyList {
     int counterD;
 
     public MyList() throws FileNotFoundException {
-        mylistFilm = new ArrayList<Film>();
-        mylistSeries = new ArrayList<Series>();
-        counter = 0;
-        counterD = 0;
+            mylistFilm = new ArrayList<Film>();
+            mylistSeries = new ArrayList<Series>();
+            counter = 0;
+            counterD = 0;
 
-        //scan CurrentUsername.txt og indlæs username for nuværende bruger
-        s = new Scanner(new File(cUsernameList));
-        this.currentUsername = s.nextLine();
+        try {
+            //scan CurrentUsername.txt og indlæs username for nuværende bruger
+            s = new Scanner(new File(cUsernameList));
+            this.currentUsername = s.nextLine();
+        } catch (FileNotFoundException e){
+            System.out.println("The file could not be found!");
+        }
     }
 
     //Indlæs MyList film og serier for nuværende bruger til arrayL
     public void findLoadListMedie(ArrayList<Film> AListF, ArrayList<Series> AListS) throws IOException {
+        try{
         s = new Scanner(new File(fileMyList)); //Scanner der skal scanne txt-filen, "MyLists.txt
         s.useDelimiter("[;\n]"); //efter ; skift linje
         counterD = 0;
@@ -97,11 +102,15 @@ public class MyList {
                     }
                 }
                 break;
-            }}}
+            }}} catch (IOException e){
+        System.out.println("List could not be loaded!");
+        e.printStackTrace();
+    }}
 
 
     //Skriver nye Film ind på .txt filen
     public void writeMyListMedie(Film film, Series series) throws IOException {
+        try{
         Scanner sc = new Scanner(new File(fileMyList)); //Scanner der skal scanne txt-filen
         sc.useDelimiter("[;\n]"); //ny linje
         bufferedWriter = new BufferedWriter(new FileWriter(new File(fileMyList), true));
@@ -164,30 +173,42 @@ public class MyList {
                     written = true;
             } else {
                 counter++;
-            }}}}
+            }}}} catch (IOException e){
+                System.out.println("Could not add media to list!");
+                e.printStackTrace();
+        }}
+
 
     //Slet film fra mylists-txt
     public void removeMediaFromMyList(Film film, Series series) throws IOException {
-        Scanner sc = new Scanner(new File(fileMyList)); //Scanner der skal scanne txt-filen
-        sc.useDelimiter("[;\n]"); //ny linje
-        bufferedWriter = new BufferedWriter(new FileWriter(new File(fileMyList), true));
-        boolean found = false;
+       try {
+           Scanner sc = new Scanner(new File(fileMyList)); //Scanner der skal scanne txt-filen
+           sc.useDelimiter("[;\n]"); //ny linje
+           bufferedWriter = new BufferedWriter(new FileWriter(new File(fileMyList), true));
+           boolean found = false;
 
-        while (!found) {
-            String lineRead = sc.nextLine();
-            if(film != null){
-                if(lineRead.equals(getFilmInfo(film))) {
-                    Changeline(lineRead, "Deleted;");
-                    System.out.println("Film slettet fra liste");
-                    found = true;
-            }}
-            if(series != null){
-                if (lineRead.equals(getSeriesInfo(series))){
-                    Changeline(lineRead, "Deleted;");
-                    System.out.println("Serie slettet fra liste");
-                    found = true;
-            }}
-        } System.out.println("Process færdig!");
+           while (!found) {
+               String lineRead = sc.nextLine();
+               if (film != null) {
+                   if (lineRead.equals(getFilmInfo(film))) {
+                       Changeline(lineRead, "Deleted;");
+                       System.out.println("Film slettet fra liste");
+                       found = true;
+                   }
+               }
+               if (series != null) {
+                   if (lineRead.equals(getSeriesInfo(series))) {
+                       Changeline(lineRead, "Deleted;");
+                       System.out.println("Serie slettet fra liste");
+                       found = true;
+                   }
+               }
+           }
+           System.out.println("Process færdig!");
+       } catch (IOException e){
+           System.out.println("Could not remove media from list!");
+           e.printStackTrace();
+       }
     }
 
     //returnerer string med film-info
@@ -229,20 +250,19 @@ public class MyList {
     //Ændrer 'Stop' til info om film i txt-fil
     //https://newbedev.com/java-replace-line-in-text-file, 10. dec. 2021
     public void ChangelineToMedie(Film film, Series series, String newW, String old, int counter) throws IOException {
-        List<String> fileContent = new ArrayList<>(Files.readAllLines(Path.of(fileMyList)));
-        for (int i = counter; i < fileContent.size(); i++) {
-            if (fileContent.get(i).equals(old)) {
-                if(film != null) {
-                    fileContent.set(i, (getFilmInfo(film) + newW));
-                    break;
-                } else if (series != null){
-                    fileContent.set(i, (getSeriesInfo(series) + newW));
-                    break;
-                }
-            }
+            List<String> fileContent = new ArrayList<>(Files.readAllLines(Path.of(fileMyList)));
+            for (int i = counter; i < fileContent.size(); i++) {
+                if (fileContent.get(i).equals(old)) {
+                    if (film != null) {
+                        fileContent.set(i, (getFilmInfo(film) + newW));
+                        break;
+                    } else if (series != null) {
+                        fileContent.set(i, (getSeriesInfo(series) + newW));
+                        break;
+                    }
+                }}
+            Files.write(Path.of(fileMyList), fileContent);
         }
-        Files.write(Path.of(fileMyList), fileContent);
-    }
 
     //Hjælpemetode til at fjerne film fra mylist-txt
     public void Changeline(String old, String newL) throws IOException {
