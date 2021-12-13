@@ -18,7 +18,6 @@ public class SearchTest {
         var value = se.getSearchedFilm("The Godfather", film);
         assertEquals("The Godfather", "The Godfather");
 
-
     }
 
     @Test
