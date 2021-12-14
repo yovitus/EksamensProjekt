@@ -19,12 +19,12 @@
          </font>
       </Label>
       <Line endX="722.0" endY="1.0" layoutX="177.0" layoutY="78.0" startX="-190.47157287597656" startY="7.62939453125E-6" />
-      <Button layoutX="166.0" layoutY="11.0" mnemonicParsing="false" onAction="#goToFilmList" prefHeight="63.0" prefWidth="132.0" text="Film List">
+      <Button layoutX="166.0" layoutY="11.0" mnemonicParsing="false" onAction="#goToFilmList" prefHeight="63.0" prefWidth="132.0" text="Movies">
          <font>
             <Font name="Al Tarikh Regular" size="26.0" />
          </font>
       </Button>
-      <Button layoutX="312.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToSeriesList" prefHeight="63.0" prefWidth="167.0" text="Series List">
+      <Button layoutX="312.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToSeriesList" prefHeight="63.0" prefWidth="167.0" text="TV Shows">
          <font>
             <Font name="Al Tarikh Regular" size="26.0" />
          </font>

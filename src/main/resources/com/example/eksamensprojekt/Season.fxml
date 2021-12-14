@@ -15,7 +15,7 @@
 
 <AnchorPane prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.eksamensprojekt.SeasonController">
     <children>
-        <Label layoutX="34.0" layoutY="15.0" onMouseClicked="#goToSeriesList" prefHeight="48.0" prefWidth="281.0" text="Stream film and series">
+        <Label layoutX="34.0" layoutY="15.0" onMouseClicked="#goToSeriesList" prefHeight="48.0" prefWidth="281.0" text="Stream++">
             <font>
                 <Font size="30.0" />
             </font>

@@ -28,7 +28,7 @@ import java.util.List;
 
 public class MyListController {
     MyList ml = new MyList(); //instantierer mylist
-    ArrayList AListF = ml.mylistFilm; //tom mylistfilm
+    ArrayList<Film> AListF = ml.mylistFilm; //tom mylistfilm
     ArrayList<Series> AListS = ml.mylistSeries; //tom mylistseries
     private Button seasonsButton;
 
@@ -96,8 +96,8 @@ public class MyListController {
             Label yearLabel = new Label(f.getYear() + "");
             Label genreToStringLabel = new Label(f.genreToString() + "");
             Label ratingLabel = new Label(f.getRating() + "");
-            Button btn = new Button("Play Film");
-            Button RemoveFilmbtn = new Button("Remove Film");
+            Button btn = new Button("Play Movie");
+            Button RemoveFilmbtn = new Button("Remove from My List");
 
             //Henter image/thumbnail
             URL url = MyListController.class.getResource(f.getImage());
@@ -121,7 +121,7 @@ public class MyListController {
 
                     Scene scene = new Scene(fxmlLoader.load(), 600, 400);
                     Stage stage = new Stage();
-                    stage.setTitle("Movie playing");
+                    stage.setTitle(f.getName() + " is playing..");
                     stage.setScene(scene);
                     stage.show();
                 } catch (IOException e) {
@@ -132,7 +132,7 @@ public class MyListController {
             RemoveFilmbtn.setOnMouseClicked((event) -> {
                 try {
                     ml.removeMediaFromMyList(f, null);
-                    deleteMediaMessage.setText("Film will be removed");
+                    deleteMediaMessage.setText("Movie will be removed");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -149,7 +149,7 @@ public class MyListController {
             Label genreToStringLabel = new Label(s.genreToString() + "");
             Label ratingLabel = new Label(s.getRating() + "");
             Button playButton = new Button("Play");
-            Button RemoveSeriesbtn = new Button("Remove Series");
+            Button RemoveSeriesbtn = new Button("Remove from My List");
 
             //Henter image/thumbnail
             URL url = MyListController.class.getResource(s.getImage());
@@ -223,7 +223,7 @@ public class MyListController {
 
                             Scene scene = new Scene(fxmlLoader.load(), 600, 400);
                             Stage stage = new Stage();
-                            stage.setTitle(s.getName());
+                            stage.setTitle(s.getName() + " is playing..");
                             stage.setScene(scene);
                             stage.show();
                         } catch (IOException e) {
@@ -240,7 +240,7 @@ public class MyListController {
             RemoveSeriesbtn.setOnMouseClicked((event) -> {
                 try {
                     ml.removeMediaFromMyList(null, s);
-                    deleteMediaMessage.setText("Series will be removed");
+                    deleteMediaMessage.setText("TV Show will be removed");
 
                 } catch (IOException e) {
                     e.printStackTrace();

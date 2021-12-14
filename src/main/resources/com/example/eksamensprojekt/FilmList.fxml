@@ -16,23 +16,23 @@
 
 <AnchorPane prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.eksamensprojekt.FilmListController">
    <children>
-      <Label layoutX="379.0" layoutY="35.0" text="Film List">
+      <Label layoutX="379.0" layoutY="35.0" text="Movies">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <Button layoutX="827.0" layoutY="15.0" mnemonicParsing="false" onAction="#goToMain" text="Log ud">
+      <Button layoutX="827.0" layoutY="15.0" mnemonicParsing="false" onAction="#goToMain" text="Log out">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button layoutX="525.0" layoutY="22.0" mnemonicParsing="false" onAction="#goToSeriesList" prefHeight="57.0" prefWidth="171.0" text="Series List">
+      <Button layoutX="525.0" layoutY="22.0" mnemonicParsing="false" onAction="#goToSeriesList" prefHeight="57.0" prefWidth="171.0" text="TV Shows">
          <font>
             <Font size="30.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Label layoutX="34.0" layoutY="15.0" onMouseClicked="#goToStartside" prefHeight="48.0" prefWidth="281.0" text="Stream film and series">
+      <Label layoutX="34.0" layoutY="15.0" onMouseClicked="#goToStartside" prefHeight="48.0" prefWidth="281.0" text="Stream++">
          <font>
             <Font size="30.0" />
          </font>
@@ -61,7 +61,7 @@
             </GridPane>
          </content>
       </ScrollPane>
-      <TextField fx:id="searchField" layoutX="34.0" layoutY="66.0" onAction="#searchFilm" onKeyReleased="#searchFilm" prefHeight="27.0" prefWidth="171.0" promptText="Search film" />
+      <TextField fx:id="searchField" layoutX="34.0" layoutY="66.0" onAction="#searchFilm" onKeyReleased="#searchFilm" prefHeight="27.0" prefWidth="171.0" promptText="Search movies" />
       <Button layoutX="708.0" layoutY="32.0" mnemonicParsing="false" onAction="#goToMyList" prefHeight="37.0" prefWidth="84.0" text="My List">
          <font>
             <Font size="16.0" />
