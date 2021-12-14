@@ -1,5 +1,6 @@
 package com.example.eksamensprojekt.Services;
 
+import Exceptions.UserExistException;
 import com.example.eksamensprojekt.Models.User;
 
 import java.io.*;
@@ -54,7 +55,7 @@ public class Login  {
 
         return user;
     }
-    public boolean checkInput(String username)
+    public boolean checkInput(String username) throws UserExistException
     {
         String tmpUser = "";
         boolean found = false; //når id er fundet, stopper den med at søge
@@ -63,13 +64,14 @@ public class Login  {
             sc.useDelimiter("[,\n]"); //Læser noget før komma, efter komma ved den det er noget nyt, så læser den på næste linje
             //Hvis login stemmer overens med det nognes Username i txt-filen, ændres den til true
             while (!found && sc.hasNext()) {
-                //tjekker efter ID i txt-filen
+                //tjekker efter username i txt-filen
                 tmpUser = sc.next();
                 //trim så hvis de skriver mellemrum, så fjerner den det
                 if (tmpUser.equals(username.trim())) {
                     found = true;
                     sc.close();
-                    break;
+                    throw new UserExistException();
+
                 }
             }
             } catch (FileNotFoundException e) {
@@ -79,7 +81,7 @@ public class Login  {
     }
 
 
-    public void makeProfile(String username, String password) throws FileNotFoundException {
+    public void makeProfile(String username, String password)  {
         try {
             bufferedWriter = new BufferedWriter(new FileWriter(new File(nameFile), true)); //den overskriver ikke i txt filen hvis true
             /*if(username.equals(""))

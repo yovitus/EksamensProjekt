@@ -30,6 +30,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Objects;
 
 public class FilmListController {
     List<Film> film;
@@ -59,6 +60,15 @@ public class FilmListController {
     @FXML
     public void goToMain(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    public void goToStartPage(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Startside.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -106,6 +116,8 @@ public class FilmListController {
             VBox box = new VBox(titleLabel,yearLabel,genreToStringLabel,ratingLabel,thumbnailImageView,btn,MyListbtn);
             box.setAlignment(Pos.BASELINE_CENTER);
             box.setPadding(new Insets(12,12,12,12));
+            //tryk på film
+            //box.setOnMouseClicked(event -> );
 
             filmGridPane.add(box, i % 3, Math.floorDiv(i, 3)); //gør at hver række går fra index 0 til 2 og floor gør at der divideres med 3 fra listen, tager den heltal lavest
             i++;
@@ -147,11 +159,14 @@ public class FilmListController {
     {
         System.out.println("searchFilm");
         System.out.println(film.size());
-        Search se = new Search();
-        List<Film> filterFilm = se.getSearchedFilm(searchField.getText(), this.filterFilm);
+        /*Search se = new Search();
+        List<Film> filter = se.getSearchedFilm(searchField.getText(), this.filterFilm);
         clearView();
-        renderFilm(filterFilm);
-        System.out.println(event);
+        renderFilm(filter);
+        System.out.println(event);*/
+        clearView();
+        searchAndGenre();
+        renderFilm(this.filterFilm);
     }
 
     @FXML
@@ -170,16 +185,35 @@ public class FilmListController {
     @FXML
     public void select(ActionEvent event)
     {
-        System.out.println("select");
+        /*System.out.println("select");
         resetSelect();
         var combo = comboBox.getSelectionModel().getSelectedItem().toString();
-        if(combo.equals("All"))
-            return;
         Search se = new Search();
-        List<Film> filter = se.getSearchedFilmGenre(combo, this.film);
-        this.filterFilm = se.getSearchedFilm(searchField.getText(), filter);
+        if(combo.equals("All")) {
+            this.filterFilm = se.getSearchedFilm(searchField.getText(), this.film);
+            System.out.println("combo all");
+        } else {
+            List<Film> filter = se.getSearchedFilmGenre(combo, this.film);
+            this.filterFilm = se.getSearchedFilm(searchField.getText(), filter);
+        }
+        */
         clearView();
-        renderFilm(this.filterFilm);
+        searchAndGenre();
+        renderFilm(this.filterFilm); //en metode burde kun have et formål
+    }
+
+    private void searchAndGenre()
+    {
+        Search se = new Search();
+        resetSelect();
+        var combo = comboBox.getSelectionModel().getSelectedItem();
+        //Ternery, first, checker om combo har et selected value. eller combo sættes til at være alle
+        var value = !Objects.isNull(combo) ? combo.toString() : "All";
+        System.out.println(combo);
+        System.out.println("check"+combo);
+        List<Film> filter = se.getSearchedFilmGenre(value, this.film);
+        this.filterFilm = se.getSearchedFilm(searchField.getText(), filter);
+
     }
 
     private void resetSelect()
@@ -187,6 +221,25 @@ public class FilmListController {
         filterFilm = film;
     }
 
+
+
 }
 
+          /*  btn.setOnMouseClicked((event)-> {
+                try {
+                    FXMLLoader fxmlLoader= new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("Playwindow.fxml"));
+
+                    Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+                    Stage stage = new Stage();
+                    stage.setTitle("Movie playing");
+                    stage.setScene(scene);
+                    stage.show();
+                }
+                catch (IOException e) {
+                    throw new RuntimeException(e);
+
+
+                }
+            });*/
 

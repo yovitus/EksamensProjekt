@@ -1,6 +1,6 @@
 package com.example.eksamensprojekt;
 
-import com.example.eksamensprojekt.Models.User;
+import Exceptions.UserExistException;
 import com.example.eksamensprojekt.Services.Login;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,15 +38,20 @@ public class SignupController {
 
     @FXML
     public void CreateUser(ActionEvent event) throws IOException {
-        if(Username.getText().equals("") || Password.getText().equals(""))
-        {
-            signUpFailMessage.setText("USERNAME OR PASSWORD CAN'T BE EMPTY");
-        }
-         else if (login.checkInput(Username.getText())) {
-            signUpFailMessage.setText("USERNAME ALREADY EXIST");
-        } else {
-            login.makeProfile(Username.getText(), Password.getText());
-            goToMain(event);
+
+        try {
+            if (login.checkInput(Username.getText())) {
+
+            }
+            else if(Username.getText().equals("") || Password.getText().equals(""))
+            {
+                signUpFailMessage.setText("USERNAME OR PASSWORD CAN'T BE EMPTY");
+            } else {
+                login.makeProfile(Username.getText(), Password.getText());
+                goToMain(event);
+            }
+        } catch (UserExistException e) {
+            signUpFailMessage.setText(e.getMessage());
         }
     }
 }

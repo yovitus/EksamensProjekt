@@ -1,5 +1,6 @@
 package com.example.eksamensprojekt;
 
+import com.example.eksamensprojekt.Models.Film;
 import com.example.eksamensprojekt.Models.Series;
 import com.example.eksamensprojekt.Services.LoadingSeries;
 import com.example.eksamensprojekt.Services.MyList;
@@ -28,6 +29,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class SeriesListController {
 
@@ -204,11 +206,12 @@ public class SeriesListController {
 
     @FXML
     public void searchSeries(KeyEvent event) {
-        Search se = new Search();
-        List<Series> filterSeries = se.getSearchedSeries(searchField.getText(), this.filterSeries);
+        /*Search se = new Search();
+        List<Series> filterSeries = se.getSearchedSeries(searchField.getText(), this.filterSeries);*/
         clearView();
-        renderSeries(filterSeries);
-        System.out.println(event);
+        searchAndGenre();
+        renderSeries(this.filterSeries);
+        //System.out.println(event);
     }
 
     @FXML
@@ -224,17 +227,29 @@ public class SeriesListController {
 
     @FXML
     public void select(ActionEvent event) {
-        resetSelect();
+        /*resetSelect();
         var combo = comboBox.getSelectionModel().getSelectedItem().toString();
         if (combo.equals("All"))
             return;
         Search se = new Search();
         List<Series> filter = se.getSearchedSeriesGenre(combo, this.series);
-        this.filterSeries = se.getSearchedSeries(searchField.getText(), filter);
+        this.filterSeries = se.getSearchedSeries(searchField.getText(), filter);*/
         clearView();
+        searchAndGenre();
         renderSeries(this.filterSeries);
     }
-
+    private void searchAndGenre()
+    {
+        Search se = new Search();
+        resetSelect();
+        var combo = comboBox.getSelectionModel().getSelectedItem();
+        //Ternery, first, checker om combo har et selected value. eller combo sættes til at være alle
+        var value = !Objects.isNull(combo) ? combo.toString() : "All";
+        System.out.println(combo);
+        System.out.println("check"+combo);
+        List<Series> filter = se.getSearchedSeriesGenre(value, this.series);
+        this.filterSeries = se.getSearchedSeries(searchField.getText(), filter);
+    }
     private void resetSelect() {
         filterSeries = series;
     }

@@ -47,6 +47,8 @@ public class Search {
     }*/
    public List<Film> getSearchedFilmGenre(String value, List<Film> film) {
        //film med value kommer ud som stream, men med collect så samles det til en liste
+       System.out.println("check "+value+"check");
+       if(value.isEmpty() || value.equals("All") || value.equals("")) return film;
        var genreListe = film.stream()
                .filter(f -> Arrays.stream(f.getGenre()).anyMatch(value::equals)).collect(Collectors.toList());
        System.out.println(genreListe);
@@ -70,6 +72,8 @@ public class Search {
 
     public List<Series> getSearchedSeriesGenre(String value, List<Series> series) {
         //film med value kommer ud som stream, men med collect så samles det til en liste
+        System.out.println("check "+value+"check");
+        if(value.isEmpty() || value.equals("All") || value.equals("")) return series;
         var genreListe = series.stream()
                 .filter(f -> Arrays.stream(f.getGenre()).anyMatch(value::equals)).collect(Collectors.toList());
         System.out.println(genreListe);
