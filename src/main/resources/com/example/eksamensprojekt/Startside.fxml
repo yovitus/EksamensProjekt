@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.eksamensprojekt.StartsideController">
    <children>
-      <Button layoutX="827.0" layoutY="15.0" mnemonicParsing="false" onAction="#goToMain" text="Log out">
+      <Button layoutX="875.0" layoutY="16.0" mnemonicParsing="false" onAction="#goToMain" text="Log out">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
@@ -30,7 +30,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="525.0" layoutY="22.0" mnemonicParsing="false" onAction="#goToSeriesList" prefHeight="60.0" prefWidth="175.0" text="TV Shows">
+      <Button layoutX="525.0" layoutY="22.0" mnemonicParsing="false" onAction="#goToSeriesList" prefHeight="58.0" prefWidth="175.0" text="TV Shows">
          <font>
             <Font size="29.0" />
          </font>
@@ -40,7 +40,7 @@
       </Button>
       <Accordion />
       <Line endX="821.0" endY="-1.52587890625E-5" layoutX="100.0" layoutY="100.0" startX="-100.0" />
-      <ScrollPane layoutX="-3.0" layoutY="102.0" prefHeight="459.0" prefWidth="919.0">
+      <ScrollPane layoutX="-3.0" layoutY="102.0" prefHeight="459.0" prefWidth="955.0">
          <content>
             <GridPane fx:id="filmGridPane" prefHeight="458.0" prefWidth="891.0">
                <columnConstraints>
@@ -51,9 +51,9 @@
             </GridPane>
          </content>
       </ScrollPane>
-      <Button layoutX="719.0" layoutY="28.0" mnemonicParsing="false" onAction="#goToMyList" prefHeight="49.0" prefWidth="92.0" text="My List">
+      <Button layoutX="719.0" layoutY="22.0" mnemonicParsing="false" onAction="#goToMyList" prefHeight="58.0" prefWidth="137.0" text="My List">
          <font>
-            <Font size="18.0" />
+            <Font size="30.0" />
          </font>
       </Button>
    </children>

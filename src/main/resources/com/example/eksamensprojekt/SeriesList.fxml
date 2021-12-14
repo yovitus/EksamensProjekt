@@ -16,16 +16,16 @@
 
 <AnchorPane prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.eksamensprojekt.SeriesListController">
    <children>
-      <Label layoutX="525.0" layoutY="35.0" text="TV Shows">
+      <Label layoutX="547.0" layoutY="37.0" text="TV Shows">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <Button layoutX="827.0" layoutY="15.0" mnemonicParsing="false" onAction="#goToMain" text="Log out">
+      <Button layoutX="859.0" layoutY="18.0" mnemonicParsing="false" onAction="#goToMain" text="Log out">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button layoutX="330.0" layoutY="22.0" mnemonicParsing="false" onAction="#goToFilmList" prefHeight="61.0" prefWidth="160.0" text="Movies">
+      <Button layoutX="363.0" layoutY="20.0" mnemonicParsing="false" onAction="#goToFilmList" prefHeight="61.0" prefWidth="160.0" text="Movies">
          <font>
             <Font size="30.0" />
          </font>
@@ -42,7 +42,7 @@
          </cursor>
       </Label>
       <Line endX="819.0" endY="0.9999923706054688" layoutX="97.0" layoutY="105.0" startX="-105.00000762939453" />
-      <ScrollPane fx:id="scrollPane" accessibleRole="LIST_VIEW" hbarPolicy="ALWAYS" layoutX="-2.0" layoutY="105.0" prefHeight="439.0" prefWidth="917.0" vbarPolicy="ALWAYS">
+      <ScrollPane fx:id="scrollPane" accessibleRole="LIST_VIEW" hbarPolicy="ALWAYS" layoutX="-2.0" layoutY="105.0" prefHeight="439.0" prefWidth="937.0" vbarPolicy="ALWAYS">
          <content>
             <GridPane fx:id="seriesGridPane" prefHeight="425.0" prefWidth="891.0">
                <columnConstraints>
@@ -63,9 +63,9 @@
       </ScrollPane>
       <TextField fx:id="searchField" layoutX="34.0" layoutY="66.0" onAction="#searchSeries" onKeyReleased="#searchSeries" prefHeight="27.0" prefWidth="171.0" promptText="Search TV Shows" />
       <ComboBox fx:id="comboBox" layoutX="217.0" layoutY="67.0" onAction="#select" prefHeight="26.0" prefWidth="90.0" promptText="Genre" />
-      <Button layoutX="708.0" layoutY="32.0" mnemonicParsing="false" onAction="#goToMyList" prefHeight="48.0" prefWidth="96.0" text="My List">
+      <Button layoutX="708.0" layoutY="20.0" mnemonicParsing="false" onAction="#goToMyList" prefHeight="60.0" prefWidth="132.0" text="My List">
          <font>
-            <Font size="18.0" />
+            <Font size="30.0" />
          </font>
       </Button>
    </children>
