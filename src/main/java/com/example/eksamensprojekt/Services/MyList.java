@@ -13,7 +13,6 @@ import java.util.ArrayList;
 
 public class MyList {
     BufferedWriter bufferedWriter;
-    //FileWriter fileWriter;
     public ArrayList<Film> mylistFilm;
     public ArrayList<Series> mylistSeries;
     String fileMyList = "MyLists.txt";

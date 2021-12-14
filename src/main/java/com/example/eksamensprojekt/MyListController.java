@@ -31,7 +31,6 @@ public class MyListController {
     MyList ml = new MyList(); //instantierer mylist
     ArrayList AListF = ml.mylistFilm; //tom mylistfilm
     ArrayList<Series> AListS = ml.mylistSeries; //tom mylistseries
-    private Button seasonsButton;
 
     public MyListController() throws FileNotFoundException {
     }
@@ -82,9 +81,9 @@ public class MyListController {
     Label deleteMediaMessage;
 
     @FXML
-    public void clearView()
-    {
+    public void clearView() {
         seriesGridPane.getChildren().clear();
+        MyListfilmGridPane.getChildren().clear();
     }
 
     @FXML
@@ -231,9 +230,7 @@ public class MyListController {
                                 } catch (IOException e) {
                                     throw new RuntimeException(e);
                                 }
-                            });
-                        }
-                    });
+                            });} });
                 }
                 //Knap til at gå tilbage fra oversigt over sæsoner
                 goBackBtn.setOnMouseClicked((event4) -> {
