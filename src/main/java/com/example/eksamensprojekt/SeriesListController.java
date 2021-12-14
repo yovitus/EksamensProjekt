@@ -39,15 +39,6 @@ public class SeriesListController {
     }
 
     @FXML
-    public void goToSeriesList(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("SeriesList.fxml"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
     public void goToStartside(MouseEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Startside.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -151,7 +142,6 @@ public class SeriesListController {
                     seasonList.getChildren().add(buttonsArrayS[j]);
                 }
                 seriesGridPane.add(seasonList, 1, 1);
-                //seriesGridPane.add(backBtn, 1, 0);
 
                 //EPISODE: ændrer String Array til Integer Array af episoder
                 Integer[] episodesIntArray = s.getIntegerArray(s.getEpisodes());
@@ -171,7 +161,6 @@ public class SeriesListController {
                             buttonsArrayE[p] = new Button("Episode " + (p + 1));
                             episodeList.getChildren().add(buttonsArrayE[p]);
 
-
                             //EPISODE: afspiller valgte episode i nyt vindue
                             buttonsArrayE[p].setOnMouseClicked((event3) -> {
                                 try {
@@ -180,7 +169,7 @@ public class SeriesListController {
 
                                     Scene scene = new Scene(fxmlLoader.load(), 600, 400);
                                     Stage stage = new Stage();
-                                    stage.setTitle(s.getName());
+                                    stage.setTitle(s.getName() + " is playing..");
                                     stage.setScene(scene);
                                     stage.show();
                                 } catch (IOException e) {
@@ -191,7 +180,7 @@ public class SeriesListController {
                     });
                 }
                 //Knap til at gå tilbage fra oversigt over sæsoner
-                goBackBtn.setOnMouseClicked((event4) -> {
+                goBackBtn.setOnMouseClicked((event2) -> {
                     seriesGridPane.getChildren().clear();
                     renderSeries(series);
                 });

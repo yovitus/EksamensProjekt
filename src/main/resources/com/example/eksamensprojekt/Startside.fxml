@@ -17,12 +17,12 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Label layoutX="31.0" layoutY="17.0" prefHeight="71.0" prefWidth="283.0" text="Stream film and series">
+      <Label layoutX="31.0" layoutY="17.0" prefHeight="71.0" prefWidth="283.0" text="Stream++">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <Button layoutX="330.0" layoutY="21.0" mnemonicParsing="false" onAction="#goToFilmList" prefHeight="59.0" prefWidth="175.0" text="Film List">
+      <Button layoutX="330.0" layoutY="21.0" mnemonicParsing="false" onAction="#goToFilmList" prefHeight="59.0" prefWidth="175.0" text="Movies">
          <font>
             <Font size="29.0" />
          </font>
@@ -30,7 +30,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="525.0" layoutY="22.0" mnemonicParsing="false" onAction="#goToSeriesList" prefHeight="58.0" prefWidth="175.0" text="Series List">
+      <Button layoutX="525.0" layoutY="22.0" mnemonicParsing="false" onAction="#goToSeriesList" prefHeight="58.0" prefWidth="175.0" text="TV Shows">
          <font>
             <Font size="29.0" />
          </font>
