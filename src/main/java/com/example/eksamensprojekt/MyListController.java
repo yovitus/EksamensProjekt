@@ -104,8 +104,6 @@ public class MyListController {
             Image image = new Image(String.valueOf(url));
             ImageView thumbnailImageView = new ImageView(image);
 
-            ratingLabel.setPadding(new Insets(0, 0, 1, 0));
-
             //Laver en virtuel box i hvert rum i gridpane, som smider alle labels ind i rækkefølge
             VBox box = new VBox(titleLabel, yearLabel, genreToStringLabel, ratingLabel, thumbnailImageView, btn, RemoveFilmbtn);
             box.setAlignment(Pos.BASELINE_CENTER);
@@ -157,8 +155,6 @@ public class MyListController {
             Image image = new Image(String.valueOf(url));
             ImageView thumbnailImageView = new ImageView(image);
 
-            //ratingLabel.setPadding(new Insets(0, 0, 1, 0));
-
             //Laver en virtuel box i hvert rum i GridPane, som smider alle labels/knapper ind i rækkefølge
             VBox box = new VBox(titleLabel, yearLabel, seasonLabel, genreToStringLabel, ratingLabel, thumbnailImageView, playButton, RemoveSeriesbtn);
             box.setAlignment(Pos.BASELINE_CENTER);
@@ -195,7 +191,6 @@ public class MyListController {
                     seasonList.getChildren().add(buttonsArrayS[j]);
                 }
                 seriesGridPane.add(seasonList, 1, 1);
-                //seriesGridPane.add(backBtn, 1, 0);
 
                 //EPISODE: ændrer String Array til Integer Array af episoder
                 Integer[] episodesIntArray = s.getIntegerArray(s.getEpisodes());

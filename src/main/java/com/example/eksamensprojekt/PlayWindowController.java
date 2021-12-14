@@ -11,9 +11,6 @@ import java.io.IOException;
 public class PlayWindowController {
 
         @FXML
-        private ToggleGroup Buttons;
-
-        @FXML
         private ToggleButton button_pause;
 
         @FXML
@@ -24,7 +21,7 @@ public class PlayWindowController {
 
         @FXML
         void toggleButton(ActionEvent event) throws IOException {
-       if(event.getSource()==button_play){
+       if(event.getSource() == button_play){
            text.setText("Loading...");
        }
        if(event.getSource()==button_pause){

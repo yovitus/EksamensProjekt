@@ -52,7 +52,6 @@ public class MyList {
 
                 while (s.hasNext()){
                     String nextRead = s.nextLine();
-                    //System.out.println((nextRead));
                     if(nextRead.equals("Stop;")){
                         System.out.println("End of list reached!");
                         if(counterD == 0 || counter == 0){
@@ -80,7 +79,6 @@ public class MyList {
                         int rYear = Integer.parseInt(releaseYear);
                         String endYear = line[1].substring(4);
                         //Deler genre op i et array
-                        //String[] genre = line[2].split(", ");
                         String genre1 = line[2].replace("[", ""); //fjerner [
                         String genre2 = genre1.replace("]", ""); //fjerner ]
                         String[] genre = genre2.split(", ");

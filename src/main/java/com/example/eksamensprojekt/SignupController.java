@@ -18,11 +18,9 @@ import java.io.IOException;
 public class SignupController {
     Login login = new Login();
     @FXML
-    TextField Username, knownUsername;
+    TextField Username;
     @FXML
-    TextField Password, knownPassword;
-    @FXML
-    Button SignUpButton;
+    TextField Password;
     @FXML
     Label signUpFailMessage;
 

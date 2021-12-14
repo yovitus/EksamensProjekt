@@ -29,22 +29,6 @@ public class Search {
                 .collect(Collectors.toList());
     }
 
-   /*public List<Genre> openGenre() {
-        try {
-            s = new Scanner(Search.class.getResourceAsStream("/com/example/eksamensprojekt/Media/film.txt"), "UTF-8");
-            System.out.println("");
-            while (s.hasNextLine()) {
-                String oneString = s.nextLine(); //tjekker hver linje, som 1 film
-                String[] line = oneString.split(" *; *"); //splitter ved ;
-                String[] genreName = line[2].toLowerCase().split(", ");
-                genre.add(new Genre(genreName));
-            }
-        }   catch (Exception e)
-            {
-                System.out.println("Could not find file");
-            }
-        return genre;
-    }*/
    public List<Film> getSearchedFilmGenre(String value, List<Film> film) {
        //film med value kommer ud som stream, men med collect så samles det til en liste
        System.out.println("check "+value+"check");

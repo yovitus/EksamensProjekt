@@ -1,6 +1,5 @@
 package com.example.eksamensprojekt;
 
-import com.example.eksamensprojekt.Models.Film;
 import com.example.eksamensprojekt.Models.Series;
 import com.example.eksamensprojekt.Services.LoadingSeries;
 import com.example.eksamensprojekt.Services.MyList;
@@ -106,8 +105,6 @@ public class SeriesListController {
             Image image = new Image(String.valueOf(url));
             ImageView thumbnailImageView = new ImageView(image);
 
-            //ratingLabel.setPadding(new Insets(0, 0, 1, 0));
-
             //Laver en virtuel box i hvert rum i GridPane, som smider alle labels/knapper ind i rækkefølge
             VBox box = new VBox(titleLabel, yearLabel, seasonLabel, genreToStringLabel, ratingLabel, thumbnailImageView, playButton, MyListbtn);
             box.setAlignment(Pos.BASELINE_CENTER);
@@ -198,20 +195,16 @@ public class SeriesListController {
             });
         }}
 
-
     @FXML
     public void clearView() {
         seriesGridPane.getChildren().clear();
     }
 
     @FXML
-    public void searchSeries(KeyEvent event) {
-        /*Search se = new Search();
-        List<Series> filterSeries = se.getSearchedSeries(searchField.getText(), this.filterSeries);*/
+    public void searchSeries() {
         clearView();
         searchAndGenre();
         renderSeries(this.filterSeries);
-        //System.out.println(event);
     }
 
     @FXML
@@ -226,20 +219,13 @@ public class SeriesListController {
     }
 
     @FXML
-    public void select(ActionEvent event) {
-        /*resetSelect();
-        var combo = comboBox.getSelectionModel().getSelectedItem().toString();
-        if (combo.equals("All"))
-            return;
-        Search se = new Search();
-        List<Series> filter = se.getSearchedSeriesGenre(combo, this.series);
-        this.filterSeries = se.getSearchedSeries(searchField.getText(), filter);*/
+    public void select() {
         clearView();
         searchAndGenre();
         renderSeries(this.filterSeries);
     }
-    private void searchAndGenre()
-    {
+
+    private void searchAndGenre() {
         Search se = new Search();
         resetSelect();
         var combo = comboBox.getSelectionModel().getSelectedItem();

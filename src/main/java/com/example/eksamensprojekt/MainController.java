@@ -19,11 +19,9 @@ public class MainController {
     Label loginFailMessage;
     Login login = new Login();
     @FXML
-    TextField Username, knownUsername;
+    TextField knownUsername;
     @FXML
-    TextField Password, knownPassword;
-    @FXML
-    Button SignUpButton;
+    TextField knownPassword;
     @FXML
     public void goToMain(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
@@ -36,7 +34,7 @@ public class MainController {
     public void goToStartside(ActionEvent event) throws IOException {
         login.login(knownUsername.getText(), knownPassword.getText());
         System.out.println(login.accepted);
-        if (login.accepted == true) {
+        if (login.accepted) {
             Parent root = FXMLLoader.load(getClass().getResource("Startside.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
