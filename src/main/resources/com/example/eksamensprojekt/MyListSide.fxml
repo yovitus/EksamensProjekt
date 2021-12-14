@@ -40,7 +40,6 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button layoutX="818.0" layoutY="34.0" mnemonicParsing="false" onAction="#goToStartPage" text="Front Page" />
       <ScrollPane fx:id="scrollPane" accessibleRole="LIST_VIEW" hbarPolicy="ALWAYS" layoutX="-2.0" layoutY="77.0" prefHeight="467.0" prefWidth="917.0" vbarPolicy="ALWAYS">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="4000.0" prefWidth="914.0">
@@ -76,12 +75,12 @@
                </children></AnchorPane>
         </content>
       </ScrollPane>
-      <Label fx:id="deleteMediaMessage" alignment="CENTER" layoutX="706.0" layoutY="20.0" prefHeight="57.0" prefWidth="119.0" textFill="RED">
+      <Label fx:id="deleteMediaMessage" alignment="CENTER" layoutX="809.0" layoutY="31.0" prefHeight="48.0" prefWidth="107.0" textFill="RED">
          <font>
             <Font name="Al Tarikh Regular" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="20.0" layoutY="15.0" onMouseClicked="#goToStartside" onMouseDragEntered="#goToStartPage" prefHeight="48.0" prefWidth="281.0" text="Stream film and series">
+      <Label layoutX="20.0" layoutY="15.0" onMouseDragEntered="#goToStartPage" prefHeight="48.0" prefWidth="281.0" text="Stream film and series">
          <font>
             <Font size="30.0" />
          </font>
