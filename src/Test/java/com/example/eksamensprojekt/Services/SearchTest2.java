@@ -86,8 +86,6 @@ public class SearchTest2 {
             }
         }
 
-
-
         @Test
         public void testGetSearchedSeriesGenre ()
         {
