@@ -39,15 +39,6 @@ public class SeriesListController {
     }
 
     @FXML
-    public void goToSeriesList(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("SeriesList.fxml"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
     public void goToStartside(MouseEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Startside.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
