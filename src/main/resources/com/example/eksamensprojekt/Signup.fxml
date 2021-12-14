@@ -18,9 +18,11 @@
       <TextField fx:id="Username" layoutX="120.0" layoutY="157.0" promptText="Enter Username" />
       <TextField fx:id="Password" layoutX="120.0" layoutY="219.0" promptText="Enter Password" />
       <Label layoutX="120.0" layoutY="200.0" text="Password:" />
-      <Button id="SignUpButton" layoutX="163.0" layoutY="258.0" mnemonicParsing="false" onAction="#CreateUser" prefHeight="39.0" prefWidth="74.0" text="Sign up">
+      <Button id="SignUpButton" layoutX="163.0" layoutY="258.0" mnemonicParsing="false" onAction="#CreateUser" prefHeight="40.0" prefWidth="70.0" text="Sign up">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
+      <Label fx:id="signUpFailMessage" alignment="CENTER" layoutX="-1.0" layoutY="310.0" prefHeight="17.0" prefWidth="400.0" textAlignment="CENTER" textFill="RED" />
+      <Button layoutX="163.0" layoutY="336.0" mnemonicParsing="false" onAction="#goToMain" prefHeight="20.0" prefWidth="70.0" text="Go back" />
    </children>
 </AnchorPane>
