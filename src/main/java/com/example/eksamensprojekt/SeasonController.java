@@ -45,35 +45,8 @@ public class SeasonController {
     }
 
     @FXML
-    public void goToStartside(MouseEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("Startside.fxml"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    public void goToFilmList(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("FilmList.fxml"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
     public void goToMain(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    public void goToMyList(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("MyList.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);

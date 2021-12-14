@@ -5,7 +5,6 @@ import com.example.eksamensprojekt.Models.User;
 import java.io.*;
 import java.util.Scanner;
 
-
 public class Login  {
 
     String nameFile = "Signup.txt"; //txt-fil med user ID (username, password)

@@ -2,8 +2,6 @@ package com.example.eksamensprojekt.Services;
 
 import com.example.eksamensprojekt.Models.Film;
 
-import java.io.InputStream;
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.*;
@@ -42,15 +40,6 @@ public class LoadingFilm {
                 film.add(new Film(name, year, genre, rating, "film"));
             }
         }
-        //for(Film fi : filmList)
-        // {
-        // System.out.print(fi.getName() +" ");
-        // System.out.print(fi.getYear() +" ");
-        // System.out.print(Arrays.toString(fi.getGenre()) +" ");
-        // System.out.println(fi.getRating());
-        // }
-
-        //}
         catch (Exception e)
         {
             System.out.println("Could not find file");
@@ -61,7 +50,6 @@ public class LoadingFilm {
 
     public void closeFile()
     {
-
         s.close();
     }
 

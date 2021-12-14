@@ -66,15 +66,6 @@ public class FilmListController {
     }
 
     @FXML
-    public void goToStartPage(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("Startside.fxml"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
     public void goToMyList(ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("MyListSide.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -115,8 +106,6 @@ public class FilmListController {
             VBox box = new VBox(titleLabel,yearLabel,genreToStringLabel,ratingLabel,thumbnailImageView,btn,MyListbtn);
             box.setAlignment(Pos.BASELINE_CENTER);
             box.setPadding(new Insets(12,12,12,12));
-            //tryk på film
-            //box.setOnMouseClicked(event -> );
 
             filmGridPane.add(box, i % 3, Math.floorDiv(i, 3)); //gør at hver række går fra index 0 til 2 og floor gør at der divideres med 3 fra listen, tager den heltal lavest
             i++;
@@ -193,32 +182,11 @@ public class FilmListController {
         renderFilm(this.filterFilm);
     }
 
-
-
     private void resetSelect()
     {
         filterFilm = film;
     }
 
-
-
 }
 
-          /*  btn.setOnMouseClicked((event)-> {
-                try {
-                    FXMLLoader fxmlLoader= new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("Playwindow.fxml"));
-
-                    Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-                    Stage stage = new Stage();
-                    stage.setTitle("Movie playing");
-                    stage.setScene(scene);
-                    stage.show();
-                }
-                catch (IOException e) {
-                    throw new RuntimeException(e);
-
-
-                }
-            });*/
 

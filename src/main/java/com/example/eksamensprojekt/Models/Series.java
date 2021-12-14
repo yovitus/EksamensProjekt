@@ -43,17 +43,4 @@ public class Series extends Medier {
         }
         return intArray;
     }
-
-
-    //Har fundet denne metode her:   (ved ikke om det er nødvendigt at kildehenvise her)
-    //https://stackoverflow.com/questions/7708698/convert-arrayliststring-to-an-arraylistinteger-or-integer-array
-    //11.12.21 - kl. 10:45
-    public ArrayList<Integer> getIntegerArrayList(ArrayList<String> stringArrayList) {
-        ArrayList<Integer> numberList = new ArrayList<>();
-
-        for (int i = 0; i < stringArrayList.size(); i++) {
-            numberList.add(Integer.parseInt(stringArrayList.get(i)));
-        }
-        return numberList;
-    }
 }
