@@ -194,8 +194,7 @@ public class SeriesListController {
                     e.printStackTrace();
                 }
             });
-        }
-    }
+        }}
 
 
     @FXML

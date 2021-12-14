@@ -2,30 +2,16 @@ package com.example.eksamensprojekt.Services;
 
 import com.example.eksamensprojekt.Models.Series;
 
-import java.io.IOException;
-import java.text.NumberFormat;
-import java.text.ParseException;
 import java.util.*;
 
 public class LoadingSeries {
     private Scanner s;
     List<Series> series;
+    LoadingFilm lf = new LoadingFilm();
 
     public LoadingSeries()
     {
         series = new ArrayList<>();
-    }
-
-    public float tryParseToFloat(String value)
-    {
-        NumberFormat format = NumberFormat.getInstance(Locale.FRANCE);
-        Number number = null;
-        try {
-            number = format.parse(value);
-        } catch (ParseException e) {
-            System.out.println("Fuark brah, didn't float well");
-        }
-        return number.floatValue();
     }
 
     public List<Series> openFile()
@@ -46,7 +32,7 @@ public class LoadingSeries {
                 //Deler genre op i et array
                 String[] genre = line[2].split(" *, *");
                 //laver String om til float
-                float rating = tryParseToFloat(line[3]);
+                float rating = lf.tryParseToFloat(line[3]);
                 //deler season op i array og tilføjer episoder til en ArrayList<String>
                 String[] seasonsArray = line[4].split(", "); //antal sæsoner
                 String[] episodesReader; //tom array
