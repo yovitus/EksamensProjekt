@@ -41,7 +41,7 @@
          </cursor>
       </Label>
 
-      <Line endX="819.0" endY="0.9999923706054688" layoutX="97.0" layoutY="105.0" startX="-105.00000762939453" />
+      <Line endX="846.0" layoutX="97.0" layoutY="105.0" startX="-105.00000762939453" />
       <ScrollPane fx:id="scrollPane" accessibleRole="LIST_VIEW" hbarPolicy="ALWAYS" layoutX="-2.0" layoutY="105.0" prefHeight="439.0" prefWidth="945.0" vbarPolicy="ALWAYS">
          <content>
             <GridPane fx:id="filmGridPane" prefHeight="425.0" prefWidth="891.0">

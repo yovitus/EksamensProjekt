@@ -1,6 +1,6 @@
 package com.example.eksamensprojekt.Services;
 
-import Exceptions.UserNotFoundException;
+import Exceptions.UserExistException;
 import com.example.eksamensprojekt.Models.User;
 
 import java.io.*;
@@ -56,7 +56,7 @@ public class Login  {
 
         return user;
     }
-    public boolean checkInput(String username) throws UserNotFoundException
+    public boolean checkInput(String username) throws UserExistException
     {
         String tmpUser = "";
         boolean found = false; //når id er fundet, stopper den med at søge
@@ -71,7 +71,8 @@ public class Login  {
                 if (tmpUser.equals(username.trim())) {
                     found = true;
                     sc.close();
-                    break;
+                    throw new UserExistException();
+
                 }
             }
             } catch (FileNotFoundException e) {

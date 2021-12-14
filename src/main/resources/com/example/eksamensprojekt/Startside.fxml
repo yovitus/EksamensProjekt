@@ -39,7 +39,7 @@
          </cursor>
       </Button>
       <Accordion />
-      <Line endX="821.0" endY="-1.52587890625E-5" layoutX="100.0" layoutY="100.0" startX="-100.0" />
+      <Line endX="852.0" endY="2.0000076293945312" layoutX="100.0" layoutY="100.0" startX="-100.0" />
       <ScrollPane layoutX="-3.0" layoutY="102.0" prefHeight="459.0" prefWidth="955.0">
          <content>
             <GridPane fx:id="filmGridPane" prefHeight="458.0" prefWidth="891.0">
