@@ -2,7 +2,6 @@ package com.example.eksamensprojekt;
 
 import com.example.eksamensprojekt.Models.Film;
 import com.example.eksamensprojekt.Services.LoadingFilm;
-//import com.example.eksamensprojekt.Services.Search;
 import com.example.eksamensprojekt.Services.MyList;
 import com.example.eksamensprojekt.Services.Search;
 import javafx.collections.FXCollections;
@@ -18,7 +17,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-//import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -31,7 +29,6 @@ import javafx.stage.Stage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 

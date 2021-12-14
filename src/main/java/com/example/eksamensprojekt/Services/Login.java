@@ -14,7 +14,6 @@ public class Login  {
     String cUsernameList = "CurrentUsername.txt";
     BufferedWriter bufferedWriter;
     BufferedWriter bufferedWriter2;
-    FileWriter fileWriter;
     public User user;
     public boolean accepted = false;
 

@@ -235,7 +235,7 @@ public class MyListController {
                 //Knap til at gå tilbage fra oversigt over sæsoner
                 goBackBtn.setOnMouseClicked((event4) -> {
                     seriesGridPane.getChildren().clear();
-                    renderMyListMedia(null, series);
+                    renderMyListMedia(AListF, series);
                 });
             });
 
