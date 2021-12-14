@@ -1,7 +1,7 @@
 package com.example.eksamensprojekt.Services;
 
 import com.example.eksamensprojekt.Models.Film;
-import com.example.eksamensprojekt.Models.Genre;
+//import com.example.eksamensprojekt.Models.Genre;
 import com.example.eksamensprojekt.Models.Series;
 import org.junit.jupiter.api.Test;
 
