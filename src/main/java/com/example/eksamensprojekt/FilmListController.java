@@ -104,7 +104,7 @@ public class FilmListController {
             Label yearLabel = new Label(f.getYear() + "");
             Label genreToStringLabel = new Label(f.genreToString()+ "");
             Label ratingLabel = new Label(f.getRating()+ "");
-            Button btn=new Button("Play Film");
+            Button btn=new Button("Play Movie");
             Button MyListbtn=new Button("Add to My List");
 
             //Henter image/thumbnail
@@ -131,7 +131,7 @@ public class FilmListController {
 
                     Scene scene = new Scene(fxmlLoader.load(), 600, 400);
                     Stage stage = new Stage();
-                    stage.setTitle("Movie playing");
+                    stage.setTitle(f.getName() + " is playing..");
                     stage.setScene(scene);
                     stage.show();
                 }

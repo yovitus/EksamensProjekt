@@ -48,7 +48,7 @@ public class MyList {
         //Loader specifik mylistFilm for bruger
         while (s.hasNext()) {
             if(s.nextLine().equals(currentUsername + ";")) {
-                System.out.println(("username fundet!"));
+                System.out.println(("username found!"));
 
                 while (s.hasNext()){
                     String nextRead = s.nextLine();
@@ -121,7 +121,7 @@ public class MyList {
         while (!found) {
             String lineRead = sc.nextLine();
             if(lineRead.equals(currentUsername + ";")) {
-                System.out.println("username match fundet!");
+                System.out.println("username match found!");
                 found = true;
             } else {
                 counter++;
@@ -135,15 +135,15 @@ public class MyList {
                 counter++;
                 if(film != null){
                 if(lineNewStart.equals(getFilmInfo(film))) {
-                    System.out.println("Film already on list!");
+                    System.out.println("Movie already on My List!");
                     match = true;
                 }} else if (series != null){
                     if(lineNewStart.equals(getSeriesInfo((series)))){
-                        System.out.println("Series already on list!");
+                        System.out.println("TV Show already on My List!");
                         match = true;
                     }
                 }} else if (lineNewStart.equals("Stop;")){ //medie er IKKE allerede på listen
-                System.out.println("That media is currently NOT on the list!");
+                System.out.println("That media is currently NOT on My List!");
                 break;
             }}
 
@@ -173,7 +173,7 @@ public class MyList {
             } else {
                 counter++;
             }}}} catch (IOException e){
-                System.out.println("Could not add media to list!");
+                System.out.println("Could not add media to My List!");
                 e.printStackTrace();
         }}
 
@@ -191,21 +191,21 @@ public class MyList {
                if (film != null) {
                    if (lineRead.equals(getFilmInfo(film))) {
                        Changeline(lineRead, "Deleted;");
-                       System.out.println("Film slettet fra liste");
+                       System.out.println("Movie deleted from My List");
                        found = true;
                    }
                }
                if (series != null) {
                    if (lineRead.equals(getSeriesInfo(series))) {
                        Changeline(lineRead, "Deleted;");
-                       System.out.println("Serie slettet fra liste");
+                       System.out.println("TV Show deleted from My List");
                        found = true;
                    }
                }
            }
-           System.out.println("Process færdig!");
+           System.out.println("Process done!");
        } catch (IOException e){
-           System.out.println("Could not remove media from list!");
+           System.out.println("Could not remove media from My List!");
            e.printStackTrace();
        }
     }

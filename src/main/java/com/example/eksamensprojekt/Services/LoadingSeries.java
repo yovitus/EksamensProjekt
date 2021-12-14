@@ -56,16 +56,6 @@ public class LoadingSeries {
                     episodesArray[i] = episodesReader[1]; //får hver s' antal ep gemt
 
                 }
-
-
-                /*String[] seasonsArray = line[4].split(", ");
-                String[] episodesArray;
-                ArrayList<String> episodesList = new ArrayList<>();
-                for(int i = 0; i < seasonsArray.length; i++) {
-                    episodesArray = seasonsArray[i].split("-");
-                    episodesList.add(episodesArray[1]);
-                }*/
-
                 series.add(new Series(name, rYear, genre, rating, "series", endYear, seasonsArray, episodesArray));
             }
         }

@@ -64,7 +64,7 @@ public class Search {
        List<String> list = new ArrayList<>(oneTypeGenre);
        List<String> sortedList = list.stream().sorted().collect(Collectors.toList());
        sortedList.add(0,"All");
-       System.out.println("Film genre liste:" + sortedList);
+       System.out.println("Movies genre list:" + sortedList);
        return sortedList;
    }
 
@@ -86,7 +86,7 @@ public class Search {
             List<String> list = new ArrayList<>(oneTypeGenre);
             List<String> sortedList = list.stream().sorted().collect(Collectors.toList());
             sortedList.add(0, "All");
-            System.out.println("Serie genre lister" + sortedList);
+            System.out.println("TV Shows genre list" + sortedList);
             return sortedList;
     }
 }
