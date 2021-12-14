@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -63,7 +64,7 @@ public class MyListController {
     }
 
     @FXML
-    public void goToStartPage(ActionEvent event) throws IOException {
+    public void goToStartPage(MouseEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Startside.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
