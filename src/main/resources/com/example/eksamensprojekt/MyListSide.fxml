@@ -80,7 +80,7 @@
             <Font name="Al Tarikh Regular" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="20.0" layoutY="15.0" onMouseDragEntered="#goToStartPage" prefHeight="48.0" prefWidth="281.0" text="Stream film and series">
+      <Label layoutX="20.0" layoutY="15.0" onMouseClicked="#goToStartPage" prefHeight="48.0" prefWidth="281.0" text="Stream film and series">
          <font>
             <Font size="30.0" />
          </font>
