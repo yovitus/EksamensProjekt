@@ -33,6 +33,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class FilmListController {
     List<Film> film;
@@ -161,11 +162,14 @@ public class FilmListController {
     {
         System.out.println("searchFilm");
         System.out.println(film.size());
-        Search se = new Search();
-        List<Film> filterFilm = se.getSearchedFilm(searchField.getText(), this.filterFilm);
+        /*Search se = new Search();
+        List<Film> filter = se.getSearchedFilm(searchField.getText(), this.filterFilm);
         clearView();
-        renderFilm(filterFilm);
-        System.out.println(event);
+        renderFilm(filter);
+        System.out.println(event);*/
+        clearView();
+        searchAndGenre();
+        renderFilm(this.filterFilm);
     }
 
     @FXML
@@ -184,19 +188,36 @@ public class FilmListController {
     @FXML
     public void select(ActionEvent event)
     {
-        System.out.println("select");
+        /*System.out.println("select");
         resetSelect();
         var combo = comboBox.getSelectionModel().getSelectedItem().toString();
-        if(combo.equals("All"))
-            return;
         Search se = new Search();
-        List<Film> filter = se.getSearchedFilmGenre(combo, this.film);
-        this.filterFilm = se.getSearchedFilm(searchField.getText(), filter);
+        if(combo.equals("All")) {
+            this.filterFilm = se.getSearchedFilm(searchField.getText(), this.film);
+            System.out.println("combo all");
+        } else {
+            List<Film> filter = se.getSearchedFilmGenre(combo, this.film);
+            this.filterFilm = se.getSearchedFilm(searchField.getText(), filter);
+        }
+        */
         clearView();
-        renderFilm(this.filterFilm);
+        searchAndGenre();
+        renderFilm(this.filterFilm); //en metode burde kun have et formål
     }
 
+    private void searchAndGenre()
+    {
+        Search se = new Search();
+        resetSelect();
+        var combo = comboBox.getSelectionModel().getSelectedItem();
+        //Ternery, first, checker om combo har et selected value. eller combo sættes til at være alle
+        var value = !Objects.isNull(combo) ? combo.toString() : "All";
+        System.out.println(combo);
+        System.out.println("check"+combo);
+        List<Film> filter = se.getSearchedFilmGenre(value, this.film);
+        this.filterFilm = se.getSearchedFilm(searchField.getText(), filter);
 
+    }
 
     private void resetSelect()
     {

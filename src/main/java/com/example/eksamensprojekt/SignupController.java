@@ -1,5 +1,6 @@
 package com.example.eksamensprojekt;
 
+import Exceptions.UserNotFoundException;
 import com.example.eksamensprojekt.Models.User;
 import com.example.eksamensprojekt.Services.Login;
 import javafx.event.ActionEvent;
@@ -37,7 +38,7 @@ public class SignupController {
     }
 
     @FXML
-    public void CreateUser(ActionEvent event) throws IOException {
+    public void CreateUser(ActionEvent event) throws IOException, UserNotFoundException {
         if(Username.getText().equals("") || Password.getText().equals(""))
         {
             signUpFailMessage.setText("USERNAME OR PASSWORD CAN'T BE EMPTY");
