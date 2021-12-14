@@ -5,7 +5,6 @@ import com.example.eksamensprojekt.Models.Series;
 import java.util.*;
 
 public class LoadingSeries {
-    private Scanner s;
     List<Series> series;
     LoadingFilm lf = new LoadingFilm();
 
@@ -17,7 +16,7 @@ public class LoadingSeries {
     public List<Series> openFile()
     {
         try {
-            s = new Scanner(LoadingSeries.class.getResourceAsStream("/com/example/eksamensprojekt/Media/serier.txt"), "UTF-8");
+            Scanner s = new Scanner(LoadingSeries.class.getResourceAsStream("/com/example/eksamensprojekt/Media/serier.txt"), "UTF-8");
             System.out.println("");
             while (s.hasNextLine()) {
                 String oneString = s.nextLine(); //læser hver linje, som 1 serie
@@ -45,17 +44,10 @@ public class LoadingSeries {
                 series.add(new Series(name, rYear, genre, rating, "series", endYear, seasonsArray, episodesArray));
             }
         }
-
         catch(Exception e) {
             System.out.println("Could not find file");
         }
         return series;
     }
-
-    public void closeFile()
-    {
-        s.close();
-    }
-
 }
 

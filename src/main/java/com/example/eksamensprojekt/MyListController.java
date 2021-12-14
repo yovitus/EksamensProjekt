@@ -132,7 +132,7 @@ public class MyListController {
             RemoveFilmbtn.setOnMouseClicked((event) -> {
                 try {
                     ml.removeMediaFromMyList(f, null);
-                    deleteMediaMessage.setText("Movie will be removed");
+                    deleteMediaMessage.setText("Movie will be removed. Please reload page.");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -242,7 +242,7 @@ public class MyListController {
             RemoveSeriesbtn.setOnMouseClicked((event) -> {
                 try {
                     ml.removeMediaFromMyList(null, s);
-                    deleteMediaMessage.setText("TV Show will be removed");
+                    deleteMediaMessage.setText("TV Show will be removed. Please reload page.");
 
                 } catch (IOException e) {
                     e.printStackTrace();

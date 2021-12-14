@@ -16,7 +16,8 @@ class LoadingSeriesTest {
 
     @Test
     void testTryParseToFloat() {
-        assertEquals(8.3, ls.tryParseToFloat("8.3"));
+        LoadingFilm lf = new LoadingFilm();
+        assertEquals(8.3, lf.tryParseToFloat("8.3"));
     }
 
     @Test

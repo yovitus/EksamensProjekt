@@ -1,15 +1,11 @@
 package com.example.eksamensprojekt.Services;
 
 import com.example.eksamensprojekt.Models.Film;
-
-import java.io.InputStream;
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.*;
 
 public class LoadingFilm {
-    private Scanner s;
     List<Film> film;
 
     public LoadingFilm() {
@@ -30,7 +26,7 @@ public class LoadingFilm {
 
     public List<Film> openFile () {
         try {
-            s = new Scanner(LoadingFilm.class.getResourceAsStream("/com/example/eksamensprojekt/Media/film.txt"), "UTF-8");
+            Scanner s = new Scanner(LoadingFilm.class.getResourceAsStream("/com/example/eksamensprojekt/Media/film.txt"), "UTF-8");
             System.out.println("");
             while (s.hasNextLine()) {
                 String oneString = s.nextLine(); //tjekker hver linje, som 1 film
@@ -42,29 +38,12 @@ public class LoadingFilm {
                 film.add(new Film(name, year, genre, rating, "film"));
             }
         }
-        //for(Film fi : filmList)
-        // {
-        // System.out.print(fi.getName() +" ");
-        // System.out.print(fi.getYear() +" ");
-        // System.out.print(Arrays.toString(fi.getGenre()) +" ");
-        // System.out.println(fi.getRating());
-        // }
-
-        //}
         catch (Exception e)
         {
             System.out.println("Could not find file");
         }
-
         return film;
     }
-
-    public void closeFile()
-    {
-
-        s.close();
-    }
-
     public List<Film> getFilm() {
         return film;
     }

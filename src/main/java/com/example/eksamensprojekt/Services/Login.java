@@ -56,6 +56,7 @@ public class Login  {
 
         return user;
     }
+
     public boolean checkInput(String username) throws UserExistException
     {
         String tmpUser = "";
@@ -63,7 +64,7 @@ public class Login  {
         try {
             Scanner sc = new Scanner(new File(nameFile)); //Scanner der skal scanne txt-filen
             sc.useDelimiter("[,\n]"); //Læser noget før komma, efter komma ved den det er noget nyt, så læser den på næste linje
-            //Hvis login stemmer overens med det nognes Username i txt-filen, ændres den til true
+            //Hvis login stemmer overens med det nogens Username i txt-filen, ændres den til true
             while (!found && sc.hasNext()) {
                 //tjekker efter username i txt-filen
                 tmpUser = sc.next();

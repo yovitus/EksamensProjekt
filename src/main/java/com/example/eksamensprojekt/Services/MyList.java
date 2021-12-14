@@ -23,8 +23,8 @@ public class MyList {
     int counterD;
 
     public MyList() throws FileNotFoundException {
-            mylistFilm = new ArrayList<Film>();
-            mylistSeries = new ArrayList<Series>();
+            mylistFilm = new ArrayList<>();
+            mylistSeries = new ArrayList<>();
             counter = 0;
             counterD = 0;
 
@@ -213,24 +213,24 @@ public class MyList {
     //returnerer string med film-info
     public String getFilmInfo(Film film){
         String navn = film.getName();
-        int år = film.getYear();
+        int year = film.getYear();
         String[] genre = film.getGenre(); //læs som string array
         String str = Arrays.toString(genre);
-        float bedøm = (film.getRating());
+        float rating = (film.getRating());
         String typeM = "Film";
-        return (navn + ": " + år + ": " + str + ": " + bedøm + ": " + typeM + ";");
+        return (navn + ": " + year + ": " + str + ": " + rating + ": " + typeM + ";");
 
     }
 
     public String getSeriesInfo(Series series){
         String navn = series.getName();
-        String år = series.getYear() + series.getEndYear();
+        String year = series.getYear() + series.getEndYear();
         String[] genre = series.getGenre(); //læs som string array
         String str = Arrays.toString(genre);
 
         float rating = series.getRating();
         String typeM = "Series";
-        return (navn + ": " + år + ": " + str + ": " + rating + ": " + getSeasonAndEpisodes(series) + typeM + ";");
+        return (navn + ": " + year + ": " + str + ": " + rating + ": " + getSeasonAndEpisodes(series) + typeM + ";");
     }
 
     //Hjælpemetode til getSeriesInfo
