@@ -48,11 +48,6 @@ public class LoadingFilm {
         return film;
     }
 
-    public void closeFile()
-    {
-        s.close();
-    }
-
     public List<Film> getFilm() {
         return film;
     }
