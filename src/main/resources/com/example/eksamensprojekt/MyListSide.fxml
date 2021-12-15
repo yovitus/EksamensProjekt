@@ -75,12 +75,12 @@
                </children></AnchorPane>
         </content>
       </ScrollPane>
-      <Label fx:id="deleteMediaMessage" alignment="CENTER" layoutX="706.0" layoutY="20.0" prefHeight="57.0" prefWidth="119.0" textFill="RED">
+      <Label fx:id="deleteMediaMessage" alignment="CENTER" layoutX="189.0" layoutY="11.0" prefHeight="57.0" prefWidth="119.0" textFill="RED" wrapText="true">
          <font>
-            <Font name="Al Tarikh Regular" size="24.0" />
+            <Font name="Al Tarikh Regular" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="20.0" layoutY="15.0" onMouseClicked="#goToStartPage" onMouseDragEntered="#goToStartPage" prefHeight="48.0" prefWidth="281.0" text="Stream++">
+      <Label layoutX="20.0" layoutY="15.0" onMouseClicked="#goToStartPage" onMouseDragEntered="#goToStartPage" prefHeight="48.0" prefWidth="168.0" text="Stream++">
          <font>
             <Font size="30.0" />
          </font>
