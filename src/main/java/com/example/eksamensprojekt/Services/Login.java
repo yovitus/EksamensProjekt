@@ -90,7 +90,7 @@ public class Login  {
             bufferedWriter.close();
             bufferedWriter2 = new BufferedWriter(new FileWriter(new File(fileMyList), true));
             if(!username.equals(""))
-                bufferedWriter2.write(username + ";" + "\n" + "Stop;"); //tilføjer username til Mylist-fil
+                bufferedWriter2.write(username + ";\n" + "Stop;" + "\n"); //tilføjer username til Mylist-fil
                 bufferedWriter2.close();
         } catch (IOException e) {
             System.out.println("Could not store data");

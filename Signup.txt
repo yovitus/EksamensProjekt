@@ -1,7 +1,0 @@
-hey,hey
-vitus,vitus
-testl,testll
-luc,luc
-luc,luc
-luc,luc
-Hey,123
