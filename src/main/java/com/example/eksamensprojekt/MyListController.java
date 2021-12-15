@@ -19,7 +19,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
@@ -104,8 +103,6 @@ public class MyListController {
             Image image = new Image(String.valueOf(url));
             ImageView thumbnailImageView = new ImageView(image);
 
-            ratingLabel.setPadding(new Insets(0, 0, 1, 0));
-
             //Laver en virtuel box i hvert rum i gridpane, som smider alle labels ind i rækkefølge
             VBox box = new VBox(titleLabel, yearLabel, genreToStringLabel, ratingLabel, thumbnailImageView, btn, RemoveFilmbtn);
             box.setAlignment(Pos.BASELINE_CENTER);
@@ -132,7 +129,7 @@ public class MyListController {
             RemoveFilmbtn.setOnMouseClicked((event) -> {
                 try {
                     ml.removeMediaFromMyList(f, null);
-                    deleteMediaMessage.setText("Movie will be removed");
+                    deleteMediaMessage.setText("Movie will be removed. Please reload page.");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -156,8 +153,6 @@ public class MyListController {
             URL url = MyListController.class.getResource(s.getImage());
             Image image = new Image(String.valueOf(url));
             ImageView thumbnailImageView = new ImageView(image);
-
-            //ratingLabel.setPadding(new Insets(0, 0, 1, 0));
 
             //Laver en virtuel box i hvert rum i GridPane, som smider alle labels/knapper ind i rækkefølge
             VBox box = new VBox(titleLabel, yearLabel, seasonLabel, genreToStringLabel, ratingLabel, thumbnailImageView, playButton, RemoveSeriesbtn);
@@ -195,7 +190,6 @@ public class MyListController {
                     seasonList.getChildren().add(buttonsArrayS[j]);
                 }
                 seriesGridPane.add(seasonList, 1, 1);
-                //seriesGridPane.add(backBtn, 1, 0);
 
                 //EPISODE: ændrer String Array til Integer Array af episoder
                 Integer[] episodesIntArray = s.getIntegerArray(s.getEpisodes());
@@ -242,14 +236,14 @@ public class MyListController {
             RemoveSeriesbtn.setOnMouseClicked((event) -> {
                 try {
                     ml.removeMediaFromMyList(null, s);
-                    deleteMediaMessage.setText("TV Show will be removed");
+                    deleteMediaMessage.setText("TV Show will be removed. Please reload page.");
 
                 } catch (IOException e) {
                     e.printStackTrace();
                 }});}}}
 
         @FXML
-        public void initialize() throws IOException {
+        public void initialize() {
             ml.findLoadListMedie(AListF, AListS); //Loader medier fra txt-fil
             renderMyListMedia(AListF, null); //displayer medier for nuværende user
             renderMyListMedia(null, AListS);

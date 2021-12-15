@@ -55,6 +55,7 @@ public class Login  {
 
         return user;
     }
+
     public boolean checkInput(String username) throws UserExistException
     {
         String tmpUser = "";
@@ -62,7 +63,7 @@ public class Login  {
         try {
             Scanner sc = new Scanner(new File(nameFile)); //Scanner der skal scanne txt-filen
             sc.useDelimiter("[,\n]"); //Læser noget før komma, efter komma ved den det er noget nyt, så læser den på næste linje
-            //Hvis login stemmer overens med det nognes Username i txt-filen, ændres den til true
+            //Hvis login stemmer overens med det nogens Username i txt-filen, ændres den til true
             while (!found && sc.hasNext()) {
                 //tjekker efter username i txt-filen
                 tmpUser = sc.next();
@@ -84,8 +85,6 @@ public class Login  {
     public void makeProfile(String username, String password)  {
         try {
             bufferedWriter = new BufferedWriter(new FileWriter(new File(nameFile), true)); //den overskriver ikke i txt filen hvis true
-            /*if(username.equals(""))
-                System.out.println("USERNAME CAN'T BE EMPTY");*/
             if(!username.equals("") && !password.equals(""))
                 bufferedWriter.write(username + "," + password + "\n"); //tilføjer username og password til txt-filen
             bufferedWriter.close();
@@ -98,15 +97,5 @@ public class Login  {
         }
 
     }
-
-    /*public String getFile() throws IOException {
-        BufferedReader reader =  new BufferedReader(new FileReader(nameFile));
-        String returnString = "";
-        String line;
-        while ((line = reader.readLine()) != null)
-        {
-            returnString += line + "\n";
-        }
-        return returnString;*/
     }
 

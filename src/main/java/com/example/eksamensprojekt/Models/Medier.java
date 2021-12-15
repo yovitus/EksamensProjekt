@@ -30,8 +30,7 @@ public abstract class Medier {
 
     public String genreToString()
     {
-        String genreString = Arrays.toString(genre);
-        return genreString;
+        return Arrays.toString(genre);
     }
 
     public String getName() { return name; }

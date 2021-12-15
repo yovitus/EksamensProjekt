@@ -67,15 +67,6 @@ public class FilmListController {
     }
 
     @FXML
-    public void goToStartPage(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("Startside.fxml"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
     public void goToMyList(ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("MyListSide.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -93,8 +84,7 @@ public class FilmListController {
     private TextField searchField;
 
     @FXML
-    public void renderFilm(List<Film> film)
-    {
+    public void renderFilm(List<Film> film) {
     int i = 0;
         for (Film f : film) {
             //Laver parametrer til labels
@@ -116,12 +106,11 @@ public class FilmListController {
             VBox box = new VBox(titleLabel,yearLabel,genreToStringLabel,ratingLabel,thumbnailImageView,btn,MyListbtn);
             box.setAlignment(Pos.BASELINE_CENTER);
             box.setPadding(new Insets(12,12,12,12));
-            //tryk på film
-            //box.setOnMouseClicked(event -> );
 
             filmGridPane.add(box, i % 3, Math.floorDiv(i, 3)); //gør at hver række går fra index 0 til 2 og floor gør at der divideres med 3 fra listen, tager den heltal lavest
             i++;
 
+            //afspil film
             btn.setOnMouseClicked((event)-> {
                 try {
                     FXMLLoader fxmlLoader= new FXMLLoader();
@@ -155,23 +144,16 @@ public class FilmListController {
     }
 
     @FXML
-    public void searchFilm(KeyEvent event)
-    {
+    public void searchFilm() {
         System.out.println("searchFilm");
         System.out.println(film.size());
-        /*Search se = new Search();
-        List<Film> filter = se.getSearchedFilm(searchField.getText(), this.filterFilm);
-        clearView();
-        renderFilm(filter);
-        System.out.println(event);*/
         clearView();
         searchAndGenre();
         renderFilm(this.filterFilm);
     }
 
     @FXML
-    public void initialize()
-    {
+    public void initialize() {
         System.out.println("initialize");
         LoadingFilm lf = new LoadingFilm();
         film = lf.openFile();
@@ -183,27 +165,13 @@ public class FilmListController {
     }
 
     @FXML
-    public void select(ActionEvent event)
-    {
-        /*System.out.println("select");
-        resetSelect();
-        var combo = comboBox.getSelectionModel().getSelectedItem().toString();
-        Search se = new Search();
-        if(combo.equals("All")) {
-            this.filterFilm = se.getSearchedFilm(searchField.getText(), this.film);
-            System.out.println("combo all");
-        } else {
-            List<Film> filter = se.getSearchedFilmGenre(combo, this.film);
-            this.filterFilm = se.getSearchedFilm(searchField.getText(), filter);
-        }
-        */
+    public void select() {
         clearView();
         searchAndGenre();
         renderFilm(this.filterFilm); //en metode burde kun have et formål
     }
 
-    private void searchAndGenre()
-    {
+    private void searchAndGenre() {
         Search se = new Search();
         resetSelect();
         var combo = comboBox.getSelectionModel().getSelectedItem();
@@ -215,31 +183,9 @@ public class FilmListController {
         this.filterFilm = se.getSearchedFilm(searchField.getText(), filter);
 
     }
-
     private void resetSelect()
     {
         filterFilm = film;
     }
-
-
-
 }
-
-          /*  btn.setOnMouseClicked((event)-> {
-                try {
-                    FXMLLoader fxmlLoader= new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("Playwindow.fxml"));
-
-                    Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-                    Stage stage = new Stage();
-                    stage.setTitle("Movie playing");
-                    stage.setScene(scene);
-                    stage.show();
-                }
-                catch (IOException e) {
-                    throw new RuntimeException(e);
-
-
-                }
-            });*/
 

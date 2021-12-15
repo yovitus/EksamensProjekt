@@ -1,7 +1,5 @@
 package com.example.eksamensprojekt.Models;
 
-import java.util.ArrayList;
-
 public class Series extends Medier {
     public String endYear;
     public String[] seasons;
@@ -24,6 +22,7 @@ public class Series extends Medier {
     }
 
     public String[] getSeasons() {return seasons;}
+
     public int getSeasonLength() {
         return seasons.length;
     }
@@ -35,7 +34,6 @@ public class Series extends Medier {
 
     //https://stackoverflow.com/questions/18838781/converting-string-array-to-an-integer-array
     //11.12.21 kl. 15:50
-    //burde adde try-catch
     public Integer[] getIntegerArray(String[] stringArray) {
         Integer[] intArray = new Integer[stringArray.length];
         for(int i = 0; i < stringArray.length ; i++) {

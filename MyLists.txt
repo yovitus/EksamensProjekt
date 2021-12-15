@@ -9,12 +9,10 @@ The Larry Sanders Show: 1992-1998: [Comedy]: 8.3: 1-13, 2-18, 3-17, 4-17, 5-13, 
 Curb Your Enthusiasm: 2000-: [Comedy]: 8.7: 1-10, 2-10, 3-10, 4-10, 5-10, 6-10, 7-10, 8-10, 9-10: Series;
 Stop;
 testl;
-The Shawshank Redemption: 1994: [Drama]: 9.3: Film;
 Stop;
 hey;
 Stop;luc;
 Stop;luc;
 Stop;luc;
-Stop;
-yep;
+Stop;Hey;
 Stop;

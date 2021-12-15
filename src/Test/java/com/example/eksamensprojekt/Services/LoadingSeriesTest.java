@@ -1,13 +1,8 @@
 package com.example.eksamensprojekt.Services;
 
 import com.example.eksamensprojekt.Models.Series;
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,25 +11,16 @@ class LoadingSeriesTest {
 
     @Test
     void testTryParseToFloat() {
-        assertEquals(8.3, ls.tryParseToFloat("8.3"));
+        //tjekker om metoden fungere som den skal, hvor den genererer en string om til float
+        LoadingFilm lf = new LoadingFilm();
+        assertEquals(8.3, lf.tryParseToFloat("8.3"));
     }
 
     @Test
     void testOpenFile() {
         ls.series = ls.openFile();
         Series liste = ls.series.get(5);
-        /*Series se = new Series("Twin Peaks",
-                1990,
-                new String[]{"Crime", "Drama", "Mystery"},
-                8.8f,
-                "Twin Peaks.jpg",
-                "-1991",
-                new String[]{"1-8", "2-22"},
-                new String[]{"8", "22"});*/
-
-        //assertSame(se, liste);
         assertNotNull(liste);
-
     }
 
     @Test
@@ -69,9 +55,6 @@ class LoadingSeriesTest {
 
         String genre1 = "[Crime, Drama, Mystery]";
         String genre2 = "[Crime, Drama]";
-        String[] genre3 = {"Crime", "Drama", "Mystery"};
-        String[] genre4 = {"Crime", "Drama"};
-        //assertArrayEquals(genre1, genreTest); //Denne tester om længden af arrayet er det samme
         assertEquals(genre1, genreStringTest);
     }
 
@@ -118,9 +101,6 @@ class LoadingSeriesTest {
 
         String season1 = "[1-8, 2-22]";
         String season2 = "[1-13, 2-13, 3-13, 4-13, 5-13, 6-21]";
-        String[] season3 = {"1-8", "2-22"};
-        String[] season4 = {"1-13", "2-13", "3-13", "4-13", "5-13", "6-21"};
-        //assertArrayEquals(season3, seasonTest); //Denne tester om længden af arrayet er det samme
         assertEquals(season1, seasonStringTest);
     }
 
@@ -134,9 +114,6 @@ class LoadingSeriesTest {
 
         String episode1 = "[8, 22]";
         String episode2 = "[13, 13, 13, 13, 13, 21]";
-        String[] episode3 = {"8", "22"};
-        String[] episode4 = {"13", "13", "13", "13", "13", "21"};
-        //assertArrayEquals(episode3, episodeTest); //Denne tester om længden af arrayet er det samme
         assertEquals(episode1, episodeStringTest);
     }
 }
