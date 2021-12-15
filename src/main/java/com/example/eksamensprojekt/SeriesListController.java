@@ -15,14 +15,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
@@ -36,7 +34,7 @@ public class SeriesListController {
     private List<Series> filterSeries;
     MyList ml = new MyList();
 
-    public SeriesListController() throws FileNotFoundException {
+    public SeriesListController() {
     }
 
     @FXML

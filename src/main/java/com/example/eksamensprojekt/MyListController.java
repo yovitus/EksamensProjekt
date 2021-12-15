@@ -19,7 +19,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
@@ -244,7 +243,7 @@ public class MyListController {
                 }});}}}
 
         @FXML
-        public void initialize() throws IOException {
+        public void initialize() {
             ml.findLoadListMedie(AListF, AListS); //Loader medier fra txt-fil
             renderMyListMedia(AListF, null); //displayer medier for nuværende user
             renderMyListMedia(null, AListS);

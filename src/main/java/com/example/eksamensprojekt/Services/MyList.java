@@ -22,7 +22,7 @@ public class MyList {
     int counter;
     int counterD;
 
-    public MyList() throws FileNotFoundException {
+    public MyList() {
             mylistFilm = new ArrayList<>();
             mylistSeries = new ArrayList<>();
             counter = 0;
@@ -38,7 +38,7 @@ public class MyList {
     }
 
     //Indlæs MyList film og serier for nuværende bruger til arrayL
-    public void findLoadListMedie(ArrayList<Film> AListF, ArrayList<Series> AListS) throws IOException {
+    public void findLoadListMedie(ArrayList<Film> AListF, ArrayList<Series> AListS) {
         try{
         s = new Scanner(new File(fileMyList)); //Scanner der skal scanne txt-filen, "MyLists.txt
         s.useDelimiter("[;\n]"); //efter ; skift linje

@@ -3,9 +3,7 @@ package com.example.eksamensprojekt;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
-
 import java.io.IOException;
 
 public class PlayWindowController {
@@ -20,7 +18,7 @@ public class PlayWindowController {
         private Text text;
 
         @FXML
-        void toggleButton(ActionEvent event) throws IOException {
+        void toggleButton(ActionEvent event) {
        if(event.getSource() == button_play){
            text.setText("Loading...");
        }

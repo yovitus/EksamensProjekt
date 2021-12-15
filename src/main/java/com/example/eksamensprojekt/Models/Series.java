@@ -1,7 +1,5 @@
 package com.example.eksamensprojekt.Models;
 
-import java.util.ArrayList;
-
 public class Series extends Medier {
     public String endYear;
     public String[] seasons;

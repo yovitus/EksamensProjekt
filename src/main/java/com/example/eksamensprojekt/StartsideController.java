@@ -1,25 +1,15 @@
 package com.example.eksamensprojekt;
 
-import com.example.eksamensprojekt.Services.Login;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class StartsideController {
-    Login login = new Login();
-
-    @FXML
-    TextField knownUsername;
-    @FXML
-    TextField knownPassword;
     @FXML
     public void goToFilmList(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("FilmList.fxml"));

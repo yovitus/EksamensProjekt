@@ -86,8 +86,6 @@ public class Login  {
     public void makeProfile(String username, String password)  {
         try {
             bufferedWriter = new BufferedWriter(new FileWriter(new File(nameFile), true)); //den overskriver ikke i txt filen hvis true
-            /*if(username.equals(""))
-                System.out.println("USERNAME CAN'T BE EMPTY");*/
             if(!username.equals("") && !password.equals(""))
                 bufferedWriter.write(username + "," + password + "\n"); //tilføjer username og password til txt-filen
             bufferedWriter.close();
@@ -100,15 +98,5 @@ public class Login  {
         }
 
     }
-
-    /*public String getFile() throws IOException {
-        BufferedReader reader =  new BufferedReader(new FileReader(nameFile));
-        String returnString = "";
-        String line;
-        while ((line = reader.readLine()) != null)
-        {
-            returnString += line + "\n";
-        }
-        return returnString;*/
     }
 
