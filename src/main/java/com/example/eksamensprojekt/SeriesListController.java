@@ -1,6 +1,5 @@
 package com.example.eksamensprojekt;
 
-import com.example.eksamensprojekt.Models.Film;
 import com.example.eksamensprojekt.Models.Series;
 import com.example.eksamensprojekt.Services.LoadingSeries;
 import com.example.eksamensprojekt.Services.MyList;
