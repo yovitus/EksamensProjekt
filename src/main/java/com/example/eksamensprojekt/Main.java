@@ -11,7 +11,6 @@ import java.io.IOException;
 
 public class Main extends Application {
     @Override
-
     public void start(Stage stage) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
@@ -20,7 +19,7 @@ public class Main extends Application {
             stage.show();
 
             //Kilde: David Hansson's error handler
-        } catch (Exception e) {
+        } catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Sorry, a random error occurred. Try again \n\"" + e.getLocalizedMessage() + "\"");
             alert.showAndWait().ifPresent(res -> System.exit(0));
         }

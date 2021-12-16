@@ -18,16 +18,19 @@
    <children>
       <Label layoutX="547.0" layoutY="37.0" text="TV Shows">
          <font>
-            <Font size="30.0" />
+            <Font name="Arial" size="29.0" />
          </font>
       </Label>
       <Button layoutX="859.0" layoutY="18.0" mnemonicParsing="false" onAction="#goToMain" text="Log out">
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor></Button>
+         </cursor>
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font></Button>
       <Button layoutX="363.0" layoutY="20.0" mnemonicParsing="false" onAction="#goToFilmList" prefHeight="61.0" prefWidth="160.0" text="Movies">
          <font>
-            <Font size="30.0" />
+            <Font name="Arial" size="29.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -35,7 +38,7 @@
       </Button>
       <Label layoutX="34.0" layoutY="15.0" onMouseClicked="#goToStartside" prefHeight="48.0" prefWidth="281.0" text="Stream++">
          <font>
-            <Font size="30.0" />
+            <Font name="Arial" size="30.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -61,11 +64,14 @@
             </GridPane>
          </content>
       </ScrollPane>
-      <TextField fx:id="searchField" layoutX="34.0" layoutY="66.0" onAction="#searchSeries" onKeyReleased="#searchSeries" prefHeight="27.0" prefWidth="171.0" promptText="Search TV Shows" />
+      <TextField fx:id="searchField" layoutX="34.0" layoutY="66.0" onAction="#searchSeries" onKeyReleased="#searchSeries" prefHeight="27.0" prefWidth="171.0" promptText="Search TV Shows">
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font></TextField>
       <ComboBox fx:id="comboBox" layoutX="217.0" layoutY="67.0" onAction="#select" prefHeight="26.0" prefWidth="90.0" promptText="Genre" />
       <Button layoutX="708.0" layoutY="20.0" mnemonicParsing="false" onAction="#goToMyList" prefHeight="60.0" prefWidth="132.0" text="My List">
          <font>
-            <Font size="30.0" />
+            <Font name="Arial" size="29.0" />
          </font>
       </Button>
    </children>

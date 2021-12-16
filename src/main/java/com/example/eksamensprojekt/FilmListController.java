@@ -24,6 +24,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
@@ -89,11 +90,17 @@ public class FilmListController {
         for (Film f : film) {
             //Laver parametrer til labels
             Label titleLabel = new Label(f.getName());
+            titleLabel.setFont(new Font("Arial", 13));
             Label yearLabel = new Label(f.getYear() + "");
+            yearLabel.setFont(new Font("Arial", 13));
             Label genreToStringLabel = new Label(f.genreToString()+ "");
+            genreToStringLabel.setFont(new Font("Arial", 13));
             Label ratingLabel = new Label(f.getRating()+ "");
+            ratingLabel.setFont(new Font("Arial", 13));
             Button btn=new Button("Play Movie");
+            btn.setFont(new Font("Arial", 13));
             Button MyListbtn=new Button("Add to My List");
+            MyListbtn.setFont(new Font("Arial", 13));
 
             //Henter image/thumbnail
             URL url = FilmListController.class.getResource(f.getImage());
@@ -161,6 +168,7 @@ public class FilmListController {
         renderFilm(film);
         Search se = new Search();
         ObservableList<String> list = FXCollections.observableArrayList(se.getAllGenreFilm(film));
+        comboBox.setStyle("-fx-font: 13px \"Arial\";");
         comboBox.setItems(list);
     }
 

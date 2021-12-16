@@ -20,6 +20,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -89,14 +90,22 @@ public class SeriesListController {
 
             //Laver parametrer til labels
             Label titleLabel = new Label(s.getName());
+            titleLabel.setFont(new Font("Arial", 13));
             Label yearLabel = new Label(s.getYear() + s.getEndYear());
+            yearLabel.setFont(new Font("Arial", 13));
             Label seasonLabel = new Label(s.getSeasonLength() + " seasons");
+            seasonLabel.setFont(new Font("Arial", 13));
             Label episodeLabel = new Label(Arrays.toString(s.getEpisodes()) + " episodes");
+            episodeLabel.setFont(new Font("Arial", 13));
             Label genreToStringLabel = new Label(s.genreToString() + "");
+            genreToStringLabel.setFont(new Font("Arial", 13));
             Label ratingLabel = new Label(s.getRating() + "");
+            ratingLabel.setFont(new Font("Arial", 13));
             //Laver knapper til hver enkelt serie
             Button playButton = new Button("Play");
+            playButton.setFont(new Font("Arial", 13));
             Button MyListbtn = new Button("Add to My List");
+            MyListbtn.setFont(new Font("Arial", 13));
 
             //Henter image/thumbnail
             URL url = SeriesListController.class.getResource(s.getImage());
@@ -124,6 +133,7 @@ public class SeriesListController {
                 backBtn.setAlignment(Pos.TOP_LEFT);
                 backBtn.setPadding(new Insets(10, 10, 10, 10));
                 Button goBackBtn = new Button("Go Back");
+                goBackBtn.setFont(new Font("Arial", 13));
                 backBtn.getChildren().add(goBackBtn);
                 seriesGridPane.add(backBtn, 0,0);
 
@@ -136,6 +146,7 @@ public class SeriesListController {
                 Button[] buttonsArrayS = new Button[s.getSeasonLength()];
                 for (int j = 0; j < s.getSeasonLength(); j++) {
                     buttonsArrayS[j] = new Button("Season " + (j + 1));
+                    buttonsArrayS[j].setFont(new Font("Arial", 13));
                     seasonList.getChildren().add(buttonsArrayS[j]);
                 }
                 seriesGridPane.add(seasonList, 1, 1);
@@ -156,6 +167,7 @@ public class SeriesListController {
                         episodeList.getChildren().clear();
                         for (int p = 0; p < episodesIntArray[season]; p++) {
                             buttonsArrayE[p] = new Button("Episode " + (p + 1));
+                            buttonsArrayE[p].setFont(new Font("Arial", 13));
                             episodeList.getChildren().add(buttonsArrayE[p]);
 
                             //EPISODE: afspiller valgte episode i nyt vindue
@@ -213,6 +225,7 @@ public class SeriesListController {
         renderSeries(series);
         Search se = new Search();
         ObservableList<String> list = FXCollections.observableArrayList(se.getAllGenreSeries(series));
+        comboBox.setStyle("-fx-font: 13px \"Arial\";");
         comboBox.setItems(list);
     }
 

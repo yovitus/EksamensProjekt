@@ -18,6 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -92,11 +93,17 @@ public class MyListController {
         for (Film f : film) {
             //Laver parametrer til labels
             Label titleLabel = new Label(f.getName());
+            titleLabel.setFont(new Font("Arial", 13));
             Label yearLabel = new Label(f.getYear() + "");
+            yearLabel.setFont(new Font("Arial", 13));
             Label genreToStringLabel = new Label(f.genreToString() + "");
+            genreToStringLabel.setFont(new Font("Arial", 13));
             Label ratingLabel = new Label(f.getRating() + "");
+            ratingLabel.setFont(new Font("Arial", 13));
             Button btn = new Button("Play Movie");
+            btn.setFont(new Font("Arial", 13));
             Button RemoveFilmbtn = new Button("Remove from My List");
+            RemoveFilmbtn.setFont(new Font("Arial", 13));
 
             //Henter image/thumbnail
             URL url = MyListController.class.getResource(f.getImage());
@@ -140,14 +147,22 @@ public class MyListController {
         for (Series s : series) {
             //Laver parametrer til labels
             Label titleLabel = new Label(s.getName());
+            titleLabel.setFont(new Font("Arial", 13));
             Label yearLabel = new Label(s.getYear() + s.getEndYear());
+            yearLabel.setFont(new Font("Arial", 13));
             Label seasonLabel = new Label(s.getSeasonLength() + " seasons");
+            seasonLabel.setFont(new Font("Arial", 13));
             Label episodeLabel = new Label(Arrays.toString(s.getEpisodes()) + " episodes");
+            episodeLabel.setFont(new Font("Arial", 13));
             Label genreToStringLabel = new Label(s.genreToString() + "");
+            genreToStringLabel.setFont(new Font("Arial", 13));
             Label ratingLabel = new Label(s.getRating() + "");
+            ratingLabel.setFont(new Font("Arial", 13));
             //Laver knapper til hver enkelt serie
             Button playButton = new Button("Play");
+            playButton.setFont(new Font("Arial", 13));
             Button RemoveSeriesbtn = new Button("Remove from My List");
+            RemoveSeriesbtn.setFont(new Font("Arial", 13));
 
             //Henter image/thumbnail
             URL url = MyListController.class.getResource(s.getImage());
@@ -175,6 +190,7 @@ public class MyListController {
                 backBtn.setAlignment(Pos.TOP_LEFT);
                 backBtn.setPadding(new Insets(10, 10, 10, 10));
                 Button goBackBtn = new Button("Go Back");
+                goBackBtn.setFont(new Font("Arial", 13));
                 backBtn.getChildren().add(goBackBtn);
                 seriesGridPane.add(backBtn, 0, 0);
 
@@ -187,6 +203,7 @@ public class MyListController {
                 Button[] buttonsArrayS = new Button[s.getSeasonLength()];
                 for (int j = 0; j < s.getSeasonLength(); j++) {
                     buttonsArrayS[j] = new Button("Season " + (j + 1));
+                    buttonsArrayS[j].setFont(new Font("Arial", 13));
                     seasonList.getChildren().add(buttonsArrayS[j]);
                 }
                 seriesGridPane.add(seasonList, 1, 1);
@@ -207,6 +224,7 @@ public class MyListController {
                         episodeList.getChildren().clear();
                         for (int p = 0; p < episodesIntArray[season]; p++) {
                             buttonsArrayE[p] = new Button("Episode " + (p + 1));
+                            buttonsArrayE[p].setFont(new Font("Arial", 13));
                             episodeList.getChildren().add(buttonsArrayE[p]);
 
 
