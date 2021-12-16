@@ -10,6 +10,7 @@ public class Search {
 
     public Scanner s;
 
+    //Søg efter value i valgt liste. Value kan "contains" title, eller "equals" årstal
     public List<Film> getSearchedFilm(String value, List<Film> film) {
         //film med value kommer ud som stream, men med collect så samles det til en liste
         if(value.equals(""))
@@ -20,6 +21,7 @@ public class Search {
                 .collect(Collectors.toList());
     }
 
+    //Søg efter value i valgt liste. Value kan "contains" title, eller "equals" årstal
     public List<Series> getSearchedSeries(String value, List<Series> series) {
         if(value.equals(""))
             return series;
@@ -29,8 +31,8 @@ public class Search {
                 .collect(Collectors.toList());
     }
 
-   public List<Film> getSearchedFilmGenre(String value, List<Film> film) {
-       //film med value kommer ud som stream, men med collect så samles det til en liste
+    //film med value kommer ud som stream, men med collect så samles det til en liste
+    public List<Film> getSearchedFilmGenre(String value, List<Film> film) {
        System.out.println("check "+value+"check");
        if(value.isEmpty() || value.equals("All") || value.equals("")) return film;
        var genreListe = film.stream()
@@ -39,7 +41,9 @@ public class Search {
        return genreListe;
    }
 
+   //Retunerer en liste med alle genre for film
    public List<String> getAllGenreFilm(List<Film> film) {
+        //Først laves et HashSet, så genrer ikke går igen
        HashSet<String> oneTypeGenre = new HashSet<>();
        for (Film f : film) {
            for(String s : f.getGenre())
@@ -47,6 +51,7 @@ public class Search {
                oneTypeGenre.add(s);
            }
        }
+       //ArrayList laves, så der kan soteres efter alfabetisk rækkers, og tilføjes en "All" forerst
        List<String> list = new ArrayList<>(oneTypeGenre);
        List<String> sortedList = list.stream().sorted().collect(Collectors.toList());
        sortedList.add(0,"All");
@@ -54,8 +59,8 @@ public class Search {
        return sortedList;
    }
 
+    //film med value kommer ud som stream, men med collect så samles det til en liste
     public List<Series> getSearchedSeriesGenre(String value, List<Series> series) {
-        //film med value kommer ud som stream, men med collect så samles det til en liste
         System.out.println("check "+value+"check");
         if(value.isEmpty() || value.equals("All") || value.equals("")) return series;
         var genreListe = series.stream()
@@ -64,14 +69,17 @@ public class Search {
         return genreListe;
     }
 
+    //Retunerer en liste med alle genre for series
     public List<String> getAllGenreSeries(List<Series> series) {
+        //Først laves et HashSet, så genrer ikke går igen
         HashSet<String> oneTypeGenre = new HashSet<>();
         for (Series s : series) {
             for (String st : s.getGenre()) {
                 oneTypeGenre.add(st);
             }
         }
-            List<String> list = new ArrayList<>(oneTypeGenre);
+        //ArrayList laves, så der kan soteres efter alfabetisk rækkers, og tilføjes en "All" forerst
+        List<String> list = new ArrayList<>(oneTypeGenre);
             List<String> sortedList = list.stream().sorted().collect(Collectors.toList());
             sortedList.add(0, "All");
             System.out.println("TV Shows genre list" + sortedList);

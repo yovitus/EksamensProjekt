@@ -84,6 +84,7 @@ public class FilmListController {
     @FXML
     private TextField searchField;
 
+    //Render til gridpane
     @FXML
     public void renderFilm(List<Film> film) {
     int i = 0;
@@ -144,34 +145,40 @@ public class FilmListController {
         }
     }
 
+    //fjerner alt i gridpane
     @FXML
     public void clearView()
     {
         filmGridPane.getChildren().clear();
     }
 
+    //søger efter title (contains) eller year (equals)
     @FXML
     public void searchFilm() {
-        System.out.println("searchFilm");
-        System.out.println(film.size());
+        //System.out.println("searchFilm");
+        //System.out.println(film.size());
         clearView();
         searchAndGenre();
         renderFilm(this.filterFilm);
     }
 
+    //initialiserer view'et
     @FXML
     public void initialize() {
-        System.out.println("initialize");
+        //System.out.println("initialize");
         LoadingFilm lf = new LoadingFilm();
         film = lf.openFile();
         filterFilm = film;
         renderFilm(film);
         Search se = new Search();
+
+        //laver en "Observable" liste med genrer, som kan bruges i combobox
         ObservableList<String> list = FXCollections.observableArrayList(se.getAllGenreFilm(film));
         comboBox.setStyle("-fx-font: 13px \"Arial\";");
-        comboBox.setItems(list);
+        comboBox.setItems(list); //Tager den "Observable" liste og putter i comboboxen
     }
 
+    //vælg genre
     @FXML
     public void select() {
         clearView();
@@ -179,18 +186,20 @@ public class FilmListController {
         renderFilm(this.filterFilm); //en metode burde kun have et formål
     }
 
+    //søg efter film under én bestemt genre
     private void searchAndGenre() {
         Search se = new Search();
         resetSelect();
         var combo = comboBox.getSelectionModel().getSelectedItem();
         //Ternery, first, checker om combo har et selected value. eller combo sættes til at være alle
         var value = !Objects.isNull(combo) ? combo.toString() : "All";
-        System.out.println(combo);
-        System.out.println("check"+combo);
+        //System.out.println(combo);
+        //System.out.println("check"+combo);
         List<Film> filter = se.getSearchedFilmGenre(value, this.film);
         this.filterFilm = se.getSearchedFilm(searchField.getText(), filter);
 
     }
+    //buffer, sæt filterFilm til fim
     private void resetSelect()
     {
         filterFilm = film;

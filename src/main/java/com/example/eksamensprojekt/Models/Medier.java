@@ -17,6 +17,8 @@ public abstract class Medier {
         this.rating = rating;
         this.typeMedia = typeMedia;
     }
+
+    //henter thumbnail/plakat for enten Series eller Film
     public String getImage() {
         if(typeMedia == "film")
         {

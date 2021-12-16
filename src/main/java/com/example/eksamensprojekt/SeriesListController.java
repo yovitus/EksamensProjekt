@@ -83,6 +83,7 @@ public class SeriesListController {
     @FXML
     private TextField searchField;
 
+    //render til gridpane
     @FXML
     public void renderSeries(List<Series> series) {
         int i = 0;
@@ -205,11 +206,14 @@ public class SeriesListController {
             });
         }}
 
+    //Fjerner alt i gridpane
     @FXML
     public void clearView() {
+
         seriesGridPane.getChildren().clear();
     }
 
+    //søger efter title (contains) eller year (equals)
     @FXML
     public void searchSeries() {
         clearView();
@@ -217,18 +221,23 @@ public class SeriesListController {
         renderSeries(this.filterSeries);
     }
 
+    //initialiserer view'et
     @FXML
     public void initialize() {
+        //initialiserer view'et
         LoadingSeries ls = new LoadingSeries();
         series = ls.openFile();
         filterSeries = series;
         renderSeries(series);
         Search se = new Search();
+
+        //laver en "Observable" liste med genrer, som kan bruges i combobox
         ObservableList<String> list = FXCollections.observableArrayList(se.getAllGenreSeries(series));
         comboBox.setStyle("-fx-font: 13px \"Arial\";");
-        comboBox.setItems(list);
+        comboBox.setItems(list); //Tager den "Observable" liste og putter i comboboxen
     }
 
+    //vælg genre
     @FXML
     public void select() {
         clearView();
@@ -236,14 +245,15 @@ public class SeriesListController {
         renderSeries(this.filterSeries);
     }
 
+    //søg efter serier under én bestemt genre
     private void searchAndGenre() {
         Search se = new Search();
         resetSelect();
         var combo = comboBox.getSelectionModel().getSelectedItem();
         //Ternery, first, checker om combo har et selected value. eller combo sættes til at være alle
         var value = !Objects.isNull(combo) ? combo.toString() : "All";
-        System.out.println(combo);
-        System.out.println("check"+combo);
+        //System.out.println(combo);
+        //System.out.println("check"+combo);
         List<Series> filter = se.getSearchedSeriesGenre(value, this.series);
         this.filterSeries = se.getSearchedSeries(searchField.getText(), filter);
     }

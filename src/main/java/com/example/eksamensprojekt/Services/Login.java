@@ -16,12 +16,10 @@ public class Login  {
     public User user;
     public boolean accepted = false;
 
-
-    //tjekker om oplysninger (brugernavn og password) er korrekt, hvis  akeUser er lavet, eller sender den en exception
     public Login() {
-
     }
 
+    //tjekker om oplysninger (brugernavn og password) er korrekt, når man logger ind, hvis  makeProfile er lavet, eller sender den en exception
     public User login(String username, String password) throws IOException {
         String tmpUser = "";
         String tmpPswd = "";
@@ -56,6 +54,7 @@ public class Login  {
         return user;
     }
 
+    //Checker for om username allerede er oprettet før
     public boolean checkInput(String username) throws UserExistException
     {
         String tmpUser = "";
@@ -81,7 +80,7 @@ public class Login  {
         return found;
     }
 
-
+    //Opretter en bruger, med username og et password
     public void makeProfile(String username, String password)  {
         try {
             bufferedWriter = new BufferedWriter(new FileWriter(new File(nameFile), true)); //den overskriver ikke i txt filen hvis true

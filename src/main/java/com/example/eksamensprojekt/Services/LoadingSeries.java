@@ -13,6 +13,7 @@ public class LoadingSeries {
         series = new ArrayList<>();
     }
 
+    //scanner txt-filen for series, og inddeler hver linje til én serie, og splitter til valgte parametrer af klassen Series
     public List<Series> openFile()
     {
         try {
@@ -22,16 +23,15 @@ public class LoadingSeries {
                 String oneString = s.nextLine(); //læser hver linje, som 1 serie
                 String[] line = oneString.split(" *; *"); //splitter ved ;
 
-                String name = line[0];
+                String name = line[0]; //name er første plads
                 //splitter årstallene
                 //endYear indeholder "-" + om der er et årstal bagefter
                 String releaseYear = line[1].substring(0, 4);
                 int rYear = Integer.parseInt(releaseYear);
                 String endYear = line[1].substring(4);
-                //Deler genre op i et array
-                String[] genre = line[2].split(" *, *");
-                //laver String om til float
-                float rating = lf.tryParseToFloat(line[3]);
+                String[] genre = line[2].split(" *, *"); //Deler genre op i et array, på tredje plads
+                float rating = lf.tryParseToFloat(line[3]); //rating er på fjerde plads, kalder på metode i LoadingFilm
+
                 //deler season op i array og tilføjer episoder til en ArrayList<String>
                 String[] seasonsArray = line[4].split(", "); //antal sæsoner
                 String[] episodesReader; //tom array
