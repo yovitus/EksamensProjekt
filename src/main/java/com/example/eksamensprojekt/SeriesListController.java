@@ -177,8 +177,9 @@ public class SeriesListController {
                                     FXMLLoader fxmlLoader = new FXMLLoader();
                                     fxmlLoader.setLocation(getClass().getResource("Playwindow.fxml"));
 
-                                    Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+                                    Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
                                     Stage stage = new Stage();
+                                    stage.setResizable(false);
                                     stage.setTitle(s.getName() + " is playing..");
                                     stage.setScene(scene);
                                     stage.show();

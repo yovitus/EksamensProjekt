@@ -23,7 +23,7 @@ public class PlayWindowController {
            text.setText("Loading...");
        }
        if(event.getSource()==button_pause){
-           text.setText("Paused...");
+           text.setText("Paused");
        }
         }
 

@@ -1,36 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.SplitPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<SplitPane dividerPositions="0.8590604026845636" maxHeight="550" maxWidth="900" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.eksamensprojekt.PlayWindowController">
-  <items>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.eksamensprojekt.PlayWindowController">
+   <children>
+      <AnchorPane layoutY="-2.0" minHeight="0.0" minWidth="0.0" prefHeight="643.0" prefWidth="1280.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-2.0">
          <children>
-            <Text fx:id="text" layoutX="199.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="199.31638526916504">
+            <Text fx:id="text" layoutY="354.4638671875" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="1280.81369972229" AnchorPane.bottomAnchor="274.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="292.0">
                <font>
-                  <Font name="Arial" size="43.0" />
+                  <Font name="Arial" size="69.0" />
                </font>
             </Text>
-         </children></AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="-2.0" layoutY="323.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="78.0" prefWidth="600.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="2.0">
          <children>
-            <ToggleButton fx:id="button_play" layoutX="102.0" layoutY="11.0" mnemonicParsing="false" onAction="#toggleButton" text="Play">
-               <toggleGroup>
-                  <ToggleGroup fx:id="Buttons" />
-               </toggleGroup>
-               <font>
-                  <Font name="Arial" size="13.0" />
-               </font>
-            </ToggleButton>
-            <ToggleButton fx:id="button_pause" layoutX="418.0" layoutY="11.0" mnemonicParsing="false" onAction="#toggleButton" text="Pause" toggleGroup="$Buttons">
-               <font>
-                  <Font name="Arial" size="13.0" />
-               </font></ToggleButton>
-         </children></AnchorPane>
-  </items>
-</SplitPane>
+            <HBox maxWidth="1.7976931348623157E308" prefHeight="117.0" prefWidth="610.0" spacing="10.0" style="-fx-border-color: black;" AnchorPane.bottomAnchor="-39.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-10.0">
+               <children>
+                  <ToggleButton fx:id="button_play" mnemonicParsing="false" onAction="#toggleButton" text="Play">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="Buttons" />
+                     </toggleGroup>
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="535.0" />
+                     </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ToggleButton>
+                  <ToggleButton fx:id="button_pause" mnemonicParsing="false" onAction="#toggleButton" text="Pause">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="Buttons" />
+                     </toggleGroup>
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ToggleButton>
+               </children>
+               <padding>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </padding>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
